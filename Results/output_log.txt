@@ -1,0 +1,55 @@
+2020-03-18 00:27:52,963 0:0:0 Finished executing
+2020-03-18 00:29:36,915 0:0:28 Width and Height Parameters set with Height: 576 and Width 576
+2020-03-18 00:29:36,916 0:0:28 Processing done, resizing and saving
+2020-03-18 00:30:08,789 0:0:10 Width and Height Parameters set with Height: 576 and Width 576
+2020-03-18 00:30:08,790 0:0:10 Processing done, resizing and saving
+2020-03-18 00:30:10,784 0:0:12 Finished executing
+2020-03-18 00:33:04,584 0:0:12 Width and Height Parameters set with Height: 576 and Width 576
+2020-03-18 00:33:04,601 0:0:12 Processing done, resizing and saving
+2020-03-18 00:33:07,475 0:0:15 Finished executing
+2020-03-18 00:35:46,535 0:0:14 Width and Height Parameters set with Height: 576 and Width 576
+2020-03-18 00:35:46,552 0:0:14 Processing done, resizing and saving
+2020-03-18 00:35:51,179 0:0:18 Finished executing
+2020-03-18 00:41:03,846 0:0:34 Width and Height Parameters set with Height: 576 and Width 576
+2020-03-18 00:41:03,864 0:0:34 Processing done, resizing and saving
+2020-03-18 00:41:13,652 0:0:44 Finished executing
+2020-03-18 00:43:17,142 0:0:21 Width and Height Parameters set with Height: 576 and Width 576
+2020-03-18 00:43:17,142 0:0:21 Processing done, resizing and saving
+2020-03-18 00:43:19,068 0:0:23 Finished executing
+2020-03-18 00:47:56,085 0:0:26 Width and Height Parameters set with Height: 576 and Width 576
+2020-03-18 00:47:56,085 0:0:26 Processing done, resizing and saving
+2020-03-18 00:47:57,841 0:0:28 Finished executing
+2020-03-18 00:52:04,870 0:0:0 Loaded 0 images to be augmented
+2020-03-18 00:54:14,870 0:0:0 Loaded 0 images to be renamed
+2020-03-18 01:03:03,285 0:0:0 Loaded 0 images to be renamed
+2020-03-18 01:06:05,695 0:0:0 Loaded 118 images to be renamed
+2020-03-18 01:07:36,912 0:0:1 Loaded 236 images to be renamed
+2020-03-18 01:08:39,617 0:0:0 Loaded 118 images to be renamed
+2020-03-18 01:21:00,839 0:0:13 Width and Height Parameters set with Height: 576 and Width 576
+2020-03-18 01:21:00,855 0:0:13 Processing done, resizing and saving
+2020-03-18 01:21:02,643 0:0:15 Finished executing
+2020-03-18 01:24:14,975 0:0:0 Loaded 118 images to be renamed
+2020-03-18 01:30:06,704 0:0:1 Loaded 301 images to be augmented
+2020-03-18 01:30:06,712 0:0:1 Beginning augmentation of 301 images
+2020-03-18 01:30:06,712 0:0:1 Width and Height Parameters set with Height: 576 and Width 576
+2020-03-18 01:30:12,804 0:0:7 Augmentation done, resizing and saving the images
+2020-03-18 01:30:42,477 0:0:37 Finished executing
+2020-03-18 01:41:25,324 0:0:0 Numpy files don't exist, generating them instead
+2020-03-18 01:41:25,324 0:0:0 Generating numpy data and saving to file
+2020-03-18 01:41:25,324 0:0:0 Loading data from file
+2020-03-18 01:41:25,334 0:0:0 Loading images from folder
+2020-03-18 01:41:44,871 0:0:19 Images loaded from folder
+2020-03-18 01:41:44,871 0:0:19 Sorting image order and storing as numpy array
+2020-03-18 01:42:17,302 0:0:51 Images sorted and stored as numpy array
+2020-03-18 01:42:17,310 0:0:51 Converting images to RGB
+2020-03-18 01:42:18,136 0:0:52 Converted images to RGB
+2020-03-18 01:42:18,221 0:0:52 Loaded labels from file
+2020-03-18 01:42:43,161 0:1:17 Data saved as numpy files, stored at: /home/james/Documents/Seagrass-Repository/Images/
+2020-03-18 01:42:43,162 0:1:17 Loaded data from numpy files
+2020-03-18 01:42:43,272 0:1:17 Mean of labels: 39.039700996677745
+2020-04-11 14:16:40,540 0:0:56 Loaded data from numpy files
+2020-04-11 14:17:06,402 0:1:22 Batch 0
+2020-04-11 14:17:08,381 0:1:24 Batch 1
+2020-04-11 14:17:08,800 0:1:24 Batch 2
+2020-04-11 14:17:08,932 0:1:24 Batch 3
+2020-04-11 14:17:09,112 0:1:24 Batch 4
