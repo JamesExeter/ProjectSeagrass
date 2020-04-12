@@ -8,6 +8,7 @@ from keras.layers.convolutional import Convolution2D
 from keras.optimizers import Adam, Adadelta
 from keras.models import load_model
 import matplotlib.pyplot as pyplot
+from inception_v4 import create_inception_v4
 
 cnn_instance = None
 
@@ -17,6 +18,11 @@ class CNN(object):
 
     def close(self):
         self.sess.close()
+        
+def create_inception_cnn():
+    #default model shape for InceptionNet-v4 is 299 x 299 x 3, need to make 576 x 576 x 3
+    model = create_inception_v4()
+    return model
 
 def create_cnn(width, height, depth):
     nb_filters = 8
@@ -59,15 +65,20 @@ def create_cnn(width, height, depth):
     model.compile(loss='mean_squared_error', optimizer=Adadelta())
     return model
 
-def train_model(model, train_images, train_labels, test_images, test_labels, number_epochs, using_checkpoints, path_to_checkpoint):
-    # fit model
-    history = None    
-    if using_checkpoints:
-        cp = add_checkpoint(path_to_checkpoint)
-        history = model.fit(train_images, train_labels, validation_data=(test_images, test_labels), epochs=number_epochs, verbose=0, callbacks=[cp])
-    else:
-        history = model.fit(train_images, train_labels, validation_data=(test_images, test_labels), epochs=number_epochs, verbose=0)
+def train_model(model, train_images, train_labels, test_images, test_labels, number_epochs, path_to_checkpoint):
+    # fit model  
+    checkpoint_path = "seagrass_training/cp-{epoch:04d}.ckpt"
+    checkpoint_dir = os.path.dirname(path_to_checkpoint + "/" + checkpoint_path)
+
+    # Create a callback that saves the model's weights
+    # Saves every 5 epochs, only saving the latest as long as the file names is not unique 
+    cp_callback = tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_path, save_weights_only=True,verbose=1,period=5)
+    
+    model.save_weights_to_disk(path_to_checkpoint + "/" + checkpoint_path.format(epoch=0))
+    history = model.fit(train_images, train_labels, validation_data=(test_images, test_labels), epochs=number_epochs, verbose=0, callbacks=[cp_callback])
+
     train_mse, test_mse = evaluate_model(history, train_images, train_labels, test_images, test_labels)
+    #can probably use train mse and test mse in plot training results method
     plot_training_results(history)
 
 def evaluate_model(model, train_images, train_labels, test_images, test_labels):
@@ -103,36 +114,25 @@ def load_model_from_disk(load_path):
     
     return new_model
 
-def save_weights(model, weights_path):
+def save_weights_to_disk(model, weights_path): 
     model.save_weights(weights_path)
 
-def load_weights(width, height, depth, path):
-    model = create_cnn(width, height, depth)
-    model.load_weights(path)
+def load_weights(model, path):
+    checkpoint_path = "seagrass_training/cp-{epoch:04d}.ckpt"
+    checkpoint_dir = os.path.dirname(path + "/" + checkpoint_path)
+    
+    latest = tf.train.latest_checkpoint(checkpoint_dir)
+    
+    model.load_weights(latest)
     
     return model
-
-def add_checkpoint(path):
-    checkpoint_path = path
-    checkpoint_dir = os.path.dirname(checkpoint_path)
-
-    # Create a callback that saves the model's weights
-    # Saves every 5 epochs, only saving the latest as long as the file names is not unique 
-    cp_callback = tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_path, save_weights_only=True,verbose=1,period=5)
-    
-    return cp_callback
-    
-
-def save_model_checkpoint():
-    pass
-
-def load_model_checkpoint():
-    pass
 
 def give_summary(model):
     model.summary()
 
 def ini ():
+    #if using a graph / InceptionNet, initialise here
+    
     global cnn_instance
     cnn_instance = CNN()
     
