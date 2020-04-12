@@ -6,7 +6,7 @@ import cv2
 import argparse
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.utils import shuffle
-import classifier.cnn
+import classifier.cnn as cnn
 from utils.FileUtil import FileUtil
 from utils.FileLoader import FileLoader
 from sklearn.model_selection import train_test_split
@@ -15,7 +15,6 @@ import time
 from numpy import save
 from numpy import load
 import sys
-
 
 BATCH_SIZE = 500
 TEST_SIZE = 0.2
@@ -29,16 +28,20 @@ def batch(data, batch_size):
         # Create an index range for l of n items:
         yield data[i:i+batch_size]
 
-def train_in_batch(images, labels, results_path, checkpoint_path, model_checkpoint, batch_size=BATCH_SIZE):
+def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
     images_batched = list(batch(images, batch_size))
     labels_batched = list(batch(labels, batch_size))
+    
+    height = rgb_images.shape[1]
+    width = rgb_images.shape[2]
+    depth = rgb_images.shape[3]
     print("\n")
+    msg.timemsg("Training CNN start")
 
-    load_checkpoint = False
-    for i in range(len(images_batched)):
-        if i > 0:
-            load_checkpoint = True
-            
+    model = cnn.create_cnn(width, height, depth)
+    cnn.give_summary(model)
+    
+    for i in range(len(images_batched)):        
         msg.timemsg("Batch {}".format(i))
         
         #if a proper training set can't be made from the last batch, add the last batch to the one prior
@@ -56,16 +59,35 @@ def train_in_batch(images, labels, results_path, checkpoint_path, model_checkpoi
         
         # will need to train
         # checkpoints will be created during training
-        # load from checkpoint if not the first batch and save the entire model at the end of each batch 
+        # load from checkpoint if not the first batch and save the entire model at the end of each batch
         
+        if i > 0:
+            model = cnn.create_cnn(width, height, depth)
+            msg.timemsg("Loading weights for model")
+            model = cnn.load_weights_from_disk(model, cp_path)
         
+        msg.timemsg("Batch {}: Training batch".format(i))
+        model = cnn.train_model(model, train_images, train_labels, test_images, test_labels, 100, cp_path)
+        
+        msg.timemsg("Batch {}: Evaluating model".format(i))
+        train_mse, test_mse = cnn.evaluate_model(model, train_images, train_labels, test_images, test_labels)
+        #can probably use train mse and test mse in plot training results method
+        cnn.plot_training_results(model)
+        
+    msg.timemsg("Training CNN finished")
+    msg.timemsg("Saving model to file")
+    cnn.save_model(model, m_path)
+    
+def prediction():
+    pass    
+    
 # calculate mean squared error
 def mean_squared_error(actual, predicted):
     sum_square_error = 0.0
     for i in range(len(actual)):
         sum_square_error += (actual[i] - predicted[i])**2.0
     mean_square_error = 1.0 / len(actual) * sum_square_error
-    return mean_square_error   
+    return mean_square_error
 
 def convert_to_rbg(image):
     return cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -131,6 +153,8 @@ if __name__ == "__main__":
 
     rgb_images = np.array([])
     labels_arr = np.array([])
+    
+    msg.timemsg("Loading or creating numpy data")
 
     #try to load the data, generate it if it doesnt load
     try:
@@ -150,12 +174,14 @@ if __name__ == "__main__":
 
     msg.timemsg("Loaded data from numpy files")
 
-    height = rgb_images.shape[1]
-    width = rgb_images.shape[2]
-    depth = rgb_images.shape[3]
-
     # fit and transform in one step for the labels
+    
+    msg.timemsg("Normalising data")
+    rgb_images = rgb_images.astype('float32')
+    rgb_images /= 255.0
+    print(rgb_images.min(), rgb_images.max())
     labels_arr = scale_data(labels_arr)
+    msg.timemsg("Data normalised")
 
     #at this point I have loaded in all of the images in RGB form into a numpy array in order
     #the labels are also loaded in properly too as floats
@@ -165,9 +191,14 @@ if __name__ == "__main__":
 
     #shuffles the data before batching
     rgb_images, labels_arr = shuffle_data(rgb_images, labels_arr)
+    
+    cnn.ini()
 
-    train_in_batch(rgb_images, labels_arr, args.results_dir, checkpoint_path, model_path)
+    train_in_batch(rgb_images, labels_arr, checkpoint_path, model_path)
     
     #either have a model returned or load it from file if it exists already
     #then run predictions on it for testing
     #or evaluate the model and predict data needed
+    
+    cnn.close()
+    msg.timemsg("Execution finished, exiting")
