@@ -15,7 +15,7 @@ from numpy import save
 from numpy import load
 import sys
 
-BATCH_SIZE = 100
+BATCH_SIZE = 50
 TEST_SIZE = 0.2
 
 def shuffle_data(images, labels):

@@ -256,3 +256,16 @@
 2020-04-13 13:48:47,226 0:0:28 Batch 0: Training batch
 2020-04-13 13:48:51,750 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
 
+2020-04-13 15:08:52,723 0:0:0 Loading or creating numpy data
+2020-04-13 15:09:35,045 0:0:42 Loaded data from numpy files
+2020-04-13 15:09:35,045 0:0:42 Normalising labels
+2020-04-13 15:09:35,050 0:0:42 Labels normalised
+2020-04-13 15:09:35,746 0:0:43 Training CNN start
+2020-04-13 15:09:36,493 0:0:43 Batch 0
+2020-04-13 15:09:36,494 0:0:43 Batch 0: Normalising pixel values
+2020-04-13 15:09:38,173 0:0:45 Batch 0: Normalised pixel values
+2020-04-13 15:09:38,173 0:0:45 Batch 0: Shuffling data
+2020-04-13 15:09:41,300 0:0:48 Batch 0: Data shuffled, data now being split into training and testing data
+2020-04-13 15:09:41,563 0:0:48 Batch 0: Training batch
+2020-04-13 15:09:47,216 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
