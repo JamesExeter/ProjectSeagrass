@@ -1,5 +1,5 @@
 import os
-#os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import warnings
 warnings.filterwarnings('ignore',category=FutureWarning)
 import tensorflow as tf
@@ -8,6 +8,7 @@ from keras.layers.core import Dense, Dropout, Activation, Flatten
 from keras.layers.convolutional import Convolution2D
 from keras.optimizers import Adam, Adadelta
 from keras.models import load_model
+from keras_tqdm import TQDMNotebookCallback
 import matplotlib.pyplot as pyplot
 
 cnn_instance = None
@@ -18,11 +19,6 @@ class CNN(object):
 
     def close(self):
         self.sess.close()
-        
-#def create_inception_cnn():
-    #default model shape for InceptionNet-v4 is 299 x 299 x 3, need to make 576 x 576 x 3
-#    model = create_inception_v4()
-#    return model
 
 def create_cnn(width, height, depth):
     nb_filters = 8
@@ -71,10 +67,10 @@ def train_model(model, train_images, train_labels, test_images, test_labels, num
 
     # Create a callback that saves the model's weights
     # Saves every 5 epochs, only saving the latest as long as the file names is not unique 
-    cp_callback = tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_path, save_weights_only=True,verbose=1,save_freq=5)
+    cp_callback = tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_path, monitor='val_loss', save_weights_only=True, save_best_only=False, mode="auto", verbose=0, period=5)
     
     save_weights_to_disk(model, (checkpoint_path.format(epoch=0)))
-    history = model.fit(train_images, train_labels, validation_data=(test_images, test_labels), epochs=number_epochs, verbose=0, callbacks=[cp_callback])
+    history = model.fit(train_images, train_labels, validation_data=(test_images, test_labels), epochs=number_epochs, verbose=0, callbacks=[cp_callback, TQDMNotebookCallback(verbose=2)])
     
     return history
 
