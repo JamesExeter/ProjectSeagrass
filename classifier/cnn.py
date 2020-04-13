@@ -1,4 +1,5 @@
 import os
+#os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import warnings
 warnings.filterwarnings('ignore',category=FutureWarning)
 import tensorflow as tf
@@ -66,14 +67,13 @@ def create_cnn(width, height, depth):
 
 def train_model(model, train_images, train_labels, test_images, test_labels, number_epochs, path_to_checkpoint):
     # fit model  
-    checkpoint_path = "seagrass_training/cp-{epoch:04d}.ckpt"
-    checkpoint_dir = os.path.dirname(path_to_checkpoint + "/" + checkpoint_path)
+    checkpoint_path = path_to_checkpoint + "/seagrass_training/cp-{epoch:04d}.ckpt"
 
     # Create a callback that saves the model's weights
     # Saves every 5 epochs, only saving the latest as long as the file names is not unique 
     cp_callback = tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_path, save_weights_only=True,verbose=1,save_freq=5)
     
-    save_weights_to_disk(model, (path_to_checkpoint + "/" + checkpoint_path.format(epoch=0)))
+    save_weights_to_disk(model, (checkpoint_path.format(epoch=0)))
     history = model.fit(train_images, train_labels, validation_data=(test_images, test_labels), epochs=number_epochs, verbose=0, callbacks=[cp_callback])
     
     return history
@@ -83,7 +83,7 @@ def evaluate_model(model, train_images, train_labels, test_images, test_labels):
     train_mse = model.evaluate(train_images, train_labels, verbose=0)
     test_mse = model.evaluate(test_images, test_labels, verbose=0)
     
-    loss, acc = model.evaluate(test_images, test_labels, verbose=2)
+    _, acc = model.evaluate(test_images, test_labels, verbose=2)
     print("Model accuracy: {:5.2f}%".format(100*acc))
 
     return train_mse, test_mse

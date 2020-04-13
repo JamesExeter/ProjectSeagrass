@@ -79,7 +79,9 @@ class FileLoader:
 
         out = list(zip(images, names))
         return sorted(out, key=lambda x: x[1])
+    
     def get_save_path(self):
         return self.save_to
+    
     def get_load_path(self):
         return self.load_from

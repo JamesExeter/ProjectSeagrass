@@ -4,7 +4,6 @@ import re
 import numpy as np
 import cv2
 import argparse
-from sklearn.preprocessing import MinMaxScaler
 from sklearn.utils import shuffle
 import classifier.cnn as cnn
 from utils.FileUtil import FileUtil
@@ -16,7 +15,7 @@ from numpy import save
 from numpy import load
 import sys
 
-BATCH_SIZE = 500
+BATCH_SIZE = 100
 TEST_SIZE = 0.2
 
 def shuffle_data(images, labels):
@@ -53,6 +52,17 @@ def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
             images_batched[-1] = np.append(images_batched[-1], last_images, axis=0)
             labels_batched[-1] = np.append(labels_batched[-1], last_labels, axis=0)
 
+        #convert the data to be in the range of 0 and 1 for the pixel values
+        msg.timemsg("Batch {}: Normalising pixel values".format(i))
+        images_batched[i] = images_batched[i].astype('float32')
+        images_batched[i] /= 255.0
+        msg.timemsg("Batch {}: Normalised pixel values".format(i))
+        
+        #shuffles the data in batches
+        msg.timemsg("Batch {}: Shuffling data".format(i))
+        images_batched[i], labels_batched[i] = shuffle_data(images_batched[i], labels_batched[i])
+        msg.timemsg("Batch {}: Data shuffled, data now being split into training and testing data".format(i))
+        
         #split data into training and testing data for that batch
         train_images, test_images, train_labels, test_labels = train_test_split(images_batched[i], labels_batched[i], test_size=TEST_SIZE, random_state=123)
         #input size for input layer is: 576x576 = 331776 neurons in input layer per image colour channel, 331776 * 3 per images
@@ -100,10 +110,11 @@ def load_data(config_file):
     loader.read_data()
 
     img_dir = loader.images[0].split("/")
-    img_dir = args.root_img_dir + img_dir[1]
+    img_dir = args.root_img_dir + "/" + img_dir[1]
 
     img_loader = FileLoader(img_dir, args.root_img_dir)
     msg.timemsg("Loading images from folder")
+    
     images = img_loader.load_all_from_folder(False)
     msg.timemsg("Images loaded from folder")
 
@@ -158,16 +169,19 @@ if __name__ == "__main__":
 
     #try to load the data, generate it if it doesnt load
     try:
-        rgb_images = load(args.root_img_dir + "/images.npy")
+        rgb_images = load(args.root_img_dir + "/images.npy") #, mmap_mode="r+")
         labels_arr = load(args.root_img_dir + "/labels.npy")
     except FileNotFoundError:
         msg.timemsg("Numpy files don't exist, generating them instead")
         msg.timemsg("Generating numpy data and saving to file")
+        
         rgb_images, labels_arr = load_data(args.image_data_file)
         if len(rgb_images) > 0:
-            save(args.root_img_dir + "images.npy", rgb_images)
-            save(args.root_img_dir + "labels.npy", labels_arr)
+            save(args.root_img_dir + "/images.npy", rgb_images)
+            save(args.root_img_dir + "/labels.npy", labels_arr)
             msg.timemsg("Data saved as numpy files, stored at: {}".format(args.root_img_dir))
+            msg.timemsg("Restart the program so the data can be reloaded for proper memory management")
+            sys.exit(0)
         else:
             msg.timemsg("No data loaded, check for correct path and file name parameters")
             sys.exit()
@@ -176,21 +190,15 @@ if __name__ == "__main__":
 
     # fit and transform in one step for the labels
     
-    msg.timemsg("Normalising data")
-    rgb_images = rgb_images.astype('float32')
-    rgb_images /= 255.0
-    print(rgb_images.min(), rgb_images.max())
+    msg.timemsg("Normalising labels")
     labels_arr = scale_data(labels_arr)
-    msg.timemsg("Data normalised")
+    msg.timemsg("Labels normalised")
 
     #at this point I have loaded in all of the images in RGB form into a numpy array in order
     #the labels are also loaded in properly too as floats
     #the data can now be shuffled whilst maintaining the relationship between labels and images
     #and then broken up into training and testing data to be fed into the model
     #the input shape for the input layer will be 576X576
-
-    #shuffles the data before batching
-    rgb_images, labels_arr = shuffle_data(rgb_images, labels_arr)
     
     cnn.ini()
 

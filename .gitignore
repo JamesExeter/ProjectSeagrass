@@ -47,4 +47,11 @@ Inception-v4/
 
 seagrassvenv/
 
+Results/checkpoints/
+
+*.ckpt
+
+Results/models/
+
+*.hd5
 

@@ -85,3 +85,174 @@
 2020-04-12 19:41:39,914 0:0:0 Loading or creating numpy data
 2020-04-12 19:42:11,912 0:0:31 Loaded data from numpy files
 2020-04-12 19:42:11,912 0:0:31 Normalising data
+2020-04-12 20:14:41,500 0:0:0 Loading or creating numpy data
+2020-04-12 20:15:22,587 0:0:41 Loaded data from numpy files
+2020-04-12 20:15:22,587 0:0:41 Normalising data
+2020-04-12 20:27:21,682 0:0:0 Loading or creating numpy data
+2020-04-12 20:27:21,699 0:0:0 Numpy files don't exist, generating them instead
+2020-04-12 20:27:21,699 0:0:0 Generating numpy data and saving to file
+2020-04-12 20:27:21,700 0:0:0 Loading data from file
+2020-04-12 20:27:21,734 0:0:0 Loading images from folder
+2020-04-12 20:27:21,734 0:0:0 Images loaded from folder
+2020-04-12 20:27:21,734 0:0:0 Sorting image order and storing as numpy array
+2020-04-12 20:27:21,735 0:0:0 Images sorted and stored as numpy array
+2020-04-12 20:27:21,735 0:0:0 Converting images to RGB
+2020-04-12 20:27:21,735 0:0:0 Converted images to RGB
+2020-04-12 20:27:21,736 0:0:0 Loaded labels from file
+2020-04-12 20:27:21,736 0:0:0 No data loaded, check for correct path and file name parameters
+2020-04-12 20:28:15,995 0:0:0 Loading or creating numpy data
+2020-04-12 20:28:15,995 0:0:0 Numpy files don't exist, generating them instead
+2020-04-12 20:28:15,995 0:0:0 Generating numpy data and saving to file
+2020-04-12 20:28:15,995 0:0:0 Loading data from file
+2020-04-12 20:28:16,003 0:0:0 Loading images from folder
+2020-04-12 20:28:16,003 0:0:0 Images loaded from folder
+2020-04-12 20:28:16,004 0:0:0 Sorting image order and storing as numpy array
+2020-04-12 20:28:16,004 0:0:0 Images sorted and stored as numpy array
+2020-04-12 20:28:16,004 0:0:0 Converting images to RGB
+2020-04-12 20:28:16,004 0:0:0 Converted images to RGB
+2020-04-12 20:28:16,004 0:0:0 Loaded labels from file
+2020-04-12 20:28:16,004 0:0:0 No data loaded, check for correct path and file name parameters
+2020-04-12 20:28:47,326 0:0:0 Loading or creating numpy data
+2020-04-12 20:28:47,327 0:0:0 Numpy files don't exist, generating them instead
+2020-04-12 20:28:47,327 0:0:0 Generating numpy data and saving to file
+2020-04-12 20:28:47,327 0:0:0 Loading data from file
+2020-04-12 20:28:47,335 0:0:0 Loading images from folder
+2020-04-12 20:28:47,335 0:0:0 Images loaded from folder
+2020-04-12 20:28:47,335 0:0:0 Sorting image order and storing as numpy array
+2020-04-12 20:28:47,335 0:0:0 Images sorted and stored as numpy array
+2020-04-12 20:28:47,335 0:0:0 Converting images to RGB
+2020-04-12 20:28:47,335 0:0:0 Converted images to RGB
+2020-04-12 20:28:47,335 0:0:0 Loaded labels from file
+2020-04-12 20:28:47,336 0:0:0 No data loaded, check for correct path and file name parameters
+2020-04-12 20:33:01,507 0:0:0 Loading or creating numpy data
+2020-04-12 20:33:01,507 0:0:0 Numpy files don't exist, generating them instead
+2020-04-12 20:33:01,507 0:0:0 Generating numpy data and saving to file
+2020-04-12 20:33:01,507 0:0:0 Loading data from file
+2020-04-12 20:33:01,513 0:0:0 Loading images from folder
+2020-04-12 20:33:01,514 0:0:0 Images loaded from folder
+2020-04-12 20:33:01,514 0:0:0 Sorting image order and storing as numpy array
+2020-04-12 20:33:01,514 0:0:0 Images sorted and stored as numpy array
+2020-04-12 20:33:01,514 0:0:0 Converting images to RGB
+2020-04-12 20:33:01,514 0:0:0 Converted images to RGB
+2020-04-12 20:33:01,514 0:0:0 Loaded labels from file
+2020-04-12 20:33:01,514 0:0:0 No data loaded, check for correct path and file name parameters
+2020-04-12 20:33:58,755 0:0:0 Loading or creating numpy data
+2020-04-12 20:33:58,755 0:0:0 Numpy files don't exist, generating them instead
+2020-04-12 20:33:58,755 0:0:0 Generating numpy data and saving to file
+2020-04-12 20:33:58,755 0:0:0 Loading data from file
+2020-04-12 20:33:58,762 0:0:0 Loading images from folder
+2020-04-12 20:34:30,233 0:0:31 Images loaded from folder
+2020-04-12 20:34:30,233 0:0:31 Sorting image order and storing as numpy array
+2020-04-12 20:53:27,552 0:0:0 Loading or creating numpy data
+2020-04-12 20:53:27,562 0:0:0 Numpy files don't exist, generating them instead
+2020-04-12 20:53:27,562 0:0:0 Generating numpy data and saving to file
+2020-04-12 20:53:27,562 0:0:0 Loading data from file
+2020-04-12 20:53:27,570 0:0:0 Loading images from folder
+2020-04-12 20:53:46,853 0:0:19 Images loaded from folder
+2020-04-12 20:53:46,853 0:0:19 Sorting image order and storing as numpy array
+2020-04-12 21:01:22,195 0:0:0 Loading or creating numpy data
+2020-04-12 21:01:22,204 0:0:0 Numpy files don't exist, generating them instead
+2020-04-12 21:01:22,204 0:0:0 Generating numpy data and saving to file
+2020-04-12 21:01:22,204 0:0:0 Loading data from file
+2020-04-12 21:01:22,212 0:0:0 Loading images from folder
+2020-04-12 21:01:36,327 0:0:14 Images loaded from folder
+2020-04-12 21:01:36,327 0:0:14 Sorting image order and storing as numpy array
+2020-04-12 21:07:05,691 0:0:0 Loading or creating numpy data
+2020-04-12 21:07:05,706 0:0:0 Numpy files don't exist, generating them instead
+2020-04-12 21:07:05,706 0:0:0 Generating numpy data and saving to file
+2020-04-12 21:07:05,706 0:0:0 Loading data from file
+2020-04-12 21:07:05,715 0:0:0 Loading images from folder
+2020-04-12 21:07:18,617 0:0:12 Images loaded from folder
+2020-04-12 21:07:18,617 0:0:12 Sorting image order and storing as numpy array
+2020-04-12 21:17:17,138 0:0:0 Loading or creating numpy data
+2020-04-12 21:17:17,147 0:0:0 Numpy files don't exist, generating them instead
+2020-04-12 21:17:17,147 0:0:0 Generating numpy data and saving to file
+2020-04-12 21:17:17,147 0:0:0 Loading data from file
+2020-04-12 21:17:17,155 0:0:0 Loading images from folder
+2020-04-12 21:17:30,468 0:0:13 Images loaded from folder
+2020-04-12 21:17:30,469 0:0:13 Sorting image order and storing as numpy array
+2020-04-12 21:21:38,216 0:0:0 Loading or creating numpy data
+2020-04-12 21:21:38,230 0:0:0 Numpy files don't exist, generating them instead
+2020-04-12 21:21:38,231 0:0:0 Generating numpy data and saving to file
+2020-04-12 21:21:38,231 0:0:0 Loading data from file
+2020-04-12 21:21:38,242 0:0:0 Loading images from folder
+2020-04-12 21:21:51,306 0:0:13 Images loaded from folder
+2020-04-12 21:21:51,307 0:0:13 Sorting image order and storing as numpy array
+2020-04-12 21:21:59,898 0:0:21 Images sorted and stored as numpy array
+2020-04-12 21:21:59,899 0:0:21 Converting images to RGB
+2020-04-12 21:22:00,526 0:0:22 Converted images to RGB
+2020-04-12 21:22:00,526 0:0:22 Loaded labels from file
+2020-04-12 21:22:21,851 0:0:43 Data saved as numpy files, stored at: /home/james/Documents/Seagrass-Repository/Images
+2020-04-12 21:22:21,854 0:0:43 Loaded data from numpy files
+2020-04-12 21:22:21,855 0:0:43 Normalising labels
+2020-04-12 21:22:21,864 0:0:43 labels normalised
+2020-04-12 21:41:54,190 0:0:0 Loading or creating numpy data
+2020-04-12 21:41:54,203 0:0:0 Numpy files don't exist, generating them instead
+2020-04-12 21:41:54,203 0:0:0 Generating numpy data and saving to file
+2020-04-12 21:41:54,203 0:0:0 Loading data from file
+2020-04-12 21:41:54,218 0:0:0 Loading images from folder
+2020-04-12 22:00:26,006 0:0:0 Loading or creating numpy data
+2020-04-12 22:00:26,012 0:0:0 Loaded data from numpy files
+2020-04-12 22:00:26,012 0:0:0 Normalising data
+2020-04-12 22:07:15,833 0:0:0 Loading or creating numpy data
+2020-04-12 22:07:50,892 0:0:35 Loaded data from numpy files
+2020-04-12 22:07:50,892 0:0:35 Normalising data
+2020-04-12 22:07:50,896 0:0:35 Data normalised
+2020-04-12 22:08:07,827 0:0:51 Training CNN start
+2020-04-12 22:08:08,307 0:0:52 Batch 0
+2020-04-12 22:08:08,496 0:0:52 Batch 0: Training batch
+2020-04-12 22:08:11,829 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-04-13 10:39:33,180 0:0:0 Loading or creating numpy data
+2020-04-13 10:40:17,562 0:0:44 Loaded data from numpy files
+2020-04-13 10:40:17,570 0:0:44 Normalising data
+2020-04-13 10:40:17,574 0:0:44 Data normalised
+2020-04-13 11:02:35,556 0:0:0 Loading or creating numpy data
+2020-04-13 11:03:23,974 0:0:48 Loaded data from numpy files
+2020-04-13 11:03:23,974 0:0:48 Normalising labels
+2020-04-13 11:03:23,976 0:0:48 Labels normalised
+2020-04-13 11:03:24,130 0:0:48 Training CNN start
+2020-04-13 11:03:24,507 0:0:48 Batch 0
+2020-04-13 11:03:24,507 0:0:48 Batch 0: Normalising pixel values
+2020-04-13 11:03:26,635 0:0:51 Batch 0: Normalised pixel values
+2020-04-13 11:03:26,636 0:0:51 Batch 0: Shuffling data
+2020-04-13 11:06:33,735 0:0:0 Loading or creating numpy data
+2020-04-13 11:07:21,450 0:0:47 Loaded data from numpy files
+2020-04-13 11:07:21,450 0:0:47 Normalising labels
+2020-04-13 11:07:21,452 0:0:47 Labels normalised
+2020-04-13 11:07:21,603 0:0:47 Training CNN start
+2020-04-13 11:07:21,978 0:0:48 Batch 0
+2020-04-13 11:07:21,978 0:0:48 Batch 0: Normalising pixel values
+2020-04-13 11:07:28,428 0:0:54 Batch 0: Normalised pixel values
+2020-04-13 11:07:28,448 0:0:54 Batch 0: Shuffling data
+2020-04-13 13:00:33,718 0:0:0 Loading or creating numpy data
+2020-04-13 13:01:06,790 0:0:33 Loaded data from numpy files
+2020-04-13 13:01:06,805 0:0:33 Normalising labels
+2020-04-13 13:01:06,806 0:0:33 Labels normalised
+2020-04-13 13:01:07,053 0:0:33 Training CNN start
+2020-04-13 13:01:07,556 0:0:33 Batch 0
+2020-04-13 13:01:07,556 0:0:33 Batch 0: Shuffling data
+2020-04-13 13:01:09,322 0:0:35 Batch 0: Data shuffled, data now being split into training and testing data
+2020-04-13 13:01:09,894 0:0:36 Batch 0: Training batch
+2020-04-13 13:11:24,951 0:0:0 Loading or creating numpy data
+2020-04-13 13:11:52,465 0:0:27 Loaded data from numpy files
+2020-04-13 13:11:52,468 0:0:27 Normalising labels
+2020-04-13 13:11:52,480 0:0:27 Labels normalised
+2020-04-13 13:11:52,822 0:0:27 Training CNN start
+2020-04-13 13:11:53,125 0:0:28 Batch 0
+2020-04-13 13:11:53,125 0:0:28 Batch 0: Shuffling data
+2020-04-13 13:11:53,829 0:0:28 Batch 0: Data shuffled, data now being split into training and testing data
+2020-04-13 13:11:54,573 0:0:29 Batch 0: Training batch
+2020-04-13 13:12:35,351 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-04-13 13:48:18,258 0:0:0 Loading or creating numpy data
+2020-04-13 13:48:45,940 0:0:27 Loaded data from numpy files
+2020-04-13 13:48:45,941 0:0:27 Normalising labels
+2020-04-13 13:48:45,947 0:0:27 Labels normalised
+2020-04-13 13:48:46,167 0:0:27 Training CNN start
+2020-04-13 13:48:46,442 0:0:28 Batch 0
+2020-04-13 13:48:46,442 0:0:28 Batch 0: Shuffling data
+2020-04-13 13:48:47,033 0:0:28 Batch 0: Data shuffled, data now being split into training and testing data
+2020-04-13 13:48:47,226 0:0:28 Batch 0: Training batch
+2020-04-13 13:48:51,750 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
