@@ -6,7 +6,8 @@ import tensorflow as tf
 from keras.models import Sequential
 from keras.layers.core import Dense, Dropout, Activation, Flatten
 from keras.layers.convolutional import Convolution2D
-from keras.optimizers import Adam, Adadelta
+from keras.layers import MaxPooling2D, BatchNormalization
+from keras.optimizers import Adadelta
 from keras.models import load_model
 from keras_tqdm import TQDMNotebookCallback
 import matplotlib.pyplot as pyplot
@@ -21,43 +22,47 @@ class CNN(object):
         self.sess.close()
 
 def create_cnn(width, height, depth):
-    nb_filters = 8
+    nb_filters = 32
     nb_conv = 5
+    nb_pool = 3
 
     model = Sequential()
     model.add(Convolution2D(nb_filters, nb_conv, strides=nb_conv,
                             input_shape=(width, height, depth), padding='same'))
+    model.add(BatchNormalization())
     model.add(Activation('relu'))
+    
     model.add(Convolution2D(nb_filters, (nb_conv, nb_conv)))
+    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool), strides=None, padding='valid', data_format=None)
+    model.add(BatchNormalization())
     model.add(Activation('relu'))
+    model.add(Dropout(0.1))
+              
     model.add(Convolution2D(nb_filters, (nb_conv, nb_conv)))
+    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool), strides=None, padding='valid', data_format=None)
+    model.add(BatchNormalization())
     model.add(Activation('relu'))
-    model.add(Convolution2D(nb_filters, (nb_conv, nb_conv)))
-    model.add(Activation('relu'))
-    model.add(Dropout(0.25))
+    model.add(Dropout(0.1))
+              
     model.add(Convolution2D(nb_filters*2, (nb_conv, nb_conv)))
+    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool), strides=None, padding='valid', data_format=None)
+    model.add(BatchNormalization())
     model.add(Activation('relu'))
-    model.add(Convolution2D(nb_filters*2, (nb_conv, nb_conv)))
-    model.add(Activation('relu'))
-    model.add(Convolution2D(nb_filters*2, (nb_conv, nb_conv)))
-    model.add(Activation('relu'))
-    model.add(Convolution2D(nb_filters*2, (nb_conv, nb_conv)))
-    model.add(Activation('relu'))
-    model.add(Dropout(0.5))
+    model.add(Dropout(0.2))
 
     model.add(Flatten())
-    model.add(Dense(256))
+    model.add(Dense(nb_filters*2))
+    model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.5))
-
-    model.add(Dense(128))
+             
+    model.add(Dense(nb_filters))
     model.add(Activation('relu'))
-    model.add(Dropout(0.5))
-
+    
     model.add(Dense(1))
     model.add(Activation('linear'))
 
-    model.compile(loss='mean_squared_error', optimizer=Adadelta())
+    model.compile(loss='mean_squared_error', optimizer=Adadelta(), metrics=['mean_absolute_error'])
     
     return model
 
