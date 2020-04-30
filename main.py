@@ -61,12 +61,13 @@ def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
         msg.timemsg("Batch {}: Normalised pixel values".format(i))
         
         #shuffles the data in batches
-        msg.timemsg("Batch {}: Shuffling data".format(i))
-        images_batched[i], labels_batched[i] = shuffle_data(images_batched[i], labels_batched[i])
-        msg.timemsg("Batch {}: Data shuffled, data now being split into training and testing data".format(i))
+        #images_batched[i], labels_batched[i] = shuffle_data(images_batched[i], labels_batched[i])
         
         #split data into training and testing data for that batch
+        #also shuffles the data whilst splitting
+        msg.timemsg("Batch {}: Shuffling and splitting data for training".format(i))
         train_images, test_images, train_labels, test_labels = train_test_split(images_batched[i], labels_batched[i], test_size=TEST_SIZE, random_state=42)
+        msg.timemsg("Batch {}: Data shuffled and split, it is ready to usage".format(i))
         #input size for input layer is: 576x576 = 331776 neurons in input layer per image colour channel, 331776 * 3 per images
         
         # will need to train
