@@ -12,6 +12,9 @@ from keras.models import load_model
 from keras_tqdm import TQDMNotebookCallback
 import matplotlib.pyplot as pyplot
 
+#initial learning rate
+lr = 0.0001
+
 cnn_instance = None
 
 class CNN(object):
