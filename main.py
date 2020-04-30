@@ -16,7 +16,9 @@ from numpy import load
 import sys
 
 BATCH_SIZE = 50
-TEST_SIZE = 0.2
+VALID_SIZE = 0.1
+#used for train, test, validation split of 70:20:10, split validiation from rest with 90:10, then split 90% into 80:20 using 90*(0.2222)
+TEST_SIZE = 0.2222
 
 def shuffle_data(images, labels):
     return shuffle(images, labels)
@@ -64,7 +66,7 @@ def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
         msg.timemsg("Batch {}: Data shuffled, data now being split into training and testing data".format(i))
         
         #split data into training and testing data for that batch
-        train_images, test_images, train_labels, test_labels = train_test_split(images_batched[i], labels_batched[i], test_size=TEST_SIZE, random_state=123)
+        train_images, test_images, train_labels, test_labels = train_test_split(images_batched[i], labels_batched[i], test_size=TEST_SIZE, random_state=42)
         #input size for input layer is: 576x576 = 331776 neurons in input layer per image colour channel, 331776 * 3 per images
         
         # will need to train
@@ -200,9 +202,11 @@ if __name__ == "__main__":
     #and then broken up into training and testing data to be fed into the model
     #the input shape for the input layer will be 576X576
     
+    to_batch_images, valid_images, to_batch_labels, valid_labels = train_test_split(rgb_images, labels_arr, test_size=VALID_SIZE, random_state=1)
+    
     cnn.ini()
 
-    train_in_batch(rgb_images, labels_arr, checkpoint_path, model_path)
+    train_in_batch(to_batch_images, to_batch_labels, checkpoint_path, model_path)
     
     #either have a model returned or load it from file if it exists already
     #then run predictions on it for testing
