@@ -9,11 +9,11 @@ from keras.layers.convolutional import Convolution2D
 from keras.layers import MaxPooling2D, BatchNormalization
 from keras.optimizers import Adadelta
 from keras.models import load_model
-from keras_tqdm import TQDMNotebookCallback
-import matplotlib.pyplot as pyplot
+from keras.callbacks import EarlyStopping, ModelCheckpoint
+import matplotlib.pyplot as plt
 
 #initial learning rate
-lr = 0.0001
+learn_rate = 0.001
 
 cnn_instance = None
 
@@ -30,31 +30,21 @@ def create_cnn(width, height, depth):
     nb_pool = 3
 
     model = Sequential()
-    model.add(Convolution2D(nb_filters, nb_conv, strides=nb_conv,
-                            input_shape=(width, height, depth), padding='same'))
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
+    model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), padding='same', activation='relu',input_shape=(width, height, depth)))
+    #model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), padding='same', activation='relu'))
+    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
+    model.add(Dropout(0.25))
     
-    model.add(Convolution2D(nb_filters, (nb_conv, nb_conv)))
-    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool), strides=None, padding='valid', data_format=None)
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
-    model.add(Dropout(0.1))
+    model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), padding='same', activation='relu'))
+    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
+    model.add(Dropout(0.25))
               
-    model.add(Convolution2D(nb_filters, (nb_conv, nb_conv)))
-    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool), strides=None, padding='valid', data_format=None)
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
-    model.add(Dropout(0.1))
-              
-    model.add(Convolution2D(nb_filters*2, (nb_conv, nb_conv)))
-    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool), strides=None, padding='valid', data_format=None)
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
-    model.add(Dropout(0.2))
+    model.add(Convolution2D(nb_filters*2, (nb_conv, nb_conv), padding='same', activation='relu'))
+    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
+    model.add(Dropout(0.25))
 
     model.add(Flatten())
-    model.add(Dense(nb_filters*2))
+    model.add(Dense(nb_filters))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
     model.add(Dropout(0.5))
@@ -65,7 +55,7 @@ def create_cnn(width, height, depth):
     model.add(Dense(1))
     model.add(Activation('linear'))
 
-    model.compile(loss='mean_squared_error', optimizer=Adadelta(), metrics=['mean_absolute_error'])
+    model.compile(loss='mean_squared_error', optimizer=Adadelta(lr=learn_rate), metrics=['mean_absolute_error'])
     
     return model
 
@@ -75,12 +65,21 @@ def train_model(model, train_images, train_labels, test_images, test_labels, num
 
     # Create a callback that saves the model's weights
     # Saves every 5 epochs, only saving the latest as long as the file names is not unique 
-    cp_callback = tf.keras.callbacks.ModelCheckpoint(filepath=checkpoint_path, monitor='val_loss', save_weights_only=True, save_best_only=False, mode="auto", verbose=0, period=5)
+    cp_callback = ModelCheckpoint(
+        filepath=checkpoint_path, 
+        monitor='val_loss', 
+        save_weights_only=True, 
+        save_best_only=False, 
+        mode="auto", 
+        verbose=1, 
+        period=5)
     
     save_weights_to_disk(model, (checkpoint_path.format(epoch=0)))
-    history = model.fit(train_images, train_labels, validation_data=(test_images, test_labels), epochs=number_epochs, verbose=0, callbacks=[cp_callback, TQDMNotebookCallback(verbose=2)])
+    history = model.fit(train_images, train_labels, validation_data=(test_images, test_labels), epochs=number_epochs, callbacks=[cp_callback])
     
-    return history
+    msg.timemsg()    
+    
+    return model
 
 def evaluate_model(model, train_images, train_labels, test_images, test_labels):
     # evaluate the model
@@ -92,13 +91,25 @@ def evaluate_model(model, train_images, train_labels, test_images, test_labels):
 
     return train_mse, test_mse
 
-def plot_training_results(history):
+def plot_model_loss(history):
     # plot loss during training
-    pyplot.title('Mean Squared Error')
-    pyplot.plot(history.history['loss'], label='train')
-    pyplot.plot(history.history['val_loss'], label='test')
-    pyplot.legend()
-    pyplot.show()
+    plt.plot(history.history['loss'])
+    plt.plot(history.history['val_loss'])
+    plt.title('model loss')
+    plt.ylabel('loss')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'val'], loc='upper left')
+    plt.show()
+    
+def plot_model_accuracy(history):
+    #plot accuracy with epoch
+    plt.plot(history.history['acc'])
+    plt.plot(history.history['val_acc'])
+    plt.title('model accuracy')
+    plt.ylabel('accuracy')
+    plt.xlabel('epoch')
+    plt.legend(['train', 'val'], loc='upper left')
+    plt.show()
     
 def save_model(model, save_path):
     name = "seagrass-model"
@@ -136,7 +147,6 @@ def ini ():
     
     global cnn_instance
     cnn_instance = CNN()
-    
 
 def close():
     cnn_instance.close()

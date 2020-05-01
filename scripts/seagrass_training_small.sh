@@ -6,11 +6,11 @@
 INCEPTION_GRAPH_ROOT="/home/james/Documents/Seagrass-Repository/Inception-v4"
 DATASET_ROOT="/home/james/Documents/Seagrass-Repository/Images"
 RESULTS_ROOT="/home/james/Documents/Seagrass-Repository/Results"
-DATA_CONFIG_FILE="data_config.txt"
+DATA_CONFIG_FILE="data_config_small.txt"
 LOGGING_FILE="/output_log.txt"
 CHECKPOINTS="/checkpoints"
 MODELS="/models"
-USING_SMALL=0
+USING_SMALL=1
 
 MAIN_PROGRAM="../main.py"
 

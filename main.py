@@ -14,11 +14,14 @@ import time
 from numpy import save
 from numpy import load
 import sys
+import matplotlib.pyplot as plt
 
-BATCH_SIZE = 50
+BATCH_SIZE = 20
 VALID_SIZE = 0.1
 #used for train, test, validation split of 70:20:10, split validiation from rest with 90:10, then split 90% into 80:20 using 90*(0.2222)
 TEST_SIZE = 0.2222
+total_prediction_time = 0
+SHOW_IMAGES_WITH_PREDICTIONS = False
 
 def shuffle_data(images, labels):
     return shuffle(images, labels)
@@ -80,20 +83,48 @@ def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
             model = cnn.load_weights_from_disk(model, cp_path)
         
         msg.timemsg("Batch {}: Training batch".format(i))
-        model = cnn.train_model(model, train_images, train_labels, test_images, test_labels, 100, cp_path)
+        model = cnn.train_model(model, train_images, train_labels, test_images, test_labels, 5, cp_path)
         
         msg.timemsg("Batch {}: Evaluating model".format(i))
         train_mse, test_mse = cnn.evaluate_model(model, train_images, train_labels, test_images, test_labels)
         #can probably use train mse and test mse in plot training results method
-        cnn.plot_training_results(model)
+        msg.timemsg("Model training MSE: {}, Model testing MSE: {}".format(train_mse, test_mse))
         
     msg.timemsg("Training CNN finished")
     msg.timemsg("Saving model to file")
     cnn.save_model(model, m_path)
+    cnn.plot_model_accuracy(model)
+    cnn.plot_model_loss(model)
     
-def prediction():
-    pass    
+    return model
     
+def prediction(valid_imgs, sg_model, show_image=SHOW_IMAGES_WITH_PREDICTIONS):
+    counter = 1
+    n_valid = len(valid_imgs)
+    results = []
+    
+    for img in valid_imgs:
+        start_time = time.time()
+        
+        new_label = sg_model.predict(img)
+        results.append(new_label)
+        
+        elapsed_time = (time.time() - start_time) * 1000 #ms
+        global total_prediction_time
+        total_prediction_time += elapsed_time
+        
+        msg.timemsg("Image Number: {}, Predicted label: {}".format(counter, new_label))
+        msg.timemsg('Prediction Progress: {}%'.format(float(counter/n_valid)*100))
+        counter += 1
+
+        if show_image:
+            # Display image
+            plt.imshow(img, interpolation='nearest')
+            # Add a title to the plot
+            plt.title('Predicted: ' + str(new_label))
+    
+    return results
+            
 # calculate mean squared error
 def mean_squared_error(actual, predicted):
     sum_square_error = 0.0
@@ -106,8 +137,7 @@ def convert_to_rbg(image):
     return cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
 def load_data(config_file):
-    #split into batches of 500 for the computer to handle more easily
-    start_time = time.time()
+    #split into batches of 50 for the computer to handle more easily
     msg.timemsg("Loading data from file")
     loader = FileUtil(config_file)
     loader.read_data()
@@ -158,6 +188,7 @@ if __name__ == "__main__":
     parser.add_argument("--logging_file", help="name of the file to log to")
     parser.add_argument("--checkpoint_dir", help="the directory checkpoints are saved to during training")
     parser.add_argument("--model_dir", help="the directory models are saved to during training")
+    parser.add_argument("--using_small", help="determines whether the small or large dataset is being used")
     args = parser.parse_args()
 
     msg.ini(args.results_dir + args.logging_file)
@@ -169,19 +200,25 @@ if __name__ == "__main__":
     labels_arr = np.array([])
     
     msg.timemsg("Loading or creating numpy data")
+    
+    IMAGE_FILE = "/images.npy"
+    LABEL_FILE = "/labels.npy"
+    if(args.using_small == "1"):
+        IMAGE_FILE = "/images_small.npy"
+        LABEL_FILE = "/labels_small.npy"
 
     #try to load the data, generate it if it doesnt load
     try:
-        rgb_images = load(args.root_img_dir + "/images.npy") #, mmap_mode="r+")
-        labels_arr = load(args.root_img_dir + "/labels.npy")
+        rgb_images = load(args.root_img_dir + IMAGE_FILE)
+        labels_arr = load(args.root_img_dir + LABEL_FILE)
     except FileNotFoundError:
         msg.timemsg("Numpy files don't exist, generating them instead")
         msg.timemsg("Generating numpy data and saving to file")
         
         rgb_images, labels_arr = load_data(args.image_data_file)
         if len(rgb_images) > 0:
-            save(args.root_img_dir + "/images.npy", rgb_images)
-            save(args.root_img_dir + "/labels.npy", labels_arr)
+            save(args.root_img_dir + IMAGE_FILE, rgb_images)
+            save(args.root_img_dir + LABEL_FILE, labels_arr)
             msg.timemsg("Data saved as numpy files, stored at: {}".format(args.root_img_dir))
             msg.timemsg("Restart the program so the data can be reloaded for proper memory management")
             sys.exit(0)
@@ -207,11 +244,18 @@ if __name__ == "__main__":
     
     cnn.ini()
 
-    train_in_batch(to_batch_images, to_batch_labels, checkpoint_path, model_path)
+    seagrass_model = train_in_batch(to_batch_images, to_batch_labels, checkpoint_path, model_path)
     
-    #either have a model returned or load it from file if it exists already
-    #then run predictions on it for testing
-    #or evaluate the model and predict data needed
+    msg.timemsg("Running predicitons on model using validation set")
+    predictions = prediction(valid_images, seagrass_model, SHOW_IMAGES_WITH_PREDICTIONS)
+    
+    msg.timemsg("Predictions made on validation set, time taken: {}".format(total_prediction_time))
+    
+    #evaluate the predictions
+    msg.timemsg("Evaluating the predictions made on the validation set")
+    
+    mse = mean_squared_error(valid_labels, predictions)
+    msg.timemsg("Mean Squared Error on validation set: {}".format(mse))
     
     cnn.close()
     msg.timemsg("Execution finished, exiting")

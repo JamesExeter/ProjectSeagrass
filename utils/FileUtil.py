@@ -37,15 +37,18 @@ class FileUtil:
 
     def parse_line(self, line):
         l = line.split('"')[1::2]
-        self.images.append(l[0])
-        labels_buf = l[1]
         
-        labels_buf = re.findall(r"[-+]?\d*\.\d+|\d+", labels_buf)
-        self.labels.append([float(i) for i in labels_buf])
+        if(l != ""):
+            self.images.append(l[0])
+            labels_buf = l[1]
+        
+            labels_buf = re.findall(r"[-+]?\d*\.\d+|\d+", labels_buf)
+            self.labels.append([float(i) for i in labels_buf])
 
     def append_data(self, fname, flabel):
         if self.name != None:
             with open(self.name, "a+") as file:
+                #can change Images/Formatted_Images to be dynamic with a variable
                 to_write = '"Images/Formatted_Images/{}, "coverage: {}"\n'.format(fname, flabel)
                 file.write(to_write)
         else:
