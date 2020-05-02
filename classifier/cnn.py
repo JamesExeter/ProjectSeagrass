@@ -77,7 +77,7 @@ def train_model(model, train_images, train_labels, test_images, test_labels, num
     save_weights_to_disk(model, (checkpoint_path.format(epoch=0)))
     history = model.fit(train_images, train_labels, validation_data=(test_images, test_labels), epochs=number_epochs, callbacks=[cp_callback])
     
-    msg.timemsg()    
+    print("\nHistory dict:", history.history)    
     
     return model
 
@@ -130,10 +130,13 @@ def save_weights_to_disk(model, weights_path):
     model.save_weights(weights_path)
 
 def load_weights_from_disk(model, path):
-    checkpoint_path = "seagrass_training/cp-{epoch:04d}.ckpt"
-    checkpoint_dir = os.path.dirname(path + "/" + checkpoint_path)
+    #checkpoint_path = "seagrass_training/cp-{epoch:04d}.ckpt"
+    checkpoint_path = "seagrass_training/"
+    checkpoint_dir = path + "/" + checkpoint_path
     
+    print(len([name for name in os.listdir(checkpoint_dir) if os.path.isfile(os.path.join(checkpoint_dir, name))]))
     latest = tf.train.latest_checkpoint(checkpoint_dir)
+    print(latest)
     
     model.load_weights(latest)
     

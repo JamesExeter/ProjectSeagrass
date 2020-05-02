@@ -88,7 +88,7 @@ def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
         msg.timemsg("Batch {}: Evaluating model".format(i))
         train_mse, test_mse = cnn.evaluate_model(model, train_images, train_labels, test_images, test_labels)
         #can probably use train mse and test mse in plot training results method
-        msg.timemsg("Model training MSE: {}, Model testing MSE: {}".format(train_mse, test_mse))
+        msg.timemsg("Model training MSE: {}, Model testing MSE: {}\n\n".format(train_mse, test_mse))
         
     msg.timemsg("Training CNN finished")
     msg.timemsg("Saving model to file")
