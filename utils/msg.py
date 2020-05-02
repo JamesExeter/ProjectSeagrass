@@ -17,7 +17,7 @@ def timemsg (msg):
     minute = math.floor( (elapsed_time%3600) / 60 )
     second = math.floor( elapsed_time%60 )
     output = str(hour) +  ":" +  str(minute) +  ":" + str(second) + " " + msg
-    print (output)
+    print(output)
     logging.info(output)
 
 def debug(msg):

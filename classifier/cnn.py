@@ -33,15 +33,15 @@ def create_cnn(width, height, depth):
     model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), padding='same', activation='relu',input_shape=(width, height, depth)))
     #model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), padding='same', activation='relu'))
     model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
-    model.add(Dropout(0.25))
+    model.add(Dropout(0.2))
     
     model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), padding='same', activation='relu'))
     model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
-    model.add(Dropout(0.25))
+    model.add(Dropout(0.2))
               
     model.add(Convolution2D(nb_filters*2, (nb_conv, nb_conv), padding='same', activation='relu'))
     model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
-    model.add(Dropout(0.25))
+    model.add(Dropout(0.2))
 
     model.add(Flatten())
     model.add(Dense(nb_filters))
@@ -61,23 +61,23 @@ def create_cnn(width, height, depth):
 
 def train_model(model, train_images, train_labels, test_images, test_labels, number_epochs, path_to_checkpoint):
     # fit model  
-    checkpoint_path = path_to_checkpoint + "/seagrass_training/cp-{epoch:04d}.ckpt"
+    #checkpoint_path = path_to_checkpoint + "/seagrass_training/cp-{epoch:04d}.ckpt"
+    checkpoint_path = path_to_checkpoint + "/seagrass_training/cp-seagrass.ckpt"
 
     # Create a callback that saves the model's weights
-    # Saves every 5 epochs, only saving the latest as long as the file names is not unique 
+    # Saves every 5 epochs, only saving the latest as long as the file names is not unique
     cp_callback = ModelCheckpoint(
         filepath=checkpoint_path, 
-        monitor='val_loss', 
+        monitor='val_mean_absolute_error', 
         save_weights_only=True, 
-        save_best_only=False, 
-        mode="auto", 
-        verbose=1, 
-        period=5)
+        save_best_only=True, 
+        mode="max", 
+        verbose=0)
     
     save_weights_to_disk(model, (checkpoint_path.format(epoch=0)))
     history = model.fit(train_images, train_labels, validation_data=(test_images, test_labels), epochs=number_epochs, callbacks=[cp_callback])
     
-    print("\nHistory dict:", history.history)    
+    #print("\nHistory dict:", history.history)    
     
     return model
 
@@ -87,9 +87,8 @@ def evaluate_model(model, train_images, train_labels, test_images, test_labels):
     test_mse = model.evaluate(test_images, test_labels, verbose=0)
     
     _, acc = model.evaluate(test_images, test_labels, verbose=2)
-    print("Model accuracy: {:5.2f}%".format(100*acc))
 
-    return train_mse, test_mse
+    return train_mse, test_mse, acc
 
 def plot_model_loss(history):
     # plot loss during training
@@ -130,15 +129,13 @@ def save_weights_to_disk(model, weights_path):
     model.save_weights(weights_path)
 
 def load_weights_from_disk(model, path):
-    #checkpoint_path = "seagrass_training/cp-{epoch:04d}.ckpt"
-    checkpoint_path = "seagrass_training/"
-    checkpoint_dir = path + "/" + checkpoint_path
+    checkpoint_path = path + "/seagrass_training/"
+    #checkpoint_dir = os.path.dirname(checkpoint_path)
+    checkpoints = [name for name in os.listdir(checkpoint_path) if os.path.isfile(os.path.join(checkpoint_path, name))]
+    checkpoint_name = checkpoints[len(checkpoints)-1]
+    checkpoint_path += checkpoint_name
     
-    print(len([name for name in os.listdir(checkpoint_dir) if os.path.isfile(os.path.join(checkpoint_dir, name))]))
-    latest = tf.train.latest_checkpoint(checkpoint_dir)
-    print(latest)
-    
-    model.load_weights(latest)
+    model.load_weights(checkpoint_path)
     
     return model
 

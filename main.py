@@ -70,7 +70,7 @@ def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
         #also shuffles the data whilst splitting
         msg.timemsg("Batch {}: Shuffling and splitting data for training".format(i))
         train_images, test_images, train_labels, test_labels = train_test_split(images_batched[i], labels_batched[i], test_size=TEST_SIZE, random_state=42)
-        msg.timemsg("Batch {}: Data shuffled and split, it is ready to usage".format(i))
+        msg.timemsg("Batch {}: Data shuffled and split, it is ready for usage".format(i))
         #input size for input layer is: 576x576 = 331776 neurons in input layer per image colour channel, 331776 * 3 per images
         
         # will need to train
@@ -86,9 +86,10 @@ def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
         model = cnn.train_model(model, train_images, train_labels, test_images, test_labels, 5, cp_path)
         
         msg.timemsg("Batch {}: Evaluating model".format(i))
-        train_mse, test_mse = cnn.evaluate_model(model, train_images, train_labels, test_images, test_labels)
+        train_mse, test_mse, acc = cnn.evaluate_model(model, train_images, train_labels, test_images, test_labels)
         #can probably use train mse and test mse in plot training results method
-        msg.timemsg("Model training MSE: {}, Model testing MSE: {}\n\n".format(train_mse, test_mse))
+        msg.timemsg("Batch {}: Model training MSE: {}, Model testing MSE: {}".format(i, train_mse, test_mse))
+        msg.timemsg("Batch {}: Model accuracy: {:5.2f}%".format(i, 100*acc))
         
     msg.timemsg("Training CNN finished")
     msg.timemsg("Saving model to file")
@@ -178,6 +179,13 @@ def scale_data(target_data):
 
     return np.array(normalised) 
 
+#method to allow the user to select a directory with images they want classified
+def predict_directory():
+    #load the entire model
+    #get directory from user, maybe using file selector
+    #process each image one at a time, load the image, normalise the data, make the prediction and then log the prediction
+    pass
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     #the name of the file that stores the images and corresponding coverages
@@ -189,73 +197,83 @@ if __name__ == "__main__":
     parser.add_argument("--checkpoint_dir", help="the directory checkpoints are saved to during training")
     parser.add_argument("--model_dir", help="the directory models are saved to during training")
     parser.add_argument("--using_small", help="determines whether the small or large dataset is being used")
+    parser.add_argument("--skip_training", help="determines whether to skip training and load a pre-trained model instead")
     args = parser.parse_args()
 
     msg.ini(args.results_dir + args.logging_file)
-
-    checkpoint_path = args.results_dir + args.checkpoint_dir
-    model_path = args.results_dir + args.model_dir
-
-    rgb_images = np.array([])
-    labels_arr = np.array([])
     
-    msg.timemsg("Loading or creating numpy data")
-    
-    IMAGE_FILE = "/images.npy"
-    LABEL_FILE = "/labels.npy"
-    if(args.using_small == "1"):
-        IMAGE_FILE = "/images_small.npy"
-        LABEL_FILE = "/labels_small.npy"
+    if (args.skip_training == "1"):
+        predict_directory()
+    else:
+        checkpoint_path = args.results_dir + args.checkpoint_dir
+        model_path = args.results_dir + args.model_dir
 
-    #try to load the data, generate it if it doesnt load
-    try:
-        rgb_images = load(args.root_img_dir + IMAGE_FILE)
-        labels_arr = load(args.root_img_dir + LABEL_FILE)
-    except FileNotFoundError:
-        msg.timemsg("Numpy files don't exist, generating them instead")
-        msg.timemsg("Generating numpy data and saving to file")
+        rgb_images = np.array([])
+        labels_arr = np.array([])
         
-        rgb_images, labels_arr = load_data(args.image_data_file)
-        if len(rgb_images) > 0:
-            save(args.root_img_dir + IMAGE_FILE, rgb_images)
-            save(args.root_img_dir + LABEL_FILE, labels_arr)
-            msg.timemsg("Data saved as numpy files, stored at: {}".format(args.root_img_dir))
-            msg.timemsg("Restart the program so the data can be reloaded for proper memory management")
-            sys.exit(0)
-        else:
-            msg.timemsg("No data loaded, check for correct path and file name parameters")
-            sys.exit()
+        msg.timemsg("Loading or creating numpy data")
+        
+        IMAGE_FILE = "/images.npy"
+        LABEL_FILE = "/labels.npy"
+        if(args.using_small == "1"):
+            IMAGE_FILE = "/images_small.npy"
+            LABEL_FILE = "/labels_small.npy"
 
-    msg.timemsg("Loaded data from numpy files")
+        #try to load the data, generate it if it doesnt load
+        try:
+            rgb_images = load(args.root_img_dir + IMAGE_FILE)
+            labels_arr = load(args.root_img_dir + LABEL_FILE)
+        except FileNotFoundError:
+            msg.timemsg("Numpy files don't exist, generating them instead")
+            msg.timemsg("Generating numpy data and saving to file")
+            
+            rgb_images, labels_arr = load_data(args.image_data_file)
+            if len(rgb_images) > 0:
+                save(args.root_img_dir + IMAGE_FILE, rgb_images)
+                save(args.root_img_dir + LABEL_FILE, labels_arr)
+                msg.timemsg("Data saved as numpy files, stored at: {}".format(args.root_img_dir))
+                msg.timemsg("Restart the program so the data can be reloaded for proper memory management")
+                sys.exit(0)
+            else:
+                msg.timemsg("No data loaded, check for correct path and file name parameters")
+                sys.exit()
 
-    # fit and transform in one step for the labels
-    
-    msg.timemsg("Normalising labels")
-    labels_arr = scale_data(labels_arr)
-    msg.timemsg("Labels normalised")
+        msg.timemsg("Loaded data from numpy files")
 
-    #at this point I have loaded in all of the images in RGB form into a numpy array in order
-    #the labels are also loaded in properly too as floats
-    #the data can now be shuffled whilst maintaining the relationship between labels and images
-    #and then broken up into training and testing data to be fed into the model
-    #the input shape for the input layer will be 576X576
-    
-    to_batch_images, valid_images, to_batch_labels, valid_labels = train_test_split(rgb_images, labels_arr, test_size=VALID_SIZE, random_state=1)
-    
-    cnn.ini()
+        # fit and transform in one step for the labels
+        
+        msg.timemsg("Normalising labels")
+        labels_arr = scale_data(labels_arr)
+        msg.timemsg("Labels normalised")
 
-    seagrass_model = train_in_batch(to_batch_images, to_batch_labels, checkpoint_path, model_path)
+        #at this point I have loaded in all of the images in RGB form into a numpy array in order
+        #the labels are also loaded in properly too as floats
+        #the data can now be shuffled whilst maintaining the relationship between labels and images
+        #and then broken up into training and testing data to be fed into the model
+        #the input shape for the input layer will be 576X576
+        
+        to_batch_images, valid_images, to_batch_labels, valid_labels = train_test_split(rgb_images, labels_arr, test_size=VALID_SIZE, random_state=1)
+        
+        cnn.ini()
+
+        seagrass_model = train_in_batch(to_batch_images, to_batch_labels, checkpoint_path, model_path)
+        
+        msg.timemsg("Running predicitons on model using validation set")
+         #convert the data to be in the range of 0 and 1 for the pixel values
+        msg.timemsg("Normalising pixel values for validation set")
+        valid_images = valid_images.astype('float32')
+        valid_images /= 255.0
+        msg.timemsg("Normalised prediction set pixel values")
+        predictions = prediction(valid_images, seagrass_model, SHOW_IMAGES_WITH_PREDICTIONS)
+        
+        msg.timemsg("Predictions made on validation set, time taken: {}".format(total_prediction_time))
+        
+        #evaluate the predictions
+        msg.timemsg("Evaluating the predictions made on the validation set")
+        
+        mse = mean_squared_error(valid_labels, predictions)
+        msg.timemsg("Mean Squared Error on validation set: {}".format(mse))
+        
+        cnn.close()
     
-    msg.timemsg("Running predicitons on model using validation set")
-    predictions = prediction(valid_images, seagrass_model, SHOW_IMAGES_WITH_PREDICTIONS)
-    
-    msg.timemsg("Predictions made on validation set, time taken: {}".format(total_prediction_time))
-    
-    #evaluate the predictions
-    msg.timemsg("Evaluating the predictions made on the validation set")
-    
-    mse = mean_squared_error(valid_labels, predictions)
-    msg.timemsg("Mean Squared Error on validation set: {}".format(mse))
-    
-    cnn.close()
     msg.timemsg("Execution finished, exiting")

@@ -11,6 +11,8 @@ LOGGING_FILE="/output_log.txt"
 CHECKPOINTS="/checkpoints"
 MODELS="/models"
 USING_SMALL=0
+#set to 1 if model is trained and just needs loading
+SKIP_TRAINING=0
 
 MAIN_PROGRAM="../main.py"
 
