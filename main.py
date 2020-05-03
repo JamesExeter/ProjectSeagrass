@@ -29,29 +29,40 @@ TEST_SIZE = 0.2222
 total_prediction_time = 0
 SHOW_IMAGES_WITH_PREDICTIONS = False
 
-#
+#shuffles the images and labels, keeping each pair together, made obsolete due to the sklearn module
 def shuffle_data(images, labels):
     return shuffle(images, labels)
 
+#batches the data based on a batch size provided
 def batch(data, batch_size):
-    # For item i in a range that is a length of l,
-    for i in range(0, len(data), batch_size):
-        # Create an index range for l of n items:
-        yield data[i:i+batch_size]
+    #case where less data than batch size, if this is the case, batching is not needed
+    if (len(data) < batch_size):
+        yield data
+    else:
+        # For item i in a range that is a length of l,
+        for i in range(0, len(data), batch_size):
+            # Create an index range for l of n items:
+            yield data[i:i+batch_size]
 
+#traines the neural network in batches, creating manual batches rather than using
+#pre-built modules to help control memory management
 def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
+    #batches the labels and images
     images_batched = list(batch(images, batch_size))
     labels_batched = list(batch(labels, batch_size))
     
+    #all image shapes are identical so choose the dimensions of the first
     height = rgb_images.shape[1]
     width = rgb_images.shape[2]
     depth = rgb_images.shape[3]
     print("\n")
     msg.timemsg("Training CNN start")
 
+    #create the model
     model = cnn.create_cnn(width, height, depth)
     cnn.give_summary(model)
     
+    #train each batch one at a time, with evaluation performed
     for i in range(len(images_batched)):        
         msg.timemsg("Batch {}".format(i))
         
@@ -83,6 +94,7 @@ def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
         # load from checkpoint if not the first batch and save the entire model at the end of each batch
         
         if i > 0:
+            #if not the first batch, then load the weights from the previous batch and begin training again
             model = cnn.create_cnn(width, height, depth)
             msg.timemsg("Loading weights for model")
             model = cnn.load_weights_from_disk(model, cp_path)
@@ -91,16 +103,18 @@ def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
         model = cnn.train_model(model, train_images, train_labels, test_images, test_labels, 5, cp_path)
         
         msg.timemsg("Batch {}: Evaluating model".format(i))
-        train_mse, test_mse, acc = cnn.evaluate_model(model, train_images, train_labels, test_images, test_labels)
+        loss, mae, mse = cnn.evaluate_model(model, test_images, test_labels)
         #can probably use train mse and test mse in plot training results method
-        msg.timemsg("Batch {}: Model training MSE: {}, Model testing MSE: {}".format(i, train_mse, test_mse))
-        msg.timemsg("Batch {}: Model accuracy: {:5.2f}%\n\n".format(i, 100*acc))
+        msg.timemsg("Batch {}: test loss: {}, test mae: {}, test mse: {}\n\n".format(i, loss, mae, mse))
         
     msg.timemsg("Training CNN finished")
     msg.timemsg("Saving model to file")
     cnn.save_model(model, m_path)
-    cnn.plot_model_accuracy(model)
-    cnn.plot_model_loss(model)
+    
+    #plot mse and mae of final trained model
+    plotter = cnn.create_history_plotter()
+    cnn.plot_mse(model, plotter)
+    cnn.plot_mae(model, plotter)
     
     return model
     
@@ -131,7 +145,7 @@ def prediction(valid_imgs, sg_model, show_image=SHOW_IMAGES_WITH_PREDICTIONS):
     
     return results
             
-# calculate mean squared error
+# calculate mean squared error of predictions
 def mean_squared_error(actual, predicted):
     sum_square_error = 0.0
     for i in range(len(actual)):
@@ -139,6 +153,7 @@ def mean_squared_error(actual, predicted):
     mean_square_error = 1.0 / len(actual) * sum_square_error
     return mean_square_error
 
+#converts loaded images to rgb as default is bgr
 def convert_to_rbg(image):
     return cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
@@ -268,6 +283,9 @@ if __name__ == "__main__":
          #convert the data to be in the range of 0 and 1 for the pixel values
         msg.timemsg("Normalising pixel values for validation set")
         valid_images = valid_images.astype('float32')
+        #would use the scale data method here but it uses more memory, and we know the upper
+        #limit value of rgb pixels is always the same
+        #this is more efficient for that task and is in place
         valid_images /= 255.0
         msg.timemsg("Normalised prediction set pixel values")
         predictions = prediction(valid_images, seagrass_model, SHOW_IMAGES_WITH_PREDICTIONS)
@@ -276,6 +294,8 @@ if __name__ == "__main__":
         
         #evaluate the predictions
         msg.timemsg("Evaluating the predictions made on the validation set")
+        
+        #EDIT HERE TO CALL THE PROPER ERROR MEASUREMENTS
         
         mse = mean_squared_error(valid_labels, predictions)
         msg.timemsg("Mean Squared Error on validation set: {}".format(mse))

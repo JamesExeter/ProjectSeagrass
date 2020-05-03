@@ -3,61 +3,87 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import warnings
 warnings.filterwarnings('ignore',category=FutureWarning)
 import tensorflow as tf
+import tensorflow_docs as tfdocs
+import tensorflow_docs.plots
 from keras.models import Sequential
 from keras.layers.core import Dense, Dropout, Activation, Flatten
 from keras.layers.convolutional import Convolution2D
-from keras.layers import MaxPooling2D, BatchNormalization
+from keras.layers import MaxPooling2D, BatchNormalization, GlobalAveragePooling2D
 from keras.optimizers import Adadelta
 from keras.models import load_model
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 import matplotlib.pyplot as plt
 
 #initial learning rate
-learn_rate = 0.001
+learn_rate = 1e-04
 
 cnn_instance = None
 
 class CNN(object):
+    #initialisation of CNN object, starting a tensorflow session
     def __init__(self):
         self.sess = tf.compat.v1.Session()
 
+    #closes the model instance
     def close(self):
         self.sess.close()
 
+#creates the model given parameters of input width, height and depth
 def create_cnn(width, height, depth):
+    #variables that define the filters sizes
     nb_filters = 32
     nb_conv = 5
     nb_pool = 3
 
     model = Sequential()
-    model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), padding='same', activation='relu',input_shape=(width, height, depth)))
-    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
-    model.add(Dropout(0.2))
+    #input layer
+    model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), padding='same', input_shape=(width, height, depth)))
+    model.add(BatchNormalization())
+    model.add(Activation('relu'))
     
-    model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), padding='same', activation='relu'))
+    #conv_1
+    model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), padding='same'))
+    model.add(BatchNormalization())
+    model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
-    model.add(Dropout(0.2))
-              
-    model.add(Convolution2D(nb_filters*2, (nb_conv, nb_conv), padding='same', activation='relu'))
+        
+    #conv_2
+    model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), padding='same'))
+    model.add(BatchNormalization())
+    model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
-    model.add(Dropout(0.2))
+           
+    #conv_3   
+    model.add(Convolution2D(nb_filters*2, (nb_conv, nb_conv), padding='same'))
+    model.add(BatchNormalization())
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
+    
+    #global_average_pooling
+    model.add(GlobalAveragePooling2D())
 
     model.add(Flatten())
-    model.add(Dense(nb_filters))
-    model.add(BatchNormalization())
+    
+    #fully connected layers
+    model.add(Dense(nb_filters*2))
     model.add(Activation('relu'))
     model.add(Dropout(0.5))
              
     model.add(Dense(nb_filters))
     model.add(Activation('relu'))
+    model.add(Dropout(0.25))
     
+    #regression output with linear activation
     model.add(Dense(1))
     model.add(Activation('linear'))
 
+    #compile the model using mean squared error loss and adamdelta optimiser, using mean absolute error and mean squared error metrics
     model.compile(loss='mean_squared_error', optimizer=Adadelta(lr=learn_rate), metrics=['mean_absolute_error'])
     
     return model
 
+#trains a model that have been initialised, takes the parameters of the model, the training and testing data
+#the number of epochs to train for and the checkpoint path
 def train_model(model, train_images, train_labels, test_images, test_labels, number_epochs, path_to_checkpoint):
     # fit model  
     #checkpoint_path = path_to_checkpoint + "/seagrass_training/cp-{epoch:04d}.ckpt"
@@ -65,6 +91,7 @@ def train_model(model, train_images, train_labels, test_images, test_labels, num
 
     # Create a callback that saves the model's weights
     # Saves every 5 epochs, only saving the latest as long as the file names is not unique
+    # or can only save the best which is now the case
     cp_callback = ModelCheckpoint(
         filepath=checkpoint_path, 
         monitor='val_mean_absolute_error', 
@@ -73,46 +100,67 @@ def train_model(model, train_images, train_labels, test_images, test_labels, num
         mode="max", 
         verbose=0)
     
+    #saves the weights at epoch 0 if better than last
     save_weights_to_disk(model, (checkpoint_path.format(epoch=0)))
-    history = model.fit(train_images, train_labels, validation_data=(test_images, test_labels), epochs=number_epochs, callbacks=[cp_callback])
+    #starts the training of the model
+    
+    #stop the model earlier if it isn't improving
+    early_stop = EarlyStopping(monitor='val_loss', patience=10)
+    
+    history = model.fit(train_images, train_labels, validation_data=(test_images, test_labels), epochs=number_epochs, callbacks=[early_stop, cp_callback])
     
     #print("\nHistory dict:", history.history)    
     
     return model
 
-def evaluate_model(model, train_images, train_labels, test_images, test_labels):
+#creates a history plotter object to use in other methods 
+def create_history_plotter():
+    return tfdocs.plots.HistoryPlotter(smoothing_std=2)
+
+#evaluates a model using the training and test data, generating mean squared error and accuracy
+def evaluate_model(model, test_images, test_labels):
     # evaluate the model
-    train_mse = model.evaluate(train_images, train_labels, verbose=0)
-    test_mse = model.evaluate(test_images, test_labels, verbose=0)
-    
-    _, acc = model.evaluate(test_images, test_labels, verbose=2)
+    loss, mae, mse = model.evaluate(test_images, test_labels, verbose=2)
 
-    return train_mse, test_mse, acc
+    return loss, mae, mse
 
-def plot_model_loss(history):
-    # plot loss during training
-    plt.plot(history.history['loss'])
-    plt.plot(history.history['val_loss'])
-    plt.title('model loss')
-    plt.ylabel('loss')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'val'], loc='upper left')
-    plt.show()
+#plot the mae metric of the trained model
+def plot_mae(history, plotter):
+    plotter.plot({'Seagrass model' : history}, metric = 'mae')
+    plt.ylim([0,10])
+    plt.ylabel('MAE [MPG]')
+
+#plot the mse metric of the trained model
+def plot_mse(history, plotter):
+    plotter.plot({'Seagrass model' : history}, metric = 'mse')
+    plt.ylim([0,20])
+    plt.ylabel('MSE [MPG^2]')    
+
+#plots the predictions versus the actual values 
+def plot_predictions_vs_actual(test_labels, test_predictions):
+    a = plt.axes(aspect='equal')
+    plt.scatter(test_labels, test_predictions)
+    plt.xlabel('Ground-truth [MPG]')
+    plt.ylabel('Predictions [MPG]')
+    lims = [0,100]
+    plt.xlim(lims)
+    plt.ylim(lims)
+    _ = plt.plot(lims, lims)
     
-def plot_model_accuracy(history):
-    #plot accuracy with epoch
-    plt.plot(history.history['acc'])
-    plt.plot(history.history['val_acc'])
-    plt.title('model accuracy')
-    plt.ylabel('accuracy')
-    plt.xlabel('epoch')
-    plt.legend(['train', 'val'], loc='upper left')
-    plt.show()
+def plot_prediction_error_distribution(test_labels, test_predictions):
+    error = test_predictions - test_labels
+    plt.hist(error, bins = 50)
+    plt.xlabel('Prediction Error [MPG')
+    _ = plt.ylabel("Count")
     
+#saves the entire model to file in a given location
+#could allow the user to enter the name but may interrupt
+#training is running model overnight
 def save_model(model, save_path):
     name = "seagrass-model"
     model.save(save_path + "/" + name + ".h5")
 
+#loads the most recently saved model from disk
 def load_model_from_disk(load_path):
     #load the most recently saved model
     models = os.listdir(load_path)
@@ -124,9 +172,16 @@ def load_model_from_disk(load_path):
     
     return new_model
 
+#saves the weights to disk given a path
 def save_weights_to_disk(model, weights_path):
     model.save_weights(weights_path)
 
+#used to load the latest saved weights from file
+#especially useful during batch training
+#this assumes only the best model weights are saved
+#another approach would need to be used if saving weights periodically
+#and the latest needed loading, e.g. find list of files in directory of 
+#checkpoints, sort it and pick the last saved
 def load_weights_from_disk(model, path):
     checkpoint_path = path + "/seagrass_training/cp-seagrass.ckpt"
     #checkpoint_dir = os.path.dirname(checkpoint_path)
@@ -139,14 +194,18 @@ def load_weights_from_disk(model, path):
 
     return model
 
+#returns a summary of the network
 def give_summary(model):
     model.summary()
 
+#initialises the cnn instance
 def ini ():
     #if using a graph / InceptionNet, initialise here
+    #instead of creating a new instance, load the other model graph
     
     global cnn_instance
     cnn_instance = CNN()
 
+#closes the cnn instance and its variables
 def close():
     cnn_instance.close()
