@@ -31,7 +31,6 @@ def create_cnn(width, height, depth):
 
     model = Sequential()
     model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), padding='same', activation='relu',input_shape=(width, height, depth)))
-    #model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), padding='same', activation='relu'))
     model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
     model.add(Dropout(0.2))
     
@@ -125,18 +124,19 @@ def load_model_from_disk(load_path):
     
     return new_model
 
-def save_weights_to_disk(model, weights_path): 
+def save_weights_to_disk(model, weights_path):
     model.save_weights(weights_path)
 
 def load_weights_from_disk(model, path):
-    checkpoint_path = path + "/seagrass_training/"
+    checkpoint_path = path + "/seagrass_training/cp-seagrass.ckpt"
     #checkpoint_dir = os.path.dirname(checkpoint_path)
-    checkpoints = [name for name in os.listdir(checkpoint_path) if os.path.isfile(os.path.join(checkpoint_path, name))]
-    checkpoint_name = checkpoints[len(checkpoints)-1]
-    checkpoint_path += checkpoint_name
+    #checkpoints = [name for name in os.listdir(checkpoint_path) if os.path.isfile(os.path.join(checkpoint_path, name))]
+    #checkpoint_name = checkpoints[len(checkpoints)-1]
+    #checkpoint_path += checkpoint_name
     
+    #latest = tf.train.latest_checkpoint(checkpoint_path)
     model.load_weights(checkpoint_path)
-    
+
     return model
 
 def give_summary(model):

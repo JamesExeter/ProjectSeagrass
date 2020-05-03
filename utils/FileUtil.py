@@ -4,8 +4,13 @@ import fnmatch
 import argparse
 import sys
 
-#Class primarily foccussed on loading images and labels from a folder to be used in data augmentation
+"""
+Class primarily foccussed on loading images and labels from a folder to be used in data augmentation or for training
+Updates labels in the config file to accomodate the new labels
+"""
 class FileUtil:
+    #takes a config file parameter to load the data from
+    #ensures directory exists and initialises storage structures
     def __init__(self, path):
         self.name = None
         if self.check_exists(path):
@@ -14,6 +19,7 @@ class FileUtil:
         self.images = []
         self.labels = []
 
+    #error handling if directory doesn't exist
     def check_exists(self, file):
         try:
             with open(file, "r") as file:
@@ -23,11 +29,13 @@ class FileUtil:
         except IOError:
             return False
 
+    #reads the data from the config file if it exists
     def read_data(self):
         if self.name != None:
             with open(self.name, "r") as file:
                 data = file.read().splitlines()
                 for line in data:
+                    #parse each line of the file one at a time
                     self.parse_line(line)
             
             file.close()
@@ -35,16 +43,20 @@ class FileUtil:
             print("No file loaded, please check file name and path")
             sys.exit()
 
+    #used to parse each line individually
     def parse_line(self, line):
+        #splits the config line into the image and label components
         l = line.split('"')[1::2]
         
         if(l != ""):
+            #appends each image path and label to the respective lists 
             self.images.append(l[0])
             labels_buf = l[1]
         
             labels_buf = re.findall(r"[-+]?\d*\.\d+|\d+", labels_buf)
             self.labels.append([float(i) for i in labels_buf])
 
+    #used to update the config file to add the augmented data
     def append_data(self, fname, flabel):
         if self.name != None:
             with open(self.name, "a+") as file:
@@ -54,6 +66,7 @@ class FileUtil:
         else:
             print("No file to write to, please check file name and path")
 
+    #calculates the number of labels and entries that need to be added and creates the entries
     def update_labels(self, path_to_images):
         last_name = self.images[-1]
         temp = re.findall(r'\d+', last_name) 
@@ -68,8 +81,6 @@ class FileUtil:
         repeated_coverage = []
         for i in range(n_repeats):
             repeated_coverage.extend(self.labels)
-
-        coverage_flat = [item for sublist in repeated_coverage for item in sublist]
         
         filenames = list(range(num_original, max_files))
         filenames = ['FSI' + str(s) + '.jpg"' for s in filenames]
@@ -77,10 +88,12 @@ class FileUtil:
         for i in range(len(filenames)):
             self.append_data(filenames[i], repeated_coverage[i][0])
 
+    #merges two lists together, creating pair combinations, each image is paired with a label
     def merge_lists(self, imgs, lbls):
         return [(imgs[i], lbls[i]) for i in range(0, len(imgs))]
 
 """
+Main method to test operations worked, taking arugments from the command line
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     #the name of the file that stores the images and corresponding coverages

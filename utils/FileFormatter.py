@@ -20,6 +20,13 @@ from FileLoader import FileLoader
 import msg
 import argparse
 
+"""
+Class primarily used to run all of the images and label formatting by bringing them together
+and individually performing different formatting procedures based on different used methods
+Also includes some extra functions to pre-emptively format images
+"""
+
+#squares an image prior to any further formatting
 def initial_square(image, border_vals):
     height = image.shape[0]
     width = image.shape[1]
@@ -38,6 +45,8 @@ def initial_square(image, border_vals):
 
     return crop_quadrat(image, top, bottom, left, right)
 
+#finds the smallest image in a set of given image dimensions, ensuring that
+#it is close to being square too
 def find_smallest_dimensions(dimensions):
     smallest_width = sorted(dimensions)[0][1]
     smallest_aspect_height = sorted(dimensions)[0][0]
@@ -50,10 +59,13 @@ def find_smallest_dimensions(dimensions):
 
     return (smallest_width, smallest_aspect_height)
 
+#caculates the average aspect ratio of a dataset of images
 def calculate_average_aspect_ratio(dimensions):
     res = sum(i[0] for i in dimensions), sum(i[1] for i in dimensions)
     return (res[1] / res[0]) 
 
+#renames all of the images, this is used for either a fresh dataset or for adding new images
+#to an existing dataset whilst ensuring the naming increments properly
 def process_for_saving(saver, images):
     path = saver.get_save_path()
     num_current_files = len([f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))])
@@ -62,6 +74,7 @@ def process_for_saving(saver, images):
         name = "FSI" + str(i) + ".jpg"
         saver.save_image_to_file(images[i-num_current_files], name)
 
+#renames all of the images, starting from a given number
 def process_for_saving_just_rename(saver, images, min_num):
     path = saver.get_save_path()
     count = min_num
@@ -73,24 +86,30 @@ def process_for_saving_just_rename(saver, images, min_num):
 
 #call this to save and process the images, no need to extract the data from the images prior
 def resize_and_save(saver, images, min_width=None, min_height=None):
+    #used to find the smallest image in a dataset
     dimensions = [(img.shape[0], img.shape[1]) for img in images]
     new_min_width, new_min_height = find_smallest_dimensions(dimensions)
 
+    #if adding to a new dataset, if an image in the already saved data
+    #is smaller than the smallest in the new dataset, then switch to the new smaller size
     if (min_width is None or min_height is None):
         min_width = new_min_width
         min_height = new_min_height
     else:
+        #the new smallest size is the overall smallest
         if(new_min_width < min_width):
             min_width = new_min_width
         if(new_min_height < min_height):
             min_height = new_min_height
             
+    #saves all of the images after resizing
     resized = []
     for img in images:
         resized.append(saver.resize_with_aspect_ratio(img, min_width, min_height))
 
     process_for_saving(saver, resized)
 
+#used to rename the images in a dataset using the required format
 def renaming_main():
     parser = argparse.ArgumentParser()
     parser.add_argument("img_dir", help="the directory of images to be renamed")
@@ -107,6 +126,7 @@ def renaming_main():
     msg.timemsg("Loaded {} images to be renamed".format(len(to_rename)))
     process_for_saving_just_rename(rename_loader, to_rename, 145)
 
+#methods used for testing feature extraction
 def testing_feature_extraction_main():
     img_path = "/home/james/Documents/Seagrass-Repository/ProjectSeagrass/"
     save_path = "/home/james/Documents/Seagrass-Repository/ProjectSeagrass/"
@@ -156,6 +176,7 @@ def testing_feature_extraction_main():
     #saves an image to a folder, ensuring rgb properties preserved
     process_for_saving(loader, [cropped_image])
 
+#methods used to augment a dataset, generating an augmentation 6 times per image
 def augmentation_main():
     save_path = "/home/james/Documents/Seagrass-Repository/Images/Formatted_Images/"
     load_path = "/home/james/Documents/Seagrass-Repository/Images/Formatted_Images/"
@@ -237,6 +258,7 @@ def augmentation_main():
 
     msg.timemsg("Finished executing")
 
+#resizes all images in the dataset to the required size, change the directory save and load path to the one needed
 def resizing_main():
     save_path = "/home/james/Documents/Seagrass-Repository/Images/Emma_Images/"
     load_path = "/home/james/Documents/Seagrass-Repository/Images/Emma_Images/"
@@ -261,6 +283,7 @@ def resizing_main():
 
     msg.timemsg("Finished executing")
 
+#experiments all key features of the formatting process works properly
 def main():
     save_path = "/home/james/Documents/Seagrass-Repository/Images/Formatted_Images/"
     load_path = "/home/james/Documents/Seagrass-Repository/Images/Original_Data/"
@@ -299,7 +322,8 @@ def main():
         print("Directory empty or loading problem occurred")
 
     msg.timemsg("Finished executing")
-    
+
+#used to run different main methods    
 if __name__ == '__main__':
     #main()
     #testing_feature_extraction_main()

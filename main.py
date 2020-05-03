@@ -16,6 +16,12 @@ from numpy import load
 import sys
 import matplotlib.pyplot as plt
 
+"""
+Used to train the classifier or make predictions with if the classifier is trained
+Needs to be run using either a bash script or with all of the variables required by the args parser in the main method
+"""
+
+#variables needed to process the dataset for training
 BATCH_SIZE = 20
 VALID_SIZE = 0.1
 #used for train, test, validation split of 70:20:10, split validiation from rest with 90:10, then split 90% into 80:20 using 90*(0.2222)
@@ -23,6 +29,7 @@ TEST_SIZE = 0.2222
 total_prediction_time = 0
 SHOW_IMAGES_WITH_PREDICTIONS = False
 
+#
 def shuffle_data(images, labels):
     return shuffle(images, labels)
 
@@ -63,13 +70,11 @@ def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
         images_batched[i] /= 255.0
         msg.timemsg("Batch {}: Normalised pixel values".format(i))
         
-        #shuffles the data in batches
-        #images_batched[i], labels_batched[i] = shuffle_data(images_batched[i], labels_batched[i])
-        
         #split data into training and testing data for that batch
         #also shuffles the data whilst splitting
         msg.timemsg("Batch {}: Shuffling and splitting data for training".format(i))
         train_images, test_images, train_labels, test_labels = train_test_split(images_batched[i], labels_batched[i], test_size=TEST_SIZE, random_state=42)
+
         msg.timemsg("Batch {}: Data shuffled and split, it is ready for usage".format(i))
         #input size for input layer is: 576x576 = 331776 neurons in input layer per image colour channel, 331776 * 3 per images
         
@@ -89,7 +94,7 @@ def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
         train_mse, test_mse, acc = cnn.evaluate_model(model, train_images, train_labels, test_images, test_labels)
         #can probably use train mse and test mse in plot training results method
         msg.timemsg("Batch {}: Model training MSE: {}, Model testing MSE: {}".format(i, train_mse, test_mse))
-        msg.timemsg("Batch {}: Model accuracy: {:5.2f}%".format(i, 100*acc))
+        msg.timemsg("Batch {}: Model accuracy: {:5.2f}%\n\n".format(i, 100*acc))
         
     msg.timemsg("Training CNN finished")
     msg.timemsg("Saving model to file")
@@ -183,7 +188,8 @@ def scale_data(target_data):
 def predict_directory():
     #load the entire model
     #get directory from user, maybe using file selector
-    #process each image one at a time, load the image, normalise the data, make the prediction and then log the prediction
+    #process each image one at a time, checking first with checkvalidimages it is an image 
+    #load the image, normalise the data, make the prediction and then log the prediction
     pass
 
 if __name__ == "__main__":
