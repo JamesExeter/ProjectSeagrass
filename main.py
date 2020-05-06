@@ -26,7 +26,7 @@ Needs to be run using either a bash script or with all of the variables required
 """
 
 #variables needed to process the dataset for training
-BATCH_SIZE = 16
+BATCH_SIZE = 10
 VALID_SIZE = 0.1
 #used for train, test, validation split of 70:20:10, split validiation from rest with 90:10, then split 90% into 80:20 using 90*(0.2222)
 TEST_SIZE = 0.2222
@@ -109,7 +109,7 @@ def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
         msg.timemsg("Batch {}: Evaluating model".format(i))
         m_s_error, mean_abs_error, = cnn.evaluate_model(model, test_images, test_labels)
         #can probably use train mse and test mse in plot training results method
-        msg.timemsg("Batch {}: test loss: {}, test mae: {}\n\n".format(i, m_s_error, mean_abs_error))
+        msg.timemsg("Batch {}: test loss: {:.5f}, test mae: {:.5f}\n\n".format(i, m_s_error, mean_abs_error))
         
         #model = cnn.create_cnn(width, height, depth)
         #msg.timemsg("Loading weights for testing model weight loading")
@@ -117,7 +117,7 @@ def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
         #msg.timemsg("Batch {}: Evaluating model second time".format(i))
         #m_s_error, mean_abs_error, = cnn.evaluate_model(model, test_images, test_labels)
         #can probably use train mse and test mse in plot training results method
-        #msg.timemsg("Batch {}: test loss: {}, test mae: {}\n\n".format(i, m_s_error, mean_abs_error))
+        #msg.timemsg("Batch {}: test loss: {:.5f}, test mae: {:.5f}\n\n".format(i, m_s_error, mean_abs_error))
         
     msg.timemsg("Training CNN finished")
     msg.timemsg("Saving model to file")
@@ -135,21 +135,21 @@ def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
 def prediction(valid_imgs, sg_model, show_image=SHOW_IMAGES_WITH_PREDICTIONS):
     counter = 1
     n_valid = len(valid_imgs)
-    results = []
+    results = np.array([])
     
     #go through each image one at a time and make a prediction, adding the prediction to the output array
     for img in valid_imgs:
         start_time = time.time()
         
-        new_label = sg_model.predict(img)
-        results.append(new_label)
+        new_label = sg_model.predict(np.array([img]))
+        results = np.append(results, new_label, axis=None)
         
         elapsed_time = (time.time() - start_time) * 1000 #ms
         global total_prediction_time
         total_prediction_time += elapsed_time
         
-        msg.timemsg("Image Number: {}, Predicted label: {}".format(counter, new_label))
-        msg.timemsg('Prediction Progress: {}%'.format(float(counter/n_valid)*100))
+        msg.timemsg("Image #: {}, Predicted label: {:.4f}, Predicted in: {:.3f}s".format(counter, float(new_label), elapsed_time / 1000.0))
+        msg.timemsg('Prediction Progress: {:.2f}%'.format(float(counter/n_valid)*100))
         counter += 1
 
         if show_image:
@@ -212,11 +212,18 @@ def scale_data(target_data):
 
 #method to allow the user to select a directory with images they want classified
 def predict_directory(model_to_load, results):
+    counter = 0
+    start_time = time.time()
     #initialise the cnn instance so we have access to it's functionality
     cnn.ini()
     
     #load the entire model
-    model = cnn.load_model_from_disk(model_to_load)
+    model = None
+    try:
+        model = cnn.load_model_from_disk(model_to_load)
+    except ValueError:
+        msg.timemsg("No model loaded, check the path is correct or a model has been saved properly")
+        
     if (model is not None):
         #get directory from user, maybe using file selector
         root = tk.Tk()
@@ -240,16 +247,22 @@ def predict_directory(model_to_load, results):
                     numpy_image = cv2.cvtColor(numpy_image, cv2.COLOR_BGR2RGB)
                     numpy_image = numpy_image.astype('float32')
                     numpy_image /= 255.0
+                    numpy_image = np.array([numpy_image])
                     
                     msg.timemsg("Making prediction on: {}".format(name))
                     predicted_coverage = model.predict(numpy_image)
                     
+                    elapsed_time = (time.time() - start_time) * 1000 #ms
+                    global total_prediction_time
+                    total_prediction_time += elapsed_time
                     #load the image, normalise the data, make the prediction and then log the prediction
-                    print("Image: {}, Prediction: {}".format(name, predicted_coverage), file=prediction_file)
+                    print("Image: {}, Prediction: {:.3f}, Predicted in: {:.3f}s".format(name, float(predicted_coverage), elapsed_time / 1000.0), file=prediction_file)
+                    
+                    counter += 1
         
         msg.timemsg("All predictions made and stored at: {}".format(out_file_name))
-    else:
-        msg.timemsg("No model loaded, check the path is correct or a model has been saved properly")
+        
+    return counter
     
 #main argument that loads all of the arguments from a bash script or command line
 #either trains a model using the given data
@@ -274,7 +287,10 @@ if __name__ == "__main__":
     model_path = args.results_dir + args.model_dir
     #if training not needed, make predictions on formatted images in a given directory
     if (args.skip_training == "1"):
-        predict_directory(model_path, args.results_dir)
+        number_images = predict_directory(model_path, args.results_dir)
+        if number_images > 0:
+            msg.timemsg("Predictions made on set of {} images, time taken: {:.3f}s".format(number_images, float(total_prediction_time / 1000.0)))
+            msg.timemsg("Average prediction time of {:.3f}s per image".format(float((total_prediction_time / 1000.0) / number_images)))
     else:
         #train the model and generate the evaluation metrics
         rgb_images = np.array([])
@@ -340,17 +356,18 @@ if __name__ == "__main__":
         msg.timemsg("Normalised prediction set pixel values")
         
         predictions = prediction(valid_images, seagrass_model, SHOW_IMAGES_WITH_PREDICTIONS)
-        msg.timemsg("Predictions made on validation set, time taken: {}".format(total_prediction_time))
+        msg.timemsg("All predictions made on validation set of {} images, time taken: {:.3f}s".format(len(valid_images), float(total_prediction_time / 1000.0)))
+        msg.timemsg("Average prediction time of {:.3f}s per image\n".format(float((total_prediction_time / 1000.0) / len(valid_images))))
         
         #evaluate the predictions
         msg.timemsg("Evaluating the predictions made on the validation set")
         
-        #EDIT HERE TO CALL THE PROPER ERROR MEASUREMENTS ON VALIDATION SET IN CNN CLASS    
+        #error measurements of the predictions  
         mse = mean_squared_error(valid_labels, predictions)
         mae = mean_absolute_error(valid_labels, predictions)
         
-        msg.timemsg("Mean Squared Error on validation set: {}".format(mse))
-        msg.timemsg("Mean Absolute Error on validation set: {}".format(mae))
+        msg.timemsg("Mean Squared Error on validation set: {:.5f}".format(mse))
+        msg.timemsg("Mean Absolute Error on validation set: {:.5f}\n".format(mae))
         
         cnn.plot_predictions_vs_actual(valid_labels, predictions)
         cnn.plot_prediction_error_distribution(valid_labels, predictions)

@@ -1737,3 +1737,1035 @@
 2020-05-04 02:24:09,312 0:0:28 Batch 0: Training batch
 2020-05-04 02:24:10,486 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
 
+2020-05-06 15:03:01,236 0:0:0 Loading or creating numpy data
+2020-05-06 15:03:04,555 0:0:3 Loaded data from numpy files
+2020-05-06 15:03:04,555 0:0:3 Normalising labels
+2020-05-06 15:03:04,556 0:0:3 Labels normalised
+2020-05-06 15:03:05,449 0:0:4 Training CNN start
+2020-05-06 15:03:06,299 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 15:03:06,597 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 15:03:06,720 0:0:5 Batch 0
+2020-05-06 15:03:06,720 0:0:5 Batch 0: Normalising pixel values
+2020-05-06 15:03:06,971 0:0:5 Batch 0: Normalised pixel values
+2020-05-06 15:03:06,971 0:0:5 Batch 0: Shuffling and splitting data for training
+2020-05-06 15:03:07,516 0:0:6 Batch 0: Data shuffled and split, it is ready for usage
+2020-05-06 15:03:07,516 0:0:6 Batch 0: Training batch
+2020-05-06 15:03:18,495 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-05-06 15:13:08,528 0:0:0 Loading or creating numpy data
+2020-05-06 15:13:11,832 0:0:3 Loaded data from numpy files
+2020-05-06 15:13:11,832 0:0:3 Normalising labels
+2020-05-06 15:13:11,833 0:0:3 Labels normalised
+2020-05-06 15:13:12,064 0:0:3 Training CNN start
+2020-05-06 15:13:12,473 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 15:13:12,780 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 15:13:12,899 0:0:4 Running predicitons on model using validation set
+2020-05-06 15:13:12,899 0:0:4 Normalising pixel values for validation set
+2020-05-06 15:13:12,966 0:0:4 Normalised prediction set pixel values
+2020-05-06 15:31:00,254 0:0:0 Loading or creating numpy data
+2020-05-06 15:31:00,526 0:0:0 Loaded data from numpy files
+2020-05-06 15:31:00,526 0:0:0 Normalising labels
+2020-05-06 15:31:00,527 0:0:0 Labels normalised
+2020-05-06 15:31:00,830 0:0:0 Training CNN start
+2020-05-06 15:31:01,250 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 15:31:01,947 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 15:31:02,260 0:0:2 Running predicitons on model using validation set
+2020-05-06 15:31:02,261 0:0:2 Normalising pixel values for validation set
+2020-05-06 15:31:02,419 0:0:2 Normalised prediction set pixel values
+2020-05-06 15:31:03,074 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-05-06 15:31:05,027 0:0:4 Image Number: 1, Predicted label: [[0.5036061]]
+2020-05-06 15:31:05,027 0:0:4 Prediction Progress: 3.225806451612903%
+2020-05-06 15:31:06,548 0:0:6 Image Number: 2, Predicted label: [[0.50142306]]
+2020-05-06 15:31:06,549 0:0:6 Prediction Progress: 6.451612903225806%
+2020-05-06 15:31:07,970 0:0:7 Image Number: 3, Predicted label: [[0.4983621]]
+2020-05-06 15:31:07,971 0:0:7 Prediction Progress: 9.67741935483871%
+2020-05-06 15:31:09,447 0:0:9 Image Number: 4, Predicted label: [[0.5009341]]
+2020-05-06 15:31:09,448 0:0:9 Prediction Progress: 12.903225806451612%
+2020-05-06 15:31:10,835 0:0:10 Image Number: 5, Predicted label: [[0.5053226]]
+2020-05-06 15:31:10,835 0:0:10 Prediction Progress: 16.129032258064516%
+2020-05-06 15:31:12,138 0:0:11 Image Number: 6, Predicted label: [[0.5007072]]
+2020-05-06 15:31:12,139 0:0:11 Prediction Progress: 19.35483870967742%
+2020-05-06 15:31:13,359 0:0:13 Image Number: 7, Predicted label: [[0.5067521]]
+2020-05-06 15:31:13,360 0:0:13 Prediction Progress: 22.58064516129032%
+2020-05-06 15:31:14,763 0:0:14 Image Number: 8, Predicted label: [[0.50084955]]
+2020-05-06 15:31:14,763 0:0:14 Prediction Progress: 25.806451612903224%
+2020-05-06 15:31:16,191 0:0:15 Image Number: 9, Predicted label: [[0.49932382]]
+2020-05-06 15:31:16,191 0:0:15 Prediction Progress: 29.03225806451613%
+2020-05-06 15:31:17,704 0:0:17 Image Number: 10, Predicted label: [[0.49969167]]
+2020-05-06 15:31:17,705 0:0:17 Prediction Progress: 32.25806451612903%
+2020-05-06 15:31:19,142 0:0:18 Image Number: 11, Predicted label: [[0.50016433]]
+2020-05-06 15:31:19,146 0:0:18 Prediction Progress: 35.483870967741936%
+2020-05-06 15:31:20,587 0:0:20 Image Number: 12, Predicted label: [[0.5016413]]
+2020-05-06 15:31:20,588 0:0:20 Prediction Progress: 38.70967741935484%
+2020-05-06 15:31:21,925 0:0:21 Image Number: 13, Predicted label: [[0.50014675]]
+2020-05-06 15:31:21,925 0:0:21 Prediction Progress: 41.935483870967744%
+2020-05-06 15:31:23,274 0:0:23 Image Number: 14, Predicted label: [[0.5040179]]
+2020-05-06 15:31:23,276 0:0:23 Prediction Progress: 45.16129032258064%
+2020-05-06 15:31:24,741 0:0:24 Image Number: 15, Predicted label: [[0.50013405]]
+2020-05-06 15:31:24,742 0:0:24 Prediction Progress: 48.38709677419355%
+2020-05-06 15:31:26,218 0:0:25 Image Number: 16, Predicted label: [[0.49993753]]
+2020-05-06 15:31:26,219 0:0:25 Prediction Progress: 51.61290322580645%
+2020-05-06 15:31:27,699 0:0:27 Image Number: 17, Predicted label: [[0.4973954]]
+2020-05-06 15:31:27,699 0:0:27 Prediction Progress: 54.83870967741935%
+2020-05-06 15:31:29,098 0:0:28 Image Number: 18, Predicted label: [[0.5023789]]
+2020-05-06 15:31:29,098 0:0:28 Prediction Progress: 58.06451612903226%
+2020-05-06 15:31:30,303 0:0:30 Image Number: 19, Predicted label: [[0.502734]]
+2020-05-06 15:31:30,303 0:0:30 Prediction Progress: 61.29032258064516%
+2020-05-06 15:31:31,489 0:0:31 Image Number: 20, Predicted label: [[0.50384724]]
+2020-05-06 15:31:31,490 0:0:31 Prediction Progress: 64.51612903225806%
+2020-05-06 15:31:32,700 0:0:32 Image Number: 21, Predicted label: [[0.5029311]]
+2020-05-06 15:31:32,700 0:0:32 Prediction Progress: 67.74193548387096%
+2020-05-06 15:31:33,903 0:0:33 Image Number: 22, Predicted label: [[0.50081044]]
+2020-05-06 15:31:33,903 0:0:33 Prediction Progress: 70.96774193548387%
+2020-05-06 15:31:35,114 0:0:34 Image Number: 23, Predicted label: [[0.49936637]]
+2020-05-06 15:31:35,115 0:0:34 Prediction Progress: 74.19354838709677%
+2020-05-06 15:31:36,313 0:0:36 Image Number: 24, Predicted label: [[0.50009936]]
+2020-05-06 15:31:36,314 0:0:36 Prediction Progress: 77.41935483870968%
+2020-05-06 15:31:37,520 0:0:37 Image Number: 25, Predicted label: [[0.501585]]
+2020-05-06 15:31:37,521 0:0:37 Prediction Progress: 80.64516129032258%
+2020-05-06 15:31:38,658 0:0:38 Image Number: 26, Predicted label: [[0.5018375]]
+2020-05-06 15:31:38,659 0:0:38 Prediction Progress: 83.87096774193549%
+2020-05-06 15:31:39,732 0:0:39 Image Number: 27, Predicted label: [[0.5005262]]
+2020-05-06 15:31:39,732 0:0:39 Prediction Progress: 87.09677419354838%
+2020-05-06 15:31:40,961 0:0:40 Image Number: 28, Predicted label: [[0.4990047]]
+2020-05-06 15:31:40,961 0:0:40 Prediction Progress: 90.32258064516128%
+2020-05-06 15:31:42,157 0:0:41 Image Number: 29, Predicted label: [[0.49987516]]
+2020-05-06 15:31:42,157 0:0:41 Prediction Progress: 93.54838709677419%
+2020-05-06 15:31:43,378 0:0:43 Image Number: 30, Predicted label: [[0.49759892]]
+2020-05-06 15:31:43,378 0:0:43 Prediction Progress: 96.7741935483871%
+2020-05-06 15:31:44,587 0:0:44 Image Number: 31, Predicted label: [[0.50075996]]
+2020-05-06 15:31:44,587 0:0:44 Prediction Progress: 100.0%
+2020-05-06 15:31:44,588 0:0:44 Predictions made on validation set, time taken: 42118.096113204956
+2020-05-06 15:31:44,588 0:0:44 Evaluating the predictions made on the validation set
+2020-05-06 15:37:34,060 0:0:0 Loading or creating numpy data
+2020-05-06 15:37:34,182 0:0:0 Loaded data from numpy files
+2020-05-06 15:37:34,182 0:0:0 Normalising labels
+2020-05-06 15:37:34,182 0:0:0 Labels normalised
+2020-05-06 15:37:34,341 0:0:0 Training CNN start
+2020-05-06 15:37:34,567 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 15:37:34,894 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 15:37:35,046 0:0:0 Running predicitons on model using validation set
+2020-05-06 15:37:35,046 0:0:0 Normalising pixel values for validation set
+2020-05-06 15:37:35,143 0:0:1 Normalised prediction set pixel values
+2020-05-06 16:03:52,566 0:0:0 Loading or creating numpy data
+2020-05-06 16:03:52,701 0:0:0 Loaded data from numpy files
+2020-05-06 16:03:52,701 0:0:0 Normalising labels
+2020-05-06 16:03:52,702 0:0:0 Labels normalised
+2020-05-06 16:03:52,849 0:0:0 Training CNN start
+2020-05-06 16:03:53,008 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 16:03:53,250 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 16:03:53,358 0:0:0 Running predicitons on model using validation set
+2020-05-06 16:03:53,358 0:0:0 Normalising pixel values for validation set
+2020-05-06 16:03:53,426 0:0:0 Normalised prediction set pixel values
+2020-05-06 16:03:53,734 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-05-06 16:09:12,119 0:0:0 Loading or creating numpy data
+2020-05-06 16:09:12,258 0:0:0 Loaded data from numpy files
+2020-05-06 16:09:12,259 0:0:0 Normalising labels
+2020-05-06 16:09:12,259 0:0:0 Labels normalised
+2020-05-06 16:09:12,425 0:0:0 Training CNN start
+2020-05-06 16:09:12,618 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 16:09:12,918 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 16:09:13,053 0:0:0 Running predicitons on model using validation set
+2020-05-06 16:09:13,053 0:0:0 Normalising pixel values for validation set
+2020-05-06 16:09:21,689 0:0:9 Normalised prediction set pixel values
+2020-05-06 16:09:22,023 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-05-06 16:12:15,255 0:0:0 Loading or creating numpy data
+2020-05-06 16:12:15,355 0:0:0 Loaded data from numpy files
+2020-05-06 16:12:15,355 0:0:0 Normalising labels
+2020-05-06 16:12:15,355 0:0:0 Labels normalised
+2020-05-06 16:12:15,481 0:0:0 Training CNN start
+2020-05-06 16:12:15,631 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 16:12:15,865 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 16:12:15,960 0:0:0 Running predicitons on model using validation set
+2020-05-06 16:12:15,960 0:0:0 Normalising pixel values for validation set
+2020-05-06 16:12:27,299 0:0:12 Normalised prediction set pixel values
+2020-05-06 16:12:27,622 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-05-06 16:15:33,808 0:0:0 Loading or creating numpy data
+2020-05-06 16:15:33,954 0:0:0 Loaded data from numpy files
+2020-05-06 16:15:33,954 0:0:0 Normalising labels
+2020-05-06 16:15:33,954 0:0:0 Labels normalised
+2020-05-06 16:15:34,169 0:0:0 Training CNN start
+2020-05-06 16:15:34,383 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 16:15:34,801 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 16:15:34,947 0:0:1 Running predicitons on model using validation set
+2020-05-06 16:15:34,947 0:0:1 Normalising pixel values for validation set
+2020-05-06 16:15:49,618 0:0:15 Normalised prediction set pixel values
+2020-05-06 16:15:50,001 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-05-06 16:15:50,871 0:0:17 Image #: 1, Predicted label: 0.5053
+2020-05-06 16:15:50,872 0:0:17 Prediction Progress: 3.23%
+2020-05-06 16:15:51,589 0:0:17 Image #: 2, Predicted label: 0.5072
+2020-05-06 16:15:51,590 0:0:17 Prediction Progress: 6.45%
+2020-05-06 16:15:52,349 0:0:18 Image #: 3, Predicted label: 0.5080
+2020-05-06 16:15:52,349 0:0:18 Prediction Progress: 9.68%
+2020-05-06 16:15:53,047 0:0:19 Image #: 4, Predicted label: 0.5077
+2020-05-06 16:15:53,048 0:0:19 Prediction Progress: 12.90%
+2020-05-06 16:15:53,786 0:0:19 Image #: 5, Predicted label: 0.5067
+2020-05-06 16:15:53,786 0:0:19 Prediction Progress: 16.13%
+2020-05-06 16:15:54,539 0:0:20 Image #: 6, Predicted label: 0.5077
+2020-05-06 16:15:54,539 0:0:20 Prediction Progress: 19.35%
+2020-05-06 16:15:55,244 0:0:21 Image #: 7, Predicted label: 0.5083
+2020-05-06 16:15:55,244 0:0:21 Prediction Progress: 22.58%
+2020-05-06 16:15:55,977 0:0:22 Image #: 8, Predicted label: 0.5057
+2020-05-06 16:15:55,977 0:0:22 Prediction Progress: 25.81%
+2020-05-06 16:15:56,696 0:0:22 Image #: 9, Predicted label: 0.5032
+2020-05-06 16:15:56,696 0:0:22 Prediction Progress: 29.03%
+2020-05-06 16:15:57,429 0:0:23 Image #: 10, Predicted label: 0.5061
+2020-05-06 16:15:57,429 0:0:23 Prediction Progress: 32.26%
+2020-05-06 16:15:58,155 0:0:24 Image #: 11, Predicted label: 0.5051
+2020-05-06 16:15:58,155 0:0:24 Prediction Progress: 35.48%
+2020-05-06 16:15:58,844 0:0:25 Image #: 12, Predicted label: 0.5049
+2020-05-06 16:15:58,844 0:0:25 Prediction Progress: 38.71%
+2020-05-06 16:15:59,557 0:0:25 Image #: 13, Predicted label: 0.5045
+2020-05-06 16:15:59,557 0:0:25 Prediction Progress: 41.94%
+2020-05-06 16:16:00,312 0:0:26 Image #: 14, Predicted label: 0.5067
+2020-05-06 16:16:00,313 0:0:26 Prediction Progress: 45.16%
+2020-05-06 16:16:01,059 0:0:27 Image #: 15, Predicted label: 0.5068
+2020-05-06 16:16:01,059 0:0:27 Prediction Progress: 48.39%
+2020-05-06 16:16:01,721 0:0:27 Image #: 16, Predicted label: 0.5084
+2020-05-06 16:16:01,722 0:0:27 Prediction Progress: 51.61%
+2020-05-06 16:16:02,383 0:0:28 Image #: 17, Predicted label: 0.5063
+2020-05-06 16:16:02,383 0:0:28 Prediction Progress: 54.84%
+2020-05-06 16:16:03,075 0:0:29 Image #: 18, Predicted label: 0.5079
+2020-05-06 16:16:03,075 0:0:29 Prediction Progress: 58.06%
+2020-05-06 16:16:03,787 0:0:29 Image #: 19, Predicted label: 0.5095
+2020-05-06 16:16:03,787 0:0:29 Prediction Progress: 61.29%
+2020-05-06 16:16:04,458 0:0:30 Image #: 20, Predicted label: 0.5055
+2020-05-06 16:16:04,458 0:0:30 Prediction Progress: 64.52%
+2020-05-06 16:16:05,099 0:0:31 Image #: 21, Predicted label: 0.5070
+2020-05-06 16:16:05,099 0:0:31 Prediction Progress: 67.74%
+2020-05-06 16:16:05,770 0:0:31 Image #: 22, Predicted label: 0.5043
+2020-05-06 16:16:05,770 0:0:31 Prediction Progress: 70.97%
+2020-05-06 16:16:06,410 0:0:32 Image #: 23, Predicted label: 0.5032
+2020-05-06 16:16:06,411 0:0:32 Prediction Progress: 74.19%
+2020-05-06 16:16:07,187 0:0:33 Image #: 24, Predicted label: 0.5066
+2020-05-06 16:16:07,187 0:0:33 Prediction Progress: 77.42%
+2020-05-06 16:16:07,845 0:0:34 Image #: 25, Predicted label: 0.5058
+2020-05-06 16:16:07,845 0:0:34 Prediction Progress: 80.65%
+2020-05-06 16:16:08,504 0:0:34 Image #: 26, Predicted label: 0.5076
+2020-05-06 16:16:08,504 0:0:34 Prediction Progress: 83.87%
+2020-05-06 16:16:09,134 0:0:35 Image #: 27, Predicted label: 0.5056
+2020-05-06 16:16:09,134 0:0:35 Prediction Progress: 87.10%
+2020-05-06 16:16:09,844 0:0:36 Image #: 28, Predicted label: 0.5046
+2020-05-06 16:16:09,844 0:0:36 Prediction Progress: 90.32%
+2020-05-06 16:16:10,469 0:0:36 Image #: 29, Predicted label: 0.5080
+2020-05-06 16:16:10,469 0:0:36 Prediction Progress: 93.55%
+2020-05-06 16:16:11,078 0:0:37 Image #: 30, Predicted label: 0.5083
+2020-05-06 16:16:11,078 0:0:37 Prediction Progress: 96.77%
+2020-05-06 16:16:11,682 0:0:37 Image #: 31, Predicted label: 0.5072
+2020-05-06 16:16:11,682 0:0:37 Prediction Progress: 100.00%
+2020-05-06 16:16:11,682 0:0:37 Predictions made on validation set, time taken: 22.05s
+2020-05-06 16:16:11,682 0:0:37 Evaluating the predictions made on the validation set
+2020-05-06 16:31:02,194 0:0:0 Loading or creating numpy data
+2020-05-06 16:31:02,325 0:0:0 Loaded data from numpy files
+2020-05-06 16:31:02,325 0:0:0 Normalising labels
+2020-05-06 16:31:02,326 0:0:0 Labels normalised
+2020-05-06 16:31:09,622 0:0:7 Training CNN start
+2020-05-06 16:31:09,801 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 16:31:10,048 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 16:31:10,161 0:0:7 Running predicitons on model using validation set
+2020-05-06 16:31:10,161 0:0:7 Normalising pixel values for validation set
+2020-05-06 16:31:20,177 0:0:17 Normalised prediction set pixel values
+2020-05-06 16:31:20,514 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-05-06 16:31:21,232 0:0:19 Image #: 1, Predicted label: 0.5019
+2020-05-06 16:31:21,232 0:0:19 Prediction Progress: 3.23%
+2020-05-06 16:31:21,854 0:0:19 Image #: 2, Predicted label: 0.5026
+2020-05-06 16:31:21,855 0:0:19 Prediction Progress: 6.45%
+2020-05-06 16:31:22,461 0:0:20 Image #: 3, Predicted label: 0.5051
+2020-05-06 16:31:22,462 0:0:20 Prediction Progress: 9.68%
+2020-05-06 16:31:23,070 0:0:20 Image #: 4, Predicted label: 0.5045
+2020-05-06 16:31:23,070 0:0:20 Prediction Progress: 12.90%
+2020-05-06 16:31:23,664 0:0:21 Image #: 5, Predicted label: 0.5033
+2020-05-06 16:31:23,664 0:0:21 Prediction Progress: 16.13%
+2020-05-06 16:31:24,280 0:0:22 Image #: 6, Predicted label: 0.5038
+2020-05-06 16:31:24,281 0:0:22 Prediction Progress: 19.35%
+2020-05-06 16:31:24,879 0:0:22 Image #: 7, Predicted label: 0.5029
+2020-05-06 16:31:24,879 0:0:22 Prediction Progress: 22.58%
+2020-05-06 16:31:25,481 0:0:23 Image #: 8, Predicted label: 0.5044
+2020-05-06 16:31:25,481 0:0:23 Prediction Progress: 25.81%
+2020-05-06 16:31:26,091 0:0:23 Image #: 9, Predicted label: 0.5019
+2020-05-06 16:31:26,092 0:0:23 Prediction Progress: 29.03%
+2020-05-06 16:31:26,684 0:0:24 Image #: 10, Predicted label: 0.5049
+2020-05-06 16:31:26,684 0:0:24 Prediction Progress: 32.26%
+2020-05-06 16:31:27,279 0:0:25 Image #: 11, Predicted label: 0.5024
+2020-05-06 16:31:27,279 0:0:25 Prediction Progress: 35.48%
+2020-05-06 16:31:27,879 0:0:25 Image #: 12, Predicted label: 0.5032
+2020-05-06 16:31:27,879 0:0:25 Prediction Progress: 38.71%
+2020-05-06 16:31:28,468 0:0:26 Image #: 13, Predicted label: 0.5024
+2020-05-06 16:31:28,468 0:0:26 Prediction Progress: 41.94%
+2020-05-06 16:31:29,064 0:0:26 Image #: 14, Predicted label: 0.5039
+2020-05-06 16:31:29,064 0:0:26 Prediction Progress: 45.16%
+2020-05-06 16:31:29,668 0:0:27 Image #: 15, Predicted label: 0.5038
+2020-05-06 16:31:29,668 0:0:27 Prediction Progress: 48.39%
+2020-05-06 16:31:30,276 0:0:28 Image #: 16, Predicted label: 0.5033
+2020-05-06 16:31:30,276 0:0:28 Prediction Progress: 51.61%
+2020-05-06 16:31:30,868 0:0:28 Image #: 17, Predicted label: 0.5024
+2020-05-06 16:31:30,868 0:0:28 Prediction Progress: 54.84%
+2020-05-06 16:31:31,456 0:0:29 Image #: 18, Predicted label: 0.5053
+2020-05-06 16:31:31,457 0:0:29 Prediction Progress: 58.06%
+2020-05-06 16:31:32,055 0:0:29 Image #: 19, Predicted label: 0.5042
+2020-05-06 16:31:32,055 0:0:29 Prediction Progress: 61.29%
+2020-05-06 16:31:32,649 0:0:30 Image #: 20, Predicted label: 0.5056
+2020-05-06 16:31:32,649 0:0:30 Prediction Progress: 64.52%
+2020-05-06 16:31:33,241 0:0:31 Image #: 21, Predicted label: 0.5027
+2020-05-06 16:31:33,241 0:0:31 Prediction Progress: 67.74%
+2020-05-06 16:31:33,816 0:0:31 Image #: 22, Predicted label: 0.5022
+2020-05-06 16:31:33,816 0:0:31 Prediction Progress: 70.97%
+2020-05-06 16:31:34,420 0:0:32 Image #: 23, Predicted label: 0.5033
+2020-05-06 16:31:34,420 0:0:32 Prediction Progress: 74.19%
+2020-05-06 16:31:35,010 0:0:32 Image #: 24, Predicted label: 0.5037
+2020-05-06 16:31:35,010 0:0:32 Prediction Progress: 77.42%
+2020-05-06 16:31:35,604 0:0:33 Image #: 25, Predicted label: 0.5017
+2020-05-06 16:31:35,604 0:0:33 Prediction Progress: 80.65%
+2020-05-06 16:31:36,203 0:0:34 Image #: 26, Predicted label: 0.5040
+2020-05-06 16:31:36,203 0:0:34 Prediction Progress: 83.87%
+2020-05-06 16:31:36,782 0:0:34 Image #: 27, Predicted label: 0.5020
+2020-05-06 16:31:36,782 0:0:34 Prediction Progress: 87.10%
+2020-05-06 16:31:37,370 0:0:35 Image #: 28, Predicted label: 0.5034
+2020-05-06 16:31:37,370 0:0:35 Prediction Progress: 90.32%
+2020-05-06 16:31:37,956 0:0:35 Image #: 29, Predicted label: 0.5037
+2020-05-06 16:31:37,956 0:0:35 Prediction Progress: 93.55%
+2020-05-06 16:31:38,549 0:0:36 Image #: 30, Predicted label: 0.5017
+2020-05-06 16:31:38,549 0:0:36 Prediction Progress: 96.77%
+2020-05-06 16:31:39,135 0:0:36 Image #: 31, Predicted label: 0.5045
+2020-05-06 16:31:39,135 0:0:36 Prediction Progress: 100.00%
+2020-05-06 16:31:39,135 0:0:36 Predictions made on validation set of 31 images, time taken: 18.950s
+2020-05-06 16:31:39,135 0:0:36 Average prediction time of 0.611s per image
+2020-05-06 16:31:39,135 0:0:36 Evaluating the predictions made on the validation set
+2020-05-06 16:34:06,417 0:0:0 Loading or creating numpy data
+2020-05-06 16:34:06,526 0:0:0 Loaded data from numpy files
+2020-05-06 16:34:06,526 0:0:0 Normalising labels
+2020-05-06 16:34:06,527 0:0:0 Labels normalised
+2020-05-06 16:34:11,141 0:0:4 Training CNN start
+2020-05-06 16:34:11,306 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 16:34:11,551 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 16:34:11,653 0:0:5 Running predicitons on model using validation set
+2020-05-06 16:34:11,653 0:0:5 Normalising pixel values for validation set
+2020-05-06 16:34:13,162 0:0:6 Normalised prediction set pixel values
+2020-05-06 16:34:13,573 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-05-06 16:34:14,371 0:0:7 Image #: 1, Predicted label: 0.5099
+2020-05-06 16:34:14,371 0:0:7 Prediction Progress: 3.23%
+2020-05-06 16:34:14,957 0:0:8 Image #: 2, Predicted label: 0.5176
+2020-05-06 16:34:14,958 0:0:8 Prediction Progress: 6.45%
+2020-05-06 16:34:15,562 0:0:9 Image #: 3, Predicted label: 0.5146
+2020-05-06 16:34:15,562 0:0:9 Prediction Progress: 9.68%
+2020-05-06 16:34:16,171 0:0:9 Image #: 4, Predicted label: 0.5150
+2020-05-06 16:34:16,172 0:0:9 Prediction Progress: 12.90%
+2020-05-06 16:34:16,762 0:0:10 Image #: 5, Predicted label: 0.5175
+2020-05-06 16:34:16,762 0:0:10 Prediction Progress: 16.13%
+2020-05-06 16:34:17,357 0:0:10 Image #: 6, Predicted label: 0.5188
+2020-05-06 16:34:17,357 0:0:10 Prediction Progress: 19.35%
+2020-05-06 16:34:17,955 0:0:11 Image #: 7, Predicted label: 0.5197
+2020-05-06 16:34:17,955 0:0:11 Prediction Progress: 22.58%
+2020-05-06 16:34:18,539 0:0:12 Image #: 8, Predicted label: 0.5170
+2020-05-06 16:34:18,539 0:0:12 Prediction Progress: 25.81%
+2020-05-06 16:34:19,124 0:0:12 Image #: 9, Predicted label: 0.5113
+2020-05-06 16:34:19,124 0:0:12 Prediction Progress: 29.03%
+2020-05-06 16:34:19,718 0:0:13 Image #: 10, Predicted label: 0.5172
+2020-05-06 16:34:19,718 0:0:13 Prediction Progress: 32.26%
+2020-05-06 16:34:20,307 0:0:13 Image #: 11, Predicted label: 0.5141
+2020-05-06 16:34:20,307 0:0:13 Prediction Progress: 35.48%
+2020-05-06 16:34:20,905 0:0:14 Image #: 12, Predicted label: 0.5158
+2020-05-06 16:34:20,905 0:0:14 Prediction Progress: 38.71%
+2020-05-06 16:34:21,486 0:0:15 Image #: 13, Predicted label: 0.5160
+2020-05-06 16:34:21,486 0:0:15 Prediction Progress: 41.94%
+2020-05-06 16:34:22,089 0:0:15 Image #: 14, Predicted label: 0.5224
+2020-05-06 16:34:22,089 0:0:15 Prediction Progress: 45.16%
+2020-05-06 16:34:22,681 0:0:16 Image #: 15, Predicted label: 0.5217
+2020-05-06 16:34:22,681 0:0:16 Prediction Progress: 48.39%
+2020-05-06 16:34:23,265 0:0:16 Image #: 16, Predicted label: 0.5193
+2020-05-06 16:34:23,266 0:0:16 Prediction Progress: 51.61%
+2020-05-06 16:34:23,854 0:0:17 Image #: 17, Predicted label: 0.5232
+2020-05-06 16:34:23,854 0:0:17 Prediction Progress: 54.84%
+2020-05-06 16:34:24,433 0:0:18 Image #: 18, Predicted label: 0.5197
+2020-05-06 16:34:24,433 0:0:18 Prediction Progress: 58.06%
+2020-05-06 16:34:25,024 0:0:18 Image #: 19, Predicted label: 0.5177
+2020-05-06 16:34:25,024 0:0:18 Prediction Progress: 61.29%
+2020-05-06 16:34:25,618 0:0:19 Image #: 20, Predicted label: 0.5182
+2020-05-06 16:34:25,619 0:0:19 Prediction Progress: 64.52%
+2020-05-06 16:34:26,201 0:0:19 Image #: 21, Predicted label: 0.5171
+2020-05-06 16:34:26,201 0:0:19 Prediction Progress: 67.74%
+2020-05-06 16:34:26,785 0:0:20 Image #: 22, Predicted label: 0.5152
+2020-05-06 16:34:26,785 0:0:20 Prediction Progress: 70.97%
+2020-05-06 16:34:27,376 0:0:20 Image #: 23, Predicted label: 0.5117
+2020-05-06 16:34:27,376 0:0:20 Prediction Progress: 74.19%
+2020-05-06 16:34:27,967 0:0:21 Image #: 24, Predicted label: 0.5189
+2020-05-06 16:34:27,967 0:0:21 Prediction Progress: 77.42%
+2020-05-06 16:34:28,551 0:0:22 Image #: 25, Predicted label: 0.5193
+2020-05-06 16:34:28,552 0:0:22 Prediction Progress: 80.65%
+2020-05-06 16:34:29,142 0:0:22 Image #: 26, Predicted label: 0.5204
+2020-05-06 16:34:29,142 0:0:22 Prediction Progress: 83.87%
+2020-05-06 16:34:29,726 0:0:23 Image #: 27, Predicted label: 0.5130
+2020-05-06 16:34:29,726 0:0:23 Prediction Progress: 87.10%
+2020-05-06 16:34:30,328 0:0:23 Image #: 28, Predicted label: 0.5174
+2020-05-06 16:34:30,328 0:0:23 Prediction Progress: 90.32%
+2020-05-06 16:34:30,931 0:0:24 Image #: 29, Predicted label: 0.5125
+2020-05-06 16:34:30,931 0:0:24 Prediction Progress: 93.55%
+2020-05-06 16:34:31,519 0:0:25 Image #: 30, Predicted label: 0.5168
+2020-05-06 16:34:31,519 0:0:25 Prediction Progress: 96.77%
+2020-05-06 16:34:32,104 0:0:25 Image #: 31, Predicted label: 0.5142
+2020-05-06 16:34:32,104 0:0:25 Prediction Progress: 100.00%
+2020-05-06 16:34:32,104 0:0:25 Predictions made on validation set of 31 images, time taken: 18.931s
+2020-05-06 16:34:32,104 0:0:25 Average prediction time of 0.611s per image
+2020-05-06 16:34:32,104 0:0:25 Evaluating the predictions made on the validation set
+2020-05-06 16:37:48,351 0:0:0 Loading or creating numpy data
+2020-05-06 16:37:48,468 0:0:0 Loaded data from numpy files
+2020-05-06 16:37:48,468 0:0:0 Normalising labels
+2020-05-06 16:37:48,469 0:0:0 Labels normalised
+2020-05-06 16:37:48,657 0:0:0 Training CNN start
+2020-05-06 16:37:48,874 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 16:37:49,166 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 16:37:49,317 0:0:0 Running predicitons on model using validation set
+2020-05-06 16:37:49,317 0:0:0 Normalising pixel values for validation set
+2020-05-06 16:37:57,886 0:0:9 Normalised prediction set pixel values
+2020-05-06 16:37:58,215 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-05-06 16:37:59,009 0:0:10 Image #: 1, Predicted label: 0.4924
+2020-05-06 16:37:59,009 0:0:10 Prediction Progress: 3.23%
+2020-05-06 16:37:59,660 0:0:11 Image #: 2, Predicted label: 0.4919
+2020-05-06 16:37:59,660 0:0:11 Prediction Progress: 6.45%
+2020-05-06 16:38:00,325 0:0:11 Image #: 3, Predicted label: 0.4907
+2020-05-06 16:38:00,325 0:0:11 Prediction Progress: 9.68%
+2020-05-06 16:38:00,962 0:0:12 Image #: 4, Predicted label: 0.4907
+2020-05-06 16:38:00,962 0:0:12 Prediction Progress: 12.90%
+2020-05-06 16:38:01,611 0:0:13 Image #: 5, Predicted label: 0.4911
+2020-05-06 16:38:01,612 0:0:13 Prediction Progress: 16.13%
+2020-05-06 16:38:02,260 0:0:13 Image #: 6, Predicted label: 0.4911
+2020-05-06 16:38:02,261 0:0:13 Prediction Progress: 19.35%
+2020-05-06 16:38:02,914 0:0:14 Image #: 7, Predicted label: 0.4900
+2020-05-06 16:38:02,915 0:0:14 Prediction Progress: 22.58%
+2020-05-06 16:38:03,566 0:0:15 Image #: 8, Predicted label: 0.4878
+2020-05-06 16:38:03,566 0:0:15 Prediction Progress: 25.81%
+2020-05-06 16:38:04,195 0:0:15 Image #: 9, Predicted label: 0.4943
+2020-05-06 16:38:04,195 0:0:15 Prediction Progress: 29.03%
+2020-05-06 16:38:04,830 0:0:16 Image #: 10, Predicted label: 0.4907
+2020-05-06 16:38:04,830 0:0:16 Prediction Progress: 32.26%
+2020-05-06 16:38:05,470 0:0:17 Image #: 11, Predicted label: 0.4930
+2020-05-06 16:38:05,470 0:0:17 Prediction Progress: 35.48%
+2020-05-06 16:38:06,122 0:0:17 Image #: 12, Predicted label: 0.4914
+2020-05-06 16:38:06,122 0:0:17 Prediction Progress: 38.71%
+2020-05-06 16:38:06,747 0:0:18 Image #: 13, Predicted label: 0.4929
+2020-05-06 16:38:06,747 0:0:18 Prediction Progress: 41.94%
+2020-05-06 16:38:07,391 0:0:19 Image #: 14, Predicted label: 0.4877
+2020-05-06 16:38:07,391 0:0:19 Prediction Progress: 45.16%
+2020-05-06 16:38:08,009 0:0:19 Image #: 15, Predicted label: 0.4908
+2020-05-06 16:38:08,009 0:0:19 Prediction Progress: 48.39%
+2020-05-06 16:38:08,650 0:0:20 Image #: 16, Predicted label: 0.4917
+2020-05-06 16:38:08,651 0:0:20 Prediction Progress: 51.61%
+2020-05-06 16:38:09,269 0:0:20 Image #: 17, Predicted label: 0.4890
+2020-05-06 16:38:09,270 0:0:20 Prediction Progress: 54.84%
+2020-05-06 16:38:09,939 0:0:21 Image #: 18, Predicted label: 0.4880
+2020-05-06 16:38:09,939 0:0:21 Prediction Progress: 58.06%
+2020-05-06 16:38:10,587 0:0:22 Image #: 19, Predicted label: 0.4895
+2020-05-06 16:38:10,587 0:0:22 Prediction Progress: 61.29%
+2020-05-06 16:38:11,210 0:0:22 Image #: 20, Predicted label: 0.4901
+2020-05-06 16:38:11,210 0:0:22 Prediction Progress: 64.52%
+2020-05-06 16:38:11,858 0:0:23 Image #: 21, Predicted label: 0.4918
+2020-05-06 16:38:11,858 0:0:23 Prediction Progress: 67.74%
+2020-05-06 16:38:12,492 0:0:24 Image #: 22, Predicted label: 0.4929
+2020-05-06 16:38:12,492 0:0:24 Prediction Progress: 70.97%
+2020-05-06 16:38:13,143 0:0:24 Image #: 23, Predicted label: 0.4930
+2020-05-06 16:38:13,143 0:0:24 Prediction Progress: 74.19%
+2020-05-06 16:38:13,782 0:0:25 Image #: 24, Predicted label: 0.4884
+2020-05-06 16:38:13,782 0:0:25 Prediction Progress: 77.42%
+2020-05-06 16:38:14,437 0:0:26 Image #: 25, Predicted label: 0.4875
+2020-05-06 16:38:14,437 0:0:26 Prediction Progress: 80.65%
+2020-05-06 16:38:15,087 0:0:26 Image #: 26, Predicted label: 0.4897
+2020-05-06 16:38:15,087 0:0:26 Prediction Progress: 83.87%
+2020-05-06 16:38:15,718 0:0:27 Image #: 27, Predicted label: 0.4921
+2020-05-06 16:38:15,718 0:0:27 Prediction Progress: 87.10%
+2020-05-06 16:38:16,375 0:0:28 Image #: 28, Predicted label: 0.4909
+2020-05-06 16:38:16,376 0:0:28 Prediction Progress: 90.32%
+2020-05-06 16:38:17,058 0:0:28 Image #: 29, Predicted label: 0.4890
+2020-05-06 16:38:17,058 0:0:28 Prediction Progress: 93.55%
+2020-05-06 16:38:17,758 0:0:29 Image #: 30, Predicted label: 0.4926
+2020-05-06 16:38:17,758 0:0:29 Prediction Progress: 96.77%
+2020-05-06 16:38:18,462 0:0:30 Image #: 31, Predicted label: 0.4912
+2020-05-06 16:38:18,462 0:0:30 Prediction Progress: 100.00%
+2020-05-06 16:38:18,463 0:0:30 Predictions made on validation set of 31 images, time taken: 20.565s
+2020-05-06 16:38:18,463 0:0:30 Average prediction time of 0.663s per image
+2020-05-06 16:38:18,463 0:0:30 Evaluating the predictions made on the validation set
+2020-05-06 16:54:55,460 0:0:0 Loading or creating numpy data
+2020-05-06 16:54:55,573 0:0:0 Loaded data from numpy files
+2020-05-06 16:54:55,573 0:0:0 Normalising labels
+2020-05-06 16:54:55,573 0:0:0 Labels normalised
+2020-05-06 16:54:55,733 0:0:0 Training CNN start
+2020-05-06 16:54:55,936 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 16:54:56,188 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 16:54:56,316 0:0:0 Running predicitons on model using validation set
+2020-05-06 16:54:56,316 0:0:0 Normalising pixel values for validation set
+2020-05-06 16:55:10,409 0:0:14 Normalised prediction set pixel values
+2020-05-06 16:55:10,713 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-05-06 16:55:11,411 0:0:15 Image #: 1, Predicted label: 0.5110
+2020-05-06 16:55:11,411 0:0:15 Prediction Progress: 3.23%
+2020-05-06 16:55:11,993 0:0:16 Image #: 2, Predicted label: 0.5155
+2020-05-06 16:55:11,994 0:0:16 Prediction Progress: 6.45%
+2020-05-06 16:55:12,577 0:0:17 Image #: 3, Predicted label: 0.5175
+2020-05-06 16:55:12,578 0:0:17 Prediction Progress: 9.68%
+2020-05-06 16:55:13,155 0:0:17 Image #: 4, Predicted label: 0.5168
+2020-05-06 16:55:13,155 0:0:17 Prediction Progress: 12.90%
+2020-05-06 16:55:13,734 0:0:18 Image #: 5, Predicted label: 0.5181
+2020-05-06 16:55:13,734 0:0:18 Prediction Progress: 16.13%
+2020-05-06 16:55:14,306 0:0:18 Image #: 6, Predicted label: 0.5142
+2020-05-06 16:55:14,306 0:0:18 Prediction Progress: 19.35%
+2020-05-06 16:55:14,898 0:0:19 Image #: 7, Predicted label: 0.5167
+2020-05-06 16:55:14,898 0:0:19 Prediction Progress: 22.58%
+2020-05-06 16:55:15,478 0:0:20 Image #: 8, Predicted label: 0.5143
+2020-05-06 16:55:15,478 0:0:20 Prediction Progress: 25.81%
+2020-05-06 16:55:16,056 0:0:20 Image #: 9, Predicted label: 0.5091
+2020-05-06 16:55:16,056 0:0:20 Prediction Progress: 29.03%
+2020-05-06 16:55:16,644 0:0:21 Image #: 10, Predicted label: 0.5135
+2020-05-06 16:55:16,644 0:0:21 Prediction Progress: 32.26%
+2020-05-06 16:55:17,217 0:0:21 Image #: 11, Predicted label: 0.5129
+2020-05-06 16:55:17,217 0:0:21 Prediction Progress: 35.48%
+2020-05-06 16:55:17,799 0:0:22 Image #: 12, Predicted label: 0.5134
+2020-05-06 16:55:17,799 0:0:22 Prediction Progress: 38.71%
+2020-05-06 16:55:18,387 0:0:22 Image #: 13, Predicted label: 0.5126
+2020-05-06 16:55:18,388 0:0:22 Prediction Progress: 41.94%
+2020-05-06 16:55:18,973 0:0:23 Image #: 14, Predicted label: 0.5162
+2020-05-06 16:55:18,973 0:0:23 Prediction Progress: 45.16%
+2020-05-06 16:55:19,544 0:0:24 Image #: 15, Predicted label: 0.5191
+2020-05-06 16:55:19,545 0:0:24 Prediction Progress: 48.39%
+2020-05-06 16:55:20,129 0:0:24 Image #: 16, Predicted label: 0.5149
+2020-05-06 16:55:20,129 0:0:24 Prediction Progress: 51.61%
+2020-05-06 16:55:20,705 0:0:25 Image #: 17, Predicted label: 0.5219
+2020-05-06 16:55:20,705 0:0:25 Prediction Progress: 54.84%
+2020-05-06 16:55:21,284 0:0:25 Image #: 18, Predicted label: 0.5170
+2020-05-06 16:55:21,284 0:0:25 Prediction Progress: 58.06%
+2020-05-06 16:55:21,861 0:0:26 Image #: 19, Predicted label: 0.5168
+2020-05-06 16:55:21,861 0:0:26 Prediction Progress: 61.29%
+2020-05-06 16:55:22,442 0:0:26 Image #: 20, Predicted label: 0.5189
+2020-05-06 16:55:22,442 0:0:26 Prediction Progress: 64.52%
+2020-05-06 16:55:23,037 0:0:27 Image #: 21, Predicted label: 0.5151
+2020-05-06 16:55:23,037 0:0:27 Prediction Progress: 67.74%
+2020-05-06 16:55:23,616 0:0:28 Image #: 22, Predicted label: 0.5112
+2020-05-06 16:55:23,616 0:0:28 Prediction Progress: 70.97%
+2020-05-06 16:55:24,197 0:0:28 Image #: 23, Predicted label: 0.5115
+2020-05-06 16:55:24,197 0:0:28 Prediction Progress: 74.19%
+2020-05-06 16:55:24,779 0:0:29 Image #: 24, Predicted label: 0.5165
+2020-05-06 16:55:24,779 0:0:29 Prediction Progress: 77.42%
+2020-05-06 16:55:25,358 0:0:29 Image #: 25, Predicted label: 0.5215
+2020-05-06 16:55:25,358 0:0:29 Prediction Progress: 80.65%
+2020-05-06 16:55:25,927 0:0:30 Image #: 26, Predicted label: 0.5185
+2020-05-06 16:55:25,927 0:0:30 Prediction Progress: 83.87%
+2020-05-06 16:55:26,500 0:0:31 Image #: 27, Predicted label: 0.5149
+2020-05-06 16:55:26,500 0:0:31 Prediction Progress: 87.10%
+2020-05-06 16:55:27,084 0:0:31 Image #: 28, Predicted label: 0.5156
+2020-05-06 16:55:27,084 0:0:31 Prediction Progress: 90.32%
+2020-05-06 16:55:27,667 0:0:32 Image #: 29, Predicted label: 0.5191
+2020-05-06 16:55:27,668 0:0:32 Prediction Progress: 93.55%
+2020-05-06 16:55:28,247 0:0:32 Image #: 30, Predicted label: 0.5180
+2020-05-06 16:55:28,248 0:0:32 Prediction Progress: 96.77%
+2020-05-06 16:55:28,826 0:0:33 Image #: 31, Predicted label: 0.5140
+2020-05-06 16:55:28,826 0:0:33 Prediction Progress: 100.00%
+2020-05-06 16:55:28,826 0:0:33 Predictions made on validation set of 31 images, time taken: 18.406s
+2020-05-06 16:55:28,826 0:0:33 Average prediction time of 0.594s per image
+2020-05-06 16:55:28,826 0:0:33 Evaluating the predictions made on the validation set
+2020-05-06 16:59:07,754 0:0:0 Loading or creating numpy data
+2020-05-06 16:59:07,897 0:0:0 Loaded data from numpy files
+2020-05-06 16:59:07,897 0:0:0 Normalising labels
+2020-05-06 16:59:07,897 0:0:0 Labels normalised
+2020-05-06 16:59:08,061 0:0:0 Training CNN start
+2020-05-06 16:59:08,228 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 16:59:08,471 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 16:59:08,570 0:0:0 Running predicitons on model using validation set
+2020-05-06 16:59:08,570 0:0:0 Normalising pixel values for validation set
+2020-05-06 16:59:16,153 0:0:8 Normalised prediction set pixel values
+2020-05-06 16:59:16,443 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-05-06 17:01:43,335 0:0:0 Loading or creating numpy data
+2020-05-06 17:01:43,441 0:0:0 Loaded data from numpy files
+2020-05-06 17:01:43,441 0:0:0 Normalising labels
+2020-05-06 17:01:43,442 0:0:0 Labels normalised
+2020-05-06 17:01:43,573 0:0:0 Training CNN start
+2020-05-06 17:01:43,727 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 17:01:43,994 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 17:01:44,121 0:0:0 Running predicitons on model using validation set
+2020-05-06 17:01:44,121 0:0:0 Normalising pixel values for validation set
+2020-05-06 17:01:44,846 0:0:1 Normalised prediction set pixel values
+2020-05-06 17:01:45,271 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-05-06 17:01:46,182 0:0:2 Image #: 1, Predicted label: 0.5004
+2020-05-06 17:01:46,182 0:0:2 Prediction Progress: 3.23%
+2020-05-06 17:01:46,905 0:0:3 Image #: 2, Predicted label: 0.4997
+2020-05-06 17:01:46,905 0:0:3 Prediction Progress: 6.45%
+2020-05-06 17:01:47,573 0:0:4 Image #: 3, Predicted label: 0.5021
+2020-05-06 17:01:47,574 0:0:4 Prediction Progress: 9.68%
+2020-05-06 17:01:48,250 0:0:4 Image #: 4, Predicted label: 0.5014
+2020-05-06 17:01:48,250 0:0:4 Prediction Progress: 12.90%
+2020-05-06 17:01:48,961 0:0:5 Image #: 5, Predicted label: 0.5001
+2020-05-06 17:01:48,961 0:0:5 Prediction Progress: 16.13%
+2020-05-06 17:01:49,669 0:0:6 Image #: 6, Predicted label: 0.4999
+2020-05-06 17:01:49,669 0:0:6 Prediction Progress: 19.35%
+2020-05-06 17:01:50,378 0:0:7 Image #: 7, Predicted label: 0.5004
+2020-05-06 17:01:50,379 0:0:7 Prediction Progress: 22.58%
+2020-05-06 17:01:51,083 0:0:7 Image #: 8, Predicted label: 0.4985
+2020-05-06 17:01:51,084 0:0:7 Prediction Progress: 25.81%
+2020-05-06 17:01:51,699 0:0:8 Image #: 9, Predicted label: 0.4995
+2020-05-06 17:01:51,699 0:0:8 Prediction Progress: 29.03%
+2020-05-06 17:01:52,309 0:0:8 Image #: 10, Predicted label: 0.5001
+2020-05-06 17:01:52,309 0:0:8 Prediction Progress: 32.26%
+2020-05-06 17:01:52,902 0:0:9 Image #: 11, Predicted label: 0.4975
+2020-05-06 17:01:52,902 0:0:9 Prediction Progress: 35.48%
+2020-05-06 17:01:53,488 0:0:10 Image #: 12, Predicted label: 0.4985
+2020-05-06 17:01:53,488 0:0:10 Prediction Progress: 38.71%
+2020-05-06 17:01:54,087 0:0:10 Image #: 13, Predicted label: 0.4983
+2020-05-06 17:01:54,088 0:0:10 Prediction Progress: 41.94%
+2020-05-06 17:01:54,680 0:0:11 Image #: 14, Predicted label: 0.4992
+2020-05-06 17:01:54,680 0:0:11 Prediction Progress: 45.16%
+2020-05-06 17:01:55,271 0:0:11 Image #: 15, Predicted label: 0.4962
+2020-05-06 17:01:55,271 0:0:11 Prediction Progress: 48.39%
+2020-05-06 17:01:55,872 0:0:12 Image #: 16, Predicted label: 0.4981
+2020-05-06 17:01:55,872 0:0:12 Prediction Progress: 51.61%
+2020-05-06 17:01:56,464 0:0:13 Image #: 17, Predicted label: 0.4999
+2020-05-06 17:01:56,464 0:0:13 Prediction Progress: 54.84%
+2020-05-06 17:01:57,048 0:0:13 Image #: 18, Predicted label: 0.4998
+2020-05-06 17:01:57,048 0:0:13 Prediction Progress: 58.06%
+2020-05-06 17:01:57,643 0:0:14 Image #: 19, Predicted label: 0.4986
+2020-05-06 17:01:57,643 0:0:14 Prediction Progress: 61.29%
+2020-05-06 17:01:58,239 0:0:14 Image #: 20, Predicted label: 0.4974
+2020-05-06 17:01:58,239 0:0:14 Prediction Progress: 64.52%
+2020-05-06 17:01:58,824 0:0:15 Image #: 21, Predicted label: 0.4994
+2020-05-06 17:01:58,824 0:0:15 Prediction Progress: 67.74%
+2020-05-06 17:01:59,417 0:0:16 Image #: 22, Predicted label: 0.4980
+2020-05-06 17:01:59,417 0:0:16 Prediction Progress: 70.97%
+2020-05-06 17:01:59,999 0:0:16 Image #: 23, Predicted label: 0.5017
+2020-05-06 17:01:59,999 0:0:16 Prediction Progress: 74.19%
+2020-05-06 17:02:00,591 0:0:17 Image #: 24, Predicted label: 0.5006
+2020-05-06 17:02:00,591 0:0:17 Prediction Progress: 77.42%
+2020-05-06 17:02:01,174 0:0:17 Image #: 25, Predicted label: 0.4977
+2020-05-06 17:02:01,174 0:0:17 Prediction Progress: 80.65%
+2020-05-06 17:02:01,753 0:0:18 Image #: 26, Predicted label: 0.4983
+2020-05-06 17:02:01,753 0:0:18 Prediction Progress: 83.87%
+2020-05-06 17:02:02,355 0:0:19 Image #: 27, Predicted label: 0.5012
+2020-05-06 17:02:02,355 0:0:19 Prediction Progress: 87.10%
+2020-05-06 17:02:02,948 0:0:19 Image #: 28, Predicted label: 0.4991
+2020-05-06 17:02:02,948 0:0:19 Prediction Progress: 90.32%
+2020-05-06 17:02:03,527 0:0:20 Image #: 29, Predicted label: 0.5022
+2020-05-06 17:02:03,527 0:0:20 Prediction Progress: 93.55%
+2020-05-06 17:02:04,138 0:0:20 Image #: 30, Predicted label: 0.5015
+2020-05-06 17:02:04,138 0:0:20 Prediction Progress: 96.77%
+2020-05-06 17:02:04,748 0:0:21 Image #: 31, Predicted label: 0.5023
+2020-05-06 17:02:04,748 0:0:21 Prediction Progress: 100.00%
+2020-05-06 17:02:04,749 0:0:21 Predictions made on validation set of 31 images, time taken: 19.894s
+2020-05-06 17:02:04,749 0:0:21 Average prediction time of 0.642s per image
+2020-05-06 17:02:04,749 0:0:21 Evaluating the predictions made on the validation set
+2020-05-06 17:02:04,749 0:0:21 Mean Squared Error on validation set: 0.08893
+2020-05-06 17:02:04,749 0:0:21 Mean Absolute Error on validation set: 0.25599
+2020-05-06 17:02:06,191 0:0:22 Execution finished, exiting
+2020-05-06 17:16:18,747 0:0:0 Loading or creating numpy data
+2020-05-06 17:16:18,860 0:0:0 Loaded data from numpy files
+2020-05-06 17:16:18,860 0:0:0 Normalising labels
+2020-05-06 17:16:18,860 0:0:0 Labels normalised
+2020-05-06 17:16:18,981 0:0:0 Training CNN start
+2020-05-06 17:16:19,140 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 17:16:19,371 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 17:16:19,462 0:0:0 Running predicitons on model using validation set
+2020-05-06 17:16:19,462 0:0:0 Normalising pixel values for validation set
+2020-05-06 17:16:25,993 0:0:7 Normalised prediction set pixel values
+2020-05-06 17:16:26,321 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-05-06 17:16:27,154 0:0:8 Image #: 1, Predicted label: 0.4954, Predicted in: 1160.476s
+2020-05-06 17:16:27,154 0:0:8 Prediction Progress: 3.23%
+2020-05-06 17:16:27,798 0:0:9 Image #: 2, Predicted label: 0.4917, Predicted in: 644.518s
+2020-05-06 17:16:27,798 0:0:9 Prediction Progress: 6.45%
+2020-05-06 17:16:28,658 0:0:9 Image #: 3, Predicted label: 0.4924, Predicted in: 859.503s
+2020-05-06 17:16:28,659 0:0:9 Prediction Progress: 9.68%
+2020-05-06 17:16:29,309 0:0:10 Image #: 4, Predicted label: 0.4957, Predicted in: 649.588s
+2020-05-06 17:16:29,309 0:0:10 Prediction Progress: 12.90%
+2020-05-06 17:16:29,990 0:0:11 Image #: 5, Predicted label: 0.4953, Predicted in: 680.401s
+2020-05-06 17:16:29,990 0:0:11 Prediction Progress: 16.13%
+2020-05-06 17:16:31,085 0:0:12 Image #: 6, Predicted label: 0.4934, Predicted in: 1095.199s
+2020-05-06 17:16:31,085 0:0:12 Prediction Progress: 19.35%
+2020-05-06 17:16:31,975 0:0:13 Image #: 7, Predicted label: 0.4916, Predicted in: 889.165s
+2020-05-06 17:16:31,976 0:0:13 Prediction Progress: 22.58%
+2020-05-06 17:16:32,878 0:0:14 Image #: 8, Predicted label: 0.4970, Predicted in: 902.081s
+2020-05-06 17:16:32,878 0:0:14 Prediction Progress: 25.81%
+2020-05-06 17:16:33,501 0:0:14 Image #: 9, Predicted label: 0.4957, Predicted in: 622.998s
+2020-05-06 17:16:33,502 0:0:14 Prediction Progress: 29.03%
+2020-05-06 17:16:34,113 0:0:15 Image #: 10, Predicted label: 0.4930, Predicted in: 611.716s
+2020-05-06 17:16:34,114 0:0:15 Prediction Progress: 32.26%
+2020-05-06 17:16:34,756 0:0:16 Image #: 11, Predicted label: 0.4952, Predicted in: 642.327s
+2020-05-06 17:16:34,757 0:0:16 Prediction Progress: 35.48%
+2020-05-06 17:16:35,684 0:0:16 Image #: 12, Predicted label: 0.4957, Predicted in: 926.761s
+2020-05-06 17:16:35,684 0:0:16 Prediction Progress: 38.71%
+2020-05-06 17:16:36,420 0:0:17 Image #: 13, Predicted label: 0.4943, Predicted in: 735.742s
+2020-05-06 17:16:36,420 0:0:17 Prediction Progress: 41.94%
+2020-05-06 17:17:00,592 0:0:0 Loading or creating numpy data
+2020-05-06 17:17:09,788 0:0:9 Loaded data from numpy files
+2020-05-06 17:17:09,789 0:0:9 Normalising labels
+2020-05-06 17:17:09,789 0:0:9 Labels normalised
+2020-05-06 17:17:22,341 0:0:21 Training CNN start
+2020-05-06 17:17:22,477 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 17:17:22,728 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 17:17:22,816 0:0:22 Running predicitons on model using validation set
+2020-05-06 17:17:22,816 0:0:22 Normalising pixel values for validation set
+2020-05-06 17:17:23,034 0:0:22 Normalised prediction set pixel values
+2020-05-06 17:17:23,330 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-05-06 17:17:24,085 0:0:23 Image #: 1, Predicted label: 0.5050, Predicted in: 1050.775s
+2020-05-06 17:17:24,085 0:0:23 Prediction Progress: 3.23%
+2020-05-06 17:17:24,988 0:0:24 Image #: 2, Predicted label: 0.5073, Predicted in: 903.045s
+2020-05-06 17:17:24,988 0:0:24 Prediction Progress: 6.45%
+2020-05-06 17:17:25,637 0:0:25 Image #: 3, Predicted label: 0.5112, Predicted in: 648.527s
+2020-05-06 17:17:25,637 0:0:25 Prediction Progress: 9.68%
+2020-05-06 17:17:26,281 0:0:25 Image #: 4, Predicted label: 0.5064, Predicted in: 643.156s
+2020-05-06 17:17:26,281 0:0:25 Prediction Progress: 12.90%
+2020-05-06 17:17:26,932 0:0:26 Image #: 5, Predicted label: 0.5111, Predicted in: 651.253s
+2020-05-06 17:17:26,932 0:0:26 Prediction Progress: 16.13%
+2020-05-06 17:17:27,716 0:0:27 Image #: 6, Predicted label: 0.5075, Predicted in: 783.219s
+2020-05-06 17:17:27,716 0:0:27 Prediction Progress: 19.35%
+2020-05-06 17:17:28,404 0:0:27 Image #: 7, Predicted label: 0.5064, Predicted in: 687.917s
+2020-05-06 17:17:28,404 0:0:27 Prediction Progress: 22.58%
+2020-05-06 17:17:29,135 0:0:28 Image #: 8, Predicted label: 0.5060, Predicted in: 730.084s
+2020-05-06 17:17:29,135 0:0:28 Prediction Progress: 25.81%
+2020-05-06 17:17:30,167 0:0:29 Image #: 9, Predicted label: 0.5051, Predicted in: 1031.393s
+2020-05-06 17:17:30,167 0:0:29 Prediction Progress: 29.03%
+2020-05-06 17:17:31,072 0:0:30 Image #: 10, Predicted label: 0.5078, Predicted in: 904.931s
+2020-05-06 17:17:31,072 0:0:30 Prediction Progress: 32.26%
+2020-05-06 17:17:31,972 0:0:31 Image #: 11, Predicted label: 0.5042, Predicted in: 899.698s
+2020-05-06 17:17:31,972 0:0:31 Prediction Progress: 35.48%
+2020-05-06 17:17:32,796 0:0:32 Image #: 12, Predicted label: 0.5060, Predicted in: 823.476s
+2020-05-06 17:17:32,796 0:0:32 Prediction Progress: 38.71%
+2020-05-06 17:17:33,513 0:0:32 Image #: 13, Predicted label: 0.5056, Predicted in: 716.995s
+2020-05-06 17:17:33,514 0:0:32 Prediction Progress: 41.94%
+2020-05-06 17:17:34,123 0:0:33 Image #: 14, Predicted label: 0.5101, Predicted in: 608.919s
+2020-05-06 17:17:34,123 0:0:33 Prediction Progress: 45.16%
+2020-05-06 17:17:34,727 0:0:34 Image #: 15, Predicted label: 0.5099, Predicted in: 603.909s
+2020-05-06 17:17:34,728 0:0:34 Prediction Progress: 48.39%
+2020-05-06 17:17:35,348 0:0:34 Image #: 16, Predicted label: 0.5089, Predicted in: 620.147s
+2020-05-06 17:17:35,348 0:0:34 Prediction Progress: 51.61%
+2020-05-06 17:17:35,950 0:0:35 Image #: 17, Predicted label: 0.5073, Predicted in: 602.110s
+2020-05-06 17:17:35,950 0:0:35 Prediction Progress: 54.84%
+2020-05-06 17:17:36,572 0:0:35 Image #: 18, Predicted label: 0.5096, Predicted in: 621.340s
+2020-05-06 17:17:36,572 0:0:35 Prediction Progress: 58.06%
+2020-05-06 17:17:37,374 0:0:36 Image #: 19, Predicted label: 0.5115, Predicted in: 802.222s
+2020-05-06 17:17:37,374 0:0:36 Prediction Progress: 61.29%
+2020-05-06 17:17:38,255 0:0:37 Image #: 20, Predicted label: 0.5040, Predicted in: 880.350s
+2020-05-06 17:17:38,255 0:0:37 Prediction Progress: 64.52%
+2020-05-06 17:17:39,210 0:0:38 Image #: 21, Predicted label: 0.5086, Predicted in: 954.373s
+2020-05-06 17:17:39,210 0:0:38 Prediction Progress: 67.74%
+2020-05-06 17:17:40,159 0:0:39 Image #: 22, Predicted label: 0.5050, Predicted in: 948.344s
+2020-05-06 17:17:40,159 0:0:39 Prediction Progress: 70.97%
+2020-05-06 17:17:41,029 0:0:40 Image #: 23, Predicted label: 0.5067, Predicted in: 870.647s
+2020-05-06 17:17:41,030 0:0:40 Prediction Progress: 74.19%
+2020-05-06 17:17:41,688 0:0:41 Image #: 24, Predicted label: 0.5065, Predicted in: 658.212s
+2020-05-06 17:17:41,688 0:0:41 Prediction Progress: 77.42%
+2020-05-06 17:17:42,362 0:0:41 Image #: 25, Predicted label: 0.5076, Predicted in: 674.244s
+2020-05-06 17:17:42,363 0:0:41 Prediction Progress: 80.65%
+2020-05-06 17:17:43,103 0:0:42 Image #: 26, Predicted label: 0.5082, Predicted in: 740.392s
+2020-05-06 17:17:43,104 0:0:42 Prediction Progress: 83.87%
+2020-05-06 17:17:43,771 0:0:43 Image #: 27, Predicted label: 0.5051, Predicted in: 667.021s
+2020-05-06 17:17:43,771 0:0:43 Prediction Progress: 87.10%
+2020-05-06 17:17:44,460 0:0:43 Image #: 28, Predicted label: 0.5090, Predicted in: 688.677s
+2020-05-06 17:17:44,460 0:0:43 Prediction Progress: 90.32%
+2020-05-06 17:17:45,151 0:0:44 Image #: 29, Predicted label: 0.5080, Predicted in: 691.411s
+2020-05-06 17:17:45,152 0:0:44 Prediction Progress: 93.55%
+2020-05-06 17:17:45,837 0:0:45 Image #: 30, Predicted label: 0.5093, Predicted in: 685.570s
+2020-05-06 17:17:45,837 0:0:45 Prediction Progress: 96.77%
+2020-05-06 17:17:46,510 0:0:45 Image #: 31, Predicted label: 0.5085, Predicted in: 672.217s
+2020-05-06 17:17:46,510 0:0:45 Prediction Progress: 100.00%
+2020-05-06 17:17:46,510 0:0:45 Predictions made on validation set of 31 images, time taken: 23.465s
+2020-05-06 17:17:46,510 0:0:45 Average prediction time of 0.757s per image
+2020-05-06 17:17:46,510 0:0:45 Evaluating the predictions made on the validation set
+2020-05-06 17:17:47,367 0:0:46 Mean Squared Error on validation set: 0.09109
+2020-05-06 17:17:47,367 0:0:46 Mean Absolute Error on validation set: 0.25844
+2020-05-06 17:17:52,826 0:0:52 Execution finished, exiting
+2020-05-06 17:19:55,150 0:0:0 Loading or creating numpy data
+2020-05-06 17:20:20,178 0:0:25 Loaded data from numpy files
+2020-05-06 17:20:20,179 0:0:25 Normalising labels
+2020-05-06 17:20:20,180 0:0:25 Labels normalised
+2020-05-06 17:20:20,794 0:0:25 Training CNN start
+2020-05-06 17:20:21,228 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 17:20:21,702 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 17:20:21,873 0:0:26 Running predicitons on model using validation set
+2020-05-06 17:20:21,873 0:0:26 Normalising pixel values for validation set
+2020-05-06 17:20:29,132 0:0:33 Normalised prediction set pixel values
+2020-05-06 17:20:29,471 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-05-06 17:20:30,702 0:0:35 Image #: 1, Predicted label: 0.4989, Predicted in: 1.570s
+2020-05-06 17:20:30,702 0:0:35 Prediction Progress: 3.23%
+2020-05-06 17:20:31,440 0:0:36 Image #: 2, Predicted label: 0.4980, Predicted in: 0.737s
+2020-05-06 17:20:31,440 0:0:36 Prediction Progress: 6.45%
+2020-05-06 17:20:32,257 0:0:37 Image #: 3, Predicted label: 0.4956, Predicted in: 0.816s
+2020-05-06 17:20:32,257 0:0:37 Prediction Progress: 9.68%
+2020-05-06 17:20:33,144 0:0:37 Image #: 4, Predicted label: 0.4988, Predicted in: 0.887s
+2020-05-06 17:20:33,144 0:0:37 Prediction Progress: 12.90%
+2020-05-06 17:20:34,056 0:0:38 Image #: 5, Predicted label: 0.4993, Predicted in: 0.911s
+2020-05-06 17:20:34,056 0:0:38 Prediction Progress: 16.13%
+2020-05-06 17:20:34,790 0:0:39 Image #: 6, Predicted label: 0.4967, Predicted in: 0.734s
+2020-05-06 17:20:34,790 0:0:39 Prediction Progress: 19.35%
+2020-05-06 17:20:35,443 0:0:40 Image #: 7, Predicted label: 0.4981, Predicted in: 0.652s
+2020-05-06 17:20:35,443 0:0:40 Prediction Progress: 22.58%
+2020-05-06 17:20:36,082 0:0:40 Image #: 8, Predicted label: 0.4986, Predicted in: 0.639s
+2020-05-06 17:20:36,082 0:0:40 Prediction Progress: 25.81%
+2020-05-06 17:20:36,733 0:0:41 Image #: 9, Predicted label: 0.4987, Predicted in: 0.650s
+2020-05-06 17:20:36,733 0:0:41 Prediction Progress: 29.03%
+2020-05-06 17:20:37,368 0:0:42 Image #: 10, Predicted label: 0.4975, Predicted in: 0.635s
+2020-05-06 17:20:37,368 0:0:42 Prediction Progress: 32.26%
+2020-05-06 17:20:37,995 0:0:42 Image #: 11, Predicted label: 0.4988, Predicted in: 0.627s
+2020-05-06 17:20:37,995 0:0:42 Prediction Progress: 35.48%
+2020-05-06 17:20:38,624 0:0:43 Image #: 12, Predicted label: 0.4995, Predicted in: 0.629s
+2020-05-06 17:20:38,624 0:0:43 Prediction Progress: 38.71%
+2020-05-06 17:20:39,272 0:0:44 Image #: 13, Predicted label: 0.4987, Predicted in: 0.648s
+2020-05-06 17:20:39,272 0:0:44 Prediction Progress: 41.94%
+2020-05-06 17:20:39,952 0:0:44 Image #: 14, Predicted label: 0.4978, Predicted in: 0.679s
+2020-05-06 17:20:39,952 0:0:44 Prediction Progress: 45.16%
+2020-05-06 17:20:40,970 0:0:45 Image #: 15, Predicted label: 0.4973, Predicted in: 1.017s
+2020-05-06 17:20:40,970 0:0:45 Prediction Progress: 48.39%
+2020-05-06 17:20:41,657 0:0:46 Image #: 16, Predicted label: 0.4971, Predicted in: 0.686s
+2020-05-06 17:20:41,657 0:0:46 Prediction Progress: 51.61%
+2020-05-06 17:20:42,598 0:0:47 Image #: 17, Predicted label: 0.4996, Predicted in: 0.941s
+2020-05-06 17:20:42,598 0:0:47 Prediction Progress: 54.84%
+2020-05-06 17:20:43,528 0:0:48 Image #: 18, Predicted label: 0.4968, Predicted in: 0.929s
+2020-05-06 17:20:43,528 0:0:48 Prediction Progress: 58.06%
+2020-05-06 17:20:44,520 0:0:49 Image #: 19, Predicted label: 0.4963, Predicted in: 0.992s
+2020-05-06 17:20:44,520 0:0:49 Prediction Progress: 61.29%
+2020-05-06 17:20:45,413 0:0:50 Image #: 20, Predicted label: 0.4985, Predicted in: 0.893s
+2020-05-06 17:20:45,413 0:0:50 Prediction Progress: 64.52%
+2020-05-06 17:20:46,320 0:0:51 Image #: 21, Predicted label: 0.4975, Predicted in: 0.907s
+2020-05-06 17:20:46,321 0:0:51 Prediction Progress: 67.74%
+2020-05-06 17:20:47,241 0:0:52 Image #: 22, Predicted label: 0.4989, Predicted in: 0.920s
+2020-05-06 17:20:47,241 0:0:52 Prediction Progress: 70.97%
+2020-05-06 17:20:48,120 0:0:52 Image #: 23, Predicted label: 0.4978, Predicted in: 0.878s
+2020-05-06 17:20:48,120 0:0:52 Prediction Progress: 74.19%
+2020-05-06 17:20:49,083 0:0:53 Image #: 24, Predicted label: 0.4983, Predicted in: 0.963s
+2020-05-06 17:20:49,083 0:0:53 Prediction Progress: 77.42%
+2020-05-06 17:20:49,957 0:0:54 Image #: 25, Predicted label: 0.4995, Predicted in: 0.874s
+2020-05-06 17:20:49,958 0:0:54 Prediction Progress: 80.65%
+2020-05-06 17:20:50,841 0:0:55 Image #: 26, Predicted label: 0.4977, Predicted in: 0.883s
+2020-05-06 17:20:50,843 0:0:55 Prediction Progress: 83.87%
+2020-05-06 17:20:51,758 0:0:56 Image #: 27, Predicted label: 0.4992, Predicted in: 0.913s
+2020-05-06 17:20:51,758 0:0:56 Prediction Progress: 87.10%
+2020-05-06 17:20:52,693 0:0:57 Image #: 28, Predicted label: 0.4979, Predicted in: 0.935s
+2020-05-06 17:20:52,694 0:0:57 Prediction Progress: 90.32%
+2020-05-06 17:20:53,608 0:0:58 Image #: 29, Predicted label: 0.4982, Predicted in: 0.914s
+2020-05-06 17:20:53,610 0:0:58 Prediction Progress: 93.55%
+2020-05-06 17:20:54,538 0:0:59 Image #: 30, Predicted label: 0.4971, Predicted in: 0.927s
+2020-05-06 17:20:54,538 0:0:59 Prediction Progress: 96.77%
+2020-05-06 17:20:55,457 0:1:0 Image #: 31, Predicted label: 0.4979, Predicted in: 0.919s
+2020-05-06 17:20:55,457 0:1:0 Prediction Progress: 100.00%
+2020-05-06 17:20:55,457 0:1:0 
+All predictions made on validation set of 31 images, time taken: 26.307s
+2020-05-06 17:20:55,457 0:1:0 Average prediction time of 0.849s per image
+2020-05-06 17:20:55,458 0:1:0 
+Evaluating the predictions made on the validation set
+2020-05-06 17:20:55,460 0:1:0 Mean Squared Error on validation set: 0.08882
+2020-05-06 17:20:55,460 0:1:0 Mean Absolute Error on validation set: 0.25587
+2020-05-06 17:20:56,357 0:1:1 
+Execution finished, exiting
+2020-05-06 17:43:05,182 0:0:0 Loading or creating numpy data
+2020-05-06 17:43:22,543 0:0:17 Loaded data from numpy files
+2020-05-06 17:43:22,543 0:0:17 Normalising labels
+2020-05-06 17:43:22,544 0:0:17 Labels normalised
+2020-05-06 17:43:23,190 0:0:18 Training CNN start
+2020-05-06 17:43:23,355 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 17:43:23,573 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 17:43:23,649 0:0:18 Running predicitons on model using validation set
+2020-05-06 17:43:23,649 0:0:18 Normalising pixel values for validation set
+2020-05-06 17:43:23,828 0:0:18 Normalised prediction set pixel values
+2020-05-06 17:43:24,112 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-05-06 17:43:24,789 0:0:19 Image #: 1, Predicted label: 0.5011, Predicted in: 0.961s
+2020-05-06 17:43:24,789 0:0:19 Prediction Progress: 3.23%
+2020-05-06 17:43:25,393 0:0:20 Image #: 2, Predicted label: 0.5047, Predicted in: 0.603s
+2020-05-06 17:43:25,393 0:0:20 Prediction Progress: 6.45%
+2020-05-06 17:43:25,988 0:0:20 Image #: 3, Predicted label: 0.5041, Predicted in: 0.595s
+2020-05-06 17:43:25,988 0:0:20 Prediction Progress: 9.68%
+2020-05-06 17:43:26,614 0:0:21 Image #: 4, Predicted label: 0.5034, Predicted in: 0.626s
+2020-05-06 17:43:26,614 0:0:21 Prediction Progress: 12.90%
+2020-05-06 17:43:27,273 0:0:22 Image #: 5, Predicted label: 0.5004, Predicted in: 0.659s
+2020-05-06 17:43:27,273 0:0:22 Prediction Progress: 16.13%
+2020-05-06 17:43:27,865 0:0:22 Image #: 6, Predicted label: 0.5036, Predicted in: 0.592s
+2020-05-06 17:43:27,865 0:0:22 Prediction Progress: 19.35%
+2020-05-06 17:43:28,448 0:0:23 Image #: 7, Predicted label: 0.5027, Predicted in: 0.583s
+2020-05-06 17:43:28,448 0:0:23 Prediction Progress: 22.58%
+2020-05-06 17:43:29,044 0:0:23 Image #: 8, Predicted label: 0.5054, Predicted in: 0.596s
+2020-05-06 17:43:29,045 0:0:23 Prediction Progress: 25.81%
+2020-05-06 17:43:29,625 0:0:24 Image #: 9, Predicted label: 0.5044, Predicted in: 0.580s
+2020-05-06 17:43:29,625 0:0:24 Prediction Progress: 29.03%
+2020-05-06 17:43:30,215 0:0:25 Image #: 10, Predicted label: 0.5050, Predicted in: 0.589s
+2020-05-06 17:43:30,215 0:0:25 Prediction Progress: 32.26%
+2020-05-06 17:43:30,806 0:0:25 Image #: 11, Predicted label: 0.5023, Predicted in: 0.591s
+2020-05-06 17:43:30,806 0:0:25 Prediction Progress: 35.48%
+2020-05-06 17:43:31,395 0:0:26 Image #: 12, Predicted label: 0.5031, Predicted in: 0.589s
+2020-05-06 17:43:31,395 0:0:26 Prediction Progress: 38.71%
+2020-05-06 17:43:31,966 0:0:26 Image #: 13, Predicted label: 0.5037, Predicted in: 0.571s
+2020-05-06 17:43:31,966 0:0:26 Prediction Progress: 41.94%
+2020-05-06 17:43:32,567 0:0:27 Image #: 14, Predicted label: 0.5058, Predicted in: 0.601s
+2020-05-06 17:43:32,568 0:0:27 Prediction Progress: 45.16%
+2020-05-06 17:43:33,149 0:0:27 Image #: 15, Predicted label: 0.5043, Predicted in: 0.581s
+2020-05-06 17:43:33,149 0:0:27 Prediction Progress: 48.39%
+2020-05-06 17:43:33,727 0:0:28 Image #: 16, Predicted label: 0.5039, Predicted in: 0.578s
+2020-05-06 17:43:33,727 0:0:28 Prediction Progress: 51.61%
+2020-05-06 17:43:34,317 0:0:29 Image #: 17, Predicted label: 0.5063, Predicted in: 0.590s
+2020-05-06 17:43:34,317 0:0:29 Prediction Progress: 54.84%
+2020-05-06 17:43:34,894 0:0:29 Image #: 18, Predicted label: 0.5045, Predicted in: 0.576s
+2020-05-06 17:43:34,894 0:0:29 Prediction Progress: 58.06%
+2020-05-06 17:43:35,448 0:0:30 Image #: 19, Predicted label: 0.5046, Predicted in: 0.554s
+2020-05-06 17:43:35,448 0:0:30 Prediction Progress: 61.29%
+2020-05-06 17:43:36,038 0:0:30 Image #: 20, Predicted label: 0.5056, Predicted in: 0.571s
+2020-05-06 17:43:36,038 0:0:30 Prediction Progress: 64.52%
+2020-05-06 17:43:36,630 0:0:31 Image #: 21, Predicted label: 0.5011, Predicted in: 0.591s
+2020-05-06 17:43:36,630 0:0:31 Prediction Progress: 67.74%
+2020-05-06 17:43:37,212 0:0:32 Image #: 22, Predicted label: 0.5036, Predicted in: 0.582s
+2020-05-06 17:43:37,212 0:0:32 Prediction Progress: 70.97%
+2020-05-06 17:43:37,802 0:0:32 Image #: 23, Predicted label: 0.5013, Predicted in: 0.589s
+2020-05-06 17:43:37,802 0:0:32 Prediction Progress: 74.19%
+2020-05-06 17:43:38,373 0:0:33 Image #: 24, Predicted label: 0.5030, Predicted in: 0.571s
+2020-05-06 17:43:38,373 0:0:33 Prediction Progress: 77.42%
+2020-05-06 17:43:38,953 0:0:33 Image #: 25, Predicted label: 0.5048, Predicted in: 0.580s
+2020-05-06 17:43:38,953 0:0:33 Prediction Progress: 80.65%
+2020-05-06 17:43:39,534 0:0:34 Image #: 26, Predicted label: 0.5054, Predicted in: 0.581s
+2020-05-06 17:43:39,534 0:0:34 Prediction Progress: 83.87%
+2020-05-06 17:43:40,119 0:0:34 Image #: 27, Predicted label: 0.5035, Predicted in: 0.585s
+2020-05-06 17:43:40,119 0:0:34 Prediction Progress: 87.10%
+2020-05-06 17:43:40,701 0:0:35 Image #: 28, Predicted label: 0.5064, Predicted in: 0.582s
+2020-05-06 17:43:40,701 0:0:35 Prediction Progress: 90.32%
+2020-05-06 17:43:41,288 0:0:36 Image #: 29, Predicted label: 0.5046, Predicted in: 0.587s
+2020-05-06 17:43:41,288 0:0:36 Prediction Progress: 93.55%
+2020-05-06 17:43:41,864 0:0:36 Image #: 30, Predicted label: 0.5034, Predicted in: 0.576s
+2020-05-06 17:43:41,864 0:0:36 Prediction Progress: 96.77%
+2020-05-06 17:43:42,435 0:0:37 Image #: 31, Predicted label: 0.5027, Predicted in: 0.570s
+2020-05-06 17:43:42,435 0:0:37 Prediction Progress: 100.00%
+2020-05-06 17:43:42,435 0:0:37 
+All predictions made on validation set of 31 images, time taken: 18.580s
+2020-05-06 17:43:42,435 0:0:37 Average prediction time of 0.599s per image
+2020-05-06 17:43:42,435 0:0:37 
+Evaluating the predictions made on the validation set
+2020-05-06 17:43:42,439 0:0:37 Mean Squared Error on validation set: 0.08998
+2020-05-06 17:43:42,440 0:0:37 Mean Absolute Error on validation set: 0.25717
+2020-05-06 17:43:43,233 0:0:38 
+Execution finished, exiting
+2020-05-06 17:45:06,759 0:0:0 Loading or creating numpy data
+2020-05-06 17:45:20,147 0:0:13 Loaded data from numpy files
+2020-05-06 17:45:20,147 0:0:13 Normalising labels
+2020-05-06 17:45:20,148 0:0:13 Labels normalised
+2020-05-06 17:45:21,041 0:0:14 Training CNN start
+2020-05-06 17:45:21,194 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 17:45:21,410 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 17:45:21,501 0:0:14 Running predicitons on model using validation set
+2020-05-06 17:45:21,501 0:0:14 Normalising pixel values for validation set
+2020-05-06 17:45:31,844 0:0:25 Normalised prediction set pixel values
+2020-05-06 17:45:32,146 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-05-06 17:45:32,847 0:0:26 Image #: 1, Predicted label: 0.4919, Predicted in: 1.002s
+2020-05-06 17:45:32,847 0:0:26 Prediction Progress: 3.23%
+2020-05-06 17:45:33,460 0:0:26 Image #: 2, Predicted label: 0.4831, Predicted in: 0.613s
+2020-05-06 17:45:33,460 0:0:26 Prediction Progress: 6.45%
+2020-05-06 17:45:34,062 0:0:27 Image #: 3, Predicted label: 0.4831, Predicted in: 0.601s
+2020-05-06 17:45:34,062 0:0:27 Prediction Progress: 9.68%
+2020-05-06 17:45:34,644 0:0:27 Image #: 4, Predicted label: 0.4847, Predicted in: 0.582s
+2020-05-06 17:45:34,644 0:0:27 Prediction Progress: 12.90%
+2020-05-06 17:45:35,247 0:0:28 Image #: 5, Predicted label: 0.4864, Predicted in: 0.603s
+2020-05-06 17:45:35,247 0:0:28 Prediction Progress: 16.13%
+2020-05-06 17:45:35,827 0:0:29 Image #: 6, Predicted label: 0.4842, Predicted in: 0.579s
+2020-05-06 17:45:35,827 0:0:29 Prediction Progress: 19.35%
+2020-05-06 17:45:36,409 0:0:29 Image #: 7, Predicted label: 0.4840, Predicted in: 0.582s
+2020-05-06 17:45:36,409 0:0:29 Prediction Progress: 22.58%
+2020-05-06 17:45:36,981 0:0:30 Image #: 8, Predicted label: 0.4861, Predicted in: 0.572s
+2020-05-06 17:45:36,982 0:0:30 Prediction Progress: 25.81%
+2020-05-06 17:45:37,549 0:0:30 Image #: 9, Predicted label: 0.4907, Predicted in: 0.568s
+2020-05-06 17:45:37,549 0:0:30 Prediction Progress: 29.03%
+2020-05-06 17:45:38,125 0:0:31 Image #: 10, Predicted label: 0.4844, Predicted in: 0.575s
+2020-05-06 17:45:38,125 0:0:31 Prediction Progress: 32.26%
+2020-05-06 17:45:38,699 0:0:31 Image #: 11, Predicted label: 0.4889, Predicted in: 0.574s
+2020-05-06 17:45:38,700 0:0:31 Prediction Progress: 35.48%
+2020-05-06 17:45:39,287 0:0:32 Image #: 12, Predicted label: 0.4869, Predicted in: 0.587s
+2020-05-06 17:45:39,287 0:0:32 Prediction Progress: 38.71%
+2020-05-06 17:45:39,856 0:0:33 Image #: 13, Predicted label: 0.4863, Predicted in: 0.568s
+2020-05-06 17:45:39,856 0:0:33 Prediction Progress: 41.94%
+2020-05-06 17:45:40,428 0:0:33 Image #: 14, Predicted label: 0.4866, Predicted in: 0.572s
+2020-05-06 17:45:40,428 0:0:33 Prediction Progress: 45.16%
+2020-05-06 17:45:40,994 0:0:34 Image #: 15, Predicted label: 0.4802, Predicted in: 0.565s
+2020-05-06 17:45:40,994 0:0:34 Prediction Progress: 48.39%
+2020-05-06 17:45:41,568 0:0:34 Image #: 16, Predicted label: 0.4837, Predicted in: 0.574s
+2020-05-06 17:45:41,568 0:0:34 Prediction Progress: 51.61%
+2020-05-06 17:45:42,139 0:0:35 Image #: 17, Predicted label: 0.4817, Predicted in: 0.570s
+2020-05-06 17:45:42,139 0:0:35 Prediction Progress: 54.84%
+2020-05-06 17:45:42,719 0:0:35 Image #: 18, Predicted label: 0.4820, Predicted in: 0.580s
+2020-05-06 17:45:42,719 0:0:35 Prediction Progress: 58.06%
+2020-05-06 17:45:43,298 0:0:36 Image #: 19, Predicted label: 0.4801, Predicted in: 0.579s
+2020-05-06 17:45:43,298 0:0:36 Prediction Progress: 61.29%
+2020-05-06 17:45:43,867 0:0:37 Image #: 20, Predicted label: 0.4830, Predicted in: 0.569s
+2020-05-06 17:45:43,867 0:0:37 Prediction Progress: 64.52%
+2020-05-06 17:45:44,454 0:0:37 Image #: 21, Predicted label: 0.4828, Predicted in: 0.586s
+2020-05-06 17:45:44,454 0:0:37 Prediction Progress: 67.74%
+2020-05-06 17:45:45,017 0:0:38 Image #: 22, Predicted label: 0.4867, Predicted in: 0.563s
+2020-05-06 17:45:45,017 0:0:38 Prediction Progress: 70.97%
+2020-05-06 17:45:45,576 0:0:38 Image #: 23, Predicted label: 0.4900, Predicted in: 0.559s
+2020-05-06 17:45:45,576 0:0:38 Prediction Progress: 74.19%
+2020-05-06 17:45:46,146 0:0:39 Image #: 24, Predicted label: 0.4820, Predicted in: 0.570s
+2020-05-06 17:45:46,146 0:0:39 Prediction Progress: 77.42%
+2020-05-06 17:45:46,737 0:0:39 Image #: 25, Predicted label: 0.4853, Predicted in: 0.590s
+2020-05-06 17:45:46,737 0:0:39 Prediction Progress: 80.65%
+2020-05-06 17:45:47,313 0:0:40 Image #: 26, Predicted label: 0.4816, Predicted in: 0.576s
+2020-05-06 17:45:47,314 0:0:40 Prediction Progress: 83.87%
+2020-05-06 17:45:47,895 0:0:41 Image #: 27, Predicted label: 0.4858, Predicted in: 0.581s
+2020-05-06 17:45:47,895 0:0:41 Prediction Progress: 87.10%
+2020-05-06 17:45:48,489 0:0:41 Image #: 28, Predicted label: 0.4857, Predicted in: 0.594s
+2020-05-06 17:45:48,489 0:0:41 Prediction Progress: 90.32%
+2020-05-06 17:45:49,061 0:0:42 Image #: 29, Predicted label: 0.4836, Predicted in: 0.571s
+2020-05-06 17:45:49,061 0:0:42 Prediction Progress: 93.55%
+2020-05-06 17:45:49,631 0:0:42 Image #: 30, Predicted label: 0.4833, Predicted in: 0.570s
+2020-05-06 17:45:49,631 0:0:42 Prediction Progress: 96.77%
+2020-05-06 17:45:50,199 0:0:43 Image #: 31, Predicted label: 0.4848, Predicted in: 0.568s
+2020-05-06 17:45:50,199 0:0:43 Prediction Progress: 100.00%
+2020-05-06 17:45:50,199 0:0:43 All predictions made on validation set of 31 images, time taken: 18.346s
+2020-05-06 17:45:50,200 0:0:43 Average prediction time of 0.592s per image
+
+2020-05-06 17:45:50,200 0:0:43 Evaluating the predictions made on the validation set
+2020-05-06 17:45:50,200 0:0:43 Mean Squared Error on validation set: 0.08603
+2020-05-06 17:45:50,200 0:0:43 Mean Absolute Error on validation set: 0.25292
+
+2020-05-06 17:45:50,909 0:0:44 Execution finished, exiting
+2020-05-06 18:03:08,301 0:0:0 No model loaded, check the path is correct or a model has been saved properly
+2020-05-06 18:03:08,301 0:0:0 Execution finished, exiting
+2020-05-06 18:03:42,062 0:0:0 Execution finished, exiting
+2020-05-06 18:04:18,107 0:0:23 Loading image: FSI199.jpg
+2020-05-06 18:04:18,362 0:0:24 Making prediction on: FSI199.jpg

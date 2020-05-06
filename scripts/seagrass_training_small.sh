@@ -27,3 +27,4 @@ python3 $MAIN_PROGRAM \
 --checkpoint_dir $CHECKPOINTS \
 --model_dir $MODELS \
 --using_small $USING_SMALL \
+--skip_training $SKIP_TRAINING \
