@@ -14,7 +14,7 @@ CHECKPOINTS="/checkpoints"
 MODELS="/models"
 USING_SMALL=1
 #set to 1 if model is trained and just needs loading
-SKIP_TRAINING=0
+SKIP_TRAINING=1
 
 MAIN_PROGRAM="../main.py"
 

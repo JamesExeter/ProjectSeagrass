@@ -113,9 +113,9 @@ def create_history_plotter():
 #evaluates a model using the training and test data, generating mean squared error and accuracy
 def evaluate_model(model, test_images, test_labels):
     # evaluate the model
-    loss, mae, mse = model.evaluate(test_images, test_labels, verbose=2)
+    mse, mae = model.evaluate(test_images, test_labels, verbose=2)
 
-    return loss, mae, mse
+    return mse, mae
 
 #plot the mae metric of the trained model
 def plot_mae(history, plotter):

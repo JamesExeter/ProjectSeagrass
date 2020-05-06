@@ -7,7 +7,8 @@ import cv2
 import argparse
 
 """
-Class used to check that the file loaded is indeed an image and not another time of file
+Class used to check that the files loaded in a directory are indeed images and not another type of file
+This class can be run by calling it with the command line by simply passing the path of the directory to check
 """
 parser = argparse.ArgumentParser()
 parser.add_argument("--imgdir", help="Path to folder with images to check")
@@ -15,7 +16,7 @@ args = parser.parse_args()
 
 for path, dirnames, filenames in os.walk(args.imgdir):
     for filename in filenames:
-        if filename.endswith('.jpg'):
+        if (filename.endswith('.jpg') or (filename.endswith('png'))):
             try:
                 img_path = os.path.join(path, filename)
                 img = Image.open(img_path) # open the image file

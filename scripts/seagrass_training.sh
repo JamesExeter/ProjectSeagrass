@@ -6,6 +6,8 @@
 INCEPTION_GRAPH_ROOT="/home/james/Documents/Seagrass-Repository/Inception-v4"
 DATASET_ROOT="/home/james/Documents/Seagrass-Repository/Images"
 RESULTS_ROOT="/home/james/Documents/Seagrass-Repository/Results"
+
+#keep the same
 DATA_CONFIG_FILE="data_config.txt"
 LOGGING_FILE="/output_log.txt"
 CHECKPOINTS="/checkpoints"

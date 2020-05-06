@@ -18,6 +18,7 @@ import sys
 import tkinter as tk
 from tkinter import filedialog
 import matplotlib.pyplot as plt
+import os
 
 """
 Class used to train the classifier or make predictions with if the classifier is trained
@@ -110,13 +111,13 @@ def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
         #can probably use train mse and test mse in plot training results method
         msg.timemsg("Batch {}: test loss: {}, test mae: {}\n\n".format(i, m_s_error, mean_abs_error))
         
-        model = cnn.create_cnn(width, height, depth)
-        #msg.timemsg("Loading weights for testing model weight loadingg")
-        model = cnn.load_weights_from_disk(model, cp_path)
-        msg.timemsg("Batch {}: Evaluating model second time".format(i))
-        m_s_error, mean_abs_error, = cnn.evaluate_model(model, test_images, test_labels)
+        #model = cnn.create_cnn(width, height, depth)
+        #msg.timemsg("Loading weights for testing model weight loading")
+        #model = cnn.load_weights_from_disk(model, cp_path)
+        #msg.timemsg("Batch {}: Evaluating model second time".format(i))
+        #m_s_error, mean_abs_error, = cnn.evaluate_model(model, test_images, test_labels)
         #can probably use train mse and test mse in plot training results method
-        msg.timemsg("Batch {}: test loss: {}, test mae: {}\n\n".format(i, m_s_error, mean_abs_error))
+        #msg.timemsg("Batch {}: test loss: {}, test mae: {}\n\n".format(i, m_s_error, mean_abs_error))
         
     msg.timemsg("Training CNN finished")
     msg.timemsg("Saving model to file")
@@ -210,7 +211,7 @@ def scale_data(target_data):
     return np.array(normalised) 
 
 #method to allow the user to select a directory with images they want classified
-def predict_directory(model_to_load):
+def predict_directory(model_to_load, results):
     #initialise the cnn instance so we have access to it's functionality
     cnn.ini()
     
@@ -222,14 +223,36 @@ def predict_directory(model_to_load):
         root.withdraw()
         path = filedialog.askdirectory(title='Select Folder')
         
-        #process each image one at a time, checking first with checkvalidimages it is an image 
+        out_file_name = os.path.join(results, "Predictions.txt")
         
-        #load the image, normalise the data, make the prediction and then log the prediction
+        with open(out_file_name, "w") as prediction_file:
+            #process each image one at a time
+            #Check first with the CheckValidImages class that each file is an image
+            #This can be done by running the class in the command line and passing the path of the directory required
+            for image in os.scandir(path):
+                if image.is_file():
+                    name = image.name
+                    
+                    msg.timemsg("Loading image: {}".format(name))
+                    
+                    image_path = os.path.join(path, image.name)
+                    numpy_image = cv2.imread(image_path)
+                    numpy_image = cv2.cvtColor(numpy_image, cv2.COLOR_BGR2RGB)
+                    numpy_image = numpy_image.astype('float32')
+                    numpy_image /= 255.0
+                    
+                    msg.timemsg("Making prediction on: {}".format(name))
+                    predicted_coverage = model.predict(numpy_image)
+                    
+                    #load the image, normalise the data, make the prediction and then log the prediction
+                    print("Image: {}, Prediction: {}".format(name, predicted_coverage), file=prediction_file)
+        
+        msg.timemsg("All predictions made and stored at: {}".format(out_file_name))
     else:
         msg.timemsg("No model loaded, check the path is correct or a model has been saved properly")
     
 #main argument that loads all of the arguments from a bash script or command line
-#either trains a model using the given data 
+#either trains a model using the given data
 #or loads a trained model to make predictions with
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -251,11 +274,9 @@ if __name__ == "__main__":
     model_path = args.results_dir + args.model_dir
     #if training not needed, make predictions on formatted images in a given directory
     if (args.skip_training == "1"):
-        predict_directory(model_path)
+        predict_directory(model_path, args.results_dir)
     else:
         #train the model and generate the evaluation metrics
-        
-
         rgb_images = np.array([])
         labels_arr = np.array([])
         
