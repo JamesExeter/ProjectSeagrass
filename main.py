@@ -26,7 +26,8 @@ Needs to be run using either a bash script or with all of the variables required
 """
 
 #variables needed to process the dataset for training
-BATCH_SIZE = 10
+EPOCHS = 50
+BATCH_SIZE = 5
 VALID_SIZE = 0.1
 #used for train, test, validation split of 70:20:10, split validiation from rest with 90:10, then split 90% into 80:20 using 90*(0.2222)
 TEST_SIZE = 0.2222
@@ -104,7 +105,7 @@ def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
             model = cnn.load_weights_from_disk(model, cp_path)
         
         msg.timemsg("Batch {}: Training batch".format(i))
-        model = cnn.train_model(model, train_images, train_labels, test_images, test_labels, 5, cp_path)
+        model = cnn.train_model(model, train_images, train_labels, test_images, test_labels, EPOCHS, cp_path)
         
         msg.timemsg("Batch {}: Evaluating model".format(i))
         m_s_error, mean_abs_error, = cnn.evaluate_model(model, test_images, test_labels)
@@ -270,7 +271,6 @@ def predict_directory(model_to_load, results):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     #the name of the file that stores the images and corresponding coverages
-    parser.add_argument("--graph", help="the root to the inception net folder")
     parser.add_argument("--root_img_dir", help="the root image directory of the project")
     parser.add_argument("--image_data_file", help="the name of the file containing the image paths and coverages")
     parser.add_argument("--results_dir", help="the name of the directory to store results to")

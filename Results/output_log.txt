@@ -2769,3 +2769,84 @@ Execution finished, exiting
 2020-05-06 18:03:42,062 0:0:0 Execution finished, exiting
 2020-05-06 18:04:18,107 0:0:23 Loading image: FSI199.jpg
 2020-05-06 18:04:18,362 0:0:24 Making prediction on: FSI199.jpg
+2020-05-06 18:10:09,113 0:0:0 Loading or creating numpy data
+2020-05-06 18:10:46,313 0:0:37 Loaded data from numpy files
+2020-05-06 18:10:46,314 0:0:37 Normalising labels
+2020-05-06 18:10:46,315 0:0:37 Labels normalised
+2020-05-06 18:10:47,397 0:0:38 Training CNN start
+2020-05-06 18:10:47,743 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 18:10:48,135 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 18:10:48,237 0:0:39 Batch 0
+2020-05-06 18:10:48,237 0:0:39 Batch 0: Normalising pixel values
+2020-05-06 18:10:48,501 0:0:39 Batch 0: Normalised pixel values
+2020-05-06 18:10:48,502 0:0:39 Batch 0: Shuffling and splitting data for training
+2020-05-06 18:10:48,807 0:0:39 Batch 0: Data shuffled and split, it is ready for usage
+2020-05-06 18:10:48,807 0:0:39 Batch 0: Training batch
+2020-05-06 18:10:51,067 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-05-06 18:13:03,576 0:0:0 Loading or creating numpy data
+2020-05-06 18:14:23,824 0:1:20 Loaded data from numpy files
+2020-05-06 18:14:23,824 0:1:20 Normalising labels
+2020-05-06 18:14:23,825 0:1:20 Labels normalised
+2020-05-06 18:14:42,036 0:1:38 Training CNN start
+2020-05-06 18:14:42,346 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 18:14:42,562 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 18:14:42,629 0:1:39 Batch 0
+2020-05-06 18:14:42,629 0:1:39 Batch 0: Normalising pixel values
+2020-05-06 18:14:42,656 0:1:39 Batch 0: Normalised pixel values
+2020-05-06 18:14:42,656 0:1:39 Batch 0: Shuffling and splitting data for training
+2020-05-06 18:14:42,690 0:1:39 Batch 0: Data shuffled and split, it is ready for usage
+2020-05-06 18:14:42,690 0:1:39 Batch 0: Training batch
+2020-05-06 18:14:44,001 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-05-06 18:18:47,619 0:0:0 Loading or creating numpy data
+2020-05-06 18:18:51,225 0:0:3 Loaded data from numpy files
+2020-05-06 18:18:51,225 0:0:3 Normalising labels
+2020-05-06 18:18:51,226 0:0:3 Labels normalised
+2020-05-06 18:19:08,989 0:0:21 Training CNN start
+2020-05-06 18:19:09,268 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 18:19:09,484 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 18:19:09,551 0:0:21 Batch 0
+2020-05-06 18:19:09,552 0:0:21 Batch 0: Normalising pixel values
+2020-05-06 18:19:09,554 0:0:21 Batch 0: Normalised pixel values
+2020-05-06 18:19:09,554 0:0:21 Batch 0: Shuffling and splitting data for training
+2020-05-06 18:29:23,245 0:0:0 Loading or creating numpy data
+2020-05-06 18:29:23,413 0:0:0 Loaded data from numpy files
+2020-05-06 18:29:23,413 0:0:0 Normalising labels
+2020-05-06 18:29:23,413 0:0:0 Labels normalised
+2020-05-06 18:29:25,401 0:0:2 Training CNN start
+2020-05-06 18:29:25,650 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 18:29:26,189 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 18:29:26,294 0:0:3 Batch 0
+2020-05-06 18:29:26,295 0:0:3 Batch 0: Normalising pixel values
+2020-05-06 18:29:26,959 0:0:3 Batch 0: Normalised pixel values
+2020-05-06 18:29:26,960 0:0:3 Batch 0: Shuffling and splitting data for training
+2020-05-06 18:29:28,272 0:0:5 Batch 0: Data shuffled and split, it is ready for usage
+2020-05-06 18:29:28,273 0:0:5 Batch 0: Training batch
+2020-05-06 18:29:31,187 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+2020-05-06 18:33:06,196 0:0:0 Loading or creating numpy data
+2020-05-06 18:33:09,410 0:0:3 Loaded data from numpy files
+2020-05-06 18:33:09,410 0:0:3 Normalising labels
+2020-05-06 18:33:09,411 0:0:3 Labels normalised
+2020-05-06 18:33:18,784 0:0:12 Training CNN start
+2020-05-06 18:33:19,035 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4070: The name tf.nn.max_pool is deprecated. Please use tf.nn.max_pool2d instead.
+
+2020-05-06 18:33:19,242 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:4074: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+2020-05-06 18:33:19,295 0:0:13 Batch 0
+2020-05-06 18:33:19,296 0:0:13 Batch 0: Normalising pixel values
+2020-05-06 18:33:19,310 0:0:13 Batch 0: Normalised pixel values
+2020-05-06 18:33:19,311 0:0:13 Batch 0: Shuffling and splitting data for training
+2020-05-06 18:33:19,326 0:0:13 Batch 0: Data shuffled and split, it is ready for usage
+2020-05-06 18:33:19,326 0:0:13 Batch 0: Training batch
+2020-05-06 18:33:20,651 From /home/james/Documents/Seagrass-Repository/seagrassvenv/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:422: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+

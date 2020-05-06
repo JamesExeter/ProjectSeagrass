@@ -85,7 +85,7 @@ def process_for_saving_just_rename(saver, images, min_num):
         count += 1
 
 #call this to save and process the images, no need to extract the data from the images prior
-def resize_and_save(saver, images, min_width=None, min_height=None):
+def resize_and_save(saver, images, min_width=576, min_height=576):
     #used to find the smallest image in a dataset
     dimensions = [(img.shape[0], img.shape[1]) for img in images]
     new_min_width, new_min_height = find_smallest_dimensions(dimensions)

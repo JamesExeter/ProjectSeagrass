@@ -3,7 +3,6 @@
 ########
 
 #the following paths need to be adapted
-INCEPTION_GRAPH_ROOT="/home/james/Documents/Seagrass-Repository/Inception-v4"
 DATASET_ROOT="/home/james/Documents/Seagrass-Repository/Images"
 RESULTS_ROOT="/home/james/Documents/Seagrass-Repository/Results"
 
@@ -19,7 +18,6 @@ SKIP_TRAINING=0
 MAIN_PROGRAM="../main.py"
 
 python3 $MAIN_PROGRAM \
---graph $INCEPTION_GRAPH_ROOT \
 --root_img_dir $DATASET_ROOT \
 --image_data_file "$DATASET_ROOT/$DATA_CONFIG_FILE" \
 --results_dir $RESULTS_ROOT \

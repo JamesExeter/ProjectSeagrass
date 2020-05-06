@@ -37,12 +37,12 @@ def create_cnn(width, height, depth):
     
     model = Sequential()
     #input layer and conv_1
-    model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), activation='relu', padding='same', input_shape=(width, height, depth)))
+    model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), activation='relu', strides=2, padding='same', input_shape=(width, height, depth)))
     model.add(BatchNormalization())
-    model.add(Convolution2D(nb_filters*2, (nb_conv, nb_conv), activation='relu', padding='same'))
+    model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), activation='relu', padding='same'))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool), strides=2))
+    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool), strides=3))
     
     #conv_2
     model.add(Convolution2D(nb_filters*2, (nb_conv, nb_conv), activation='relu', padding='same'))
@@ -50,7 +50,7 @@ def create_cnn(width, height, depth):
     model.add(Convolution2D(nb_filters*2, (nb_conv, nb_conv), activation='relu', padding='same'))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool), strides=2))
+    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool), strides=3))
         
     #conv_3
     model.add(Convolution2D(nb_filters*4, (nb_conv, nb_conv), activation='relu', padding='same'))
@@ -58,15 +58,15 @@ def create_cnn(width, height, depth):
     model.add(Convolution2D(nb_filters*4, (nb_conv, nb_conv), activation='relu', padding='same'))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool), strides=2))
+    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool), strides=3))
     
     #global_average_pooling
     model.add(AveragePooling2D())
     model.add(Flatten())
 
     #fully connected layers
-    model.add(Dense(256, activation='relu'))
-    model.add(Dropout(0.5))
+    #model.add(Dense(256, activation='relu'))
+    #model.add(Dropout(0.5))
     #regression output with sigmoid activation
     model.add(Dense(1, activation='sigmoid'))
 
@@ -122,12 +122,14 @@ def plot_mae(history, plotter):
     plotter.plot({'Seagrass model' : history}, metric = 'mae')
     plt.ylim([0,10])
     plt.ylabel('MAE [MPG]')
+    plt.show()
 
 #plot the mse metric of the trained model
 def plot_mse(history, plotter):
     plotter.plot({'Seagrass model' : history}, metric = 'mse')
     plt.ylim([0,20])
-    plt.ylabel('MSE [MPG^2]')    
+    plt.ylabel('MSE [MPG^2]') 
+    plt.show()   
 
 #plots the predictions versus the actual values 
 def plot_predictions_vs_actual(test_labels, test_predictions):
@@ -139,12 +141,14 @@ def plot_predictions_vs_actual(test_labels, test_predictions):
     plt.xlim(lims)
     plt.ylim(lims)
     _ = plt.plot(lims, lims)
+    plt.show()
     
 def plot_prediction_error_distribution(test_labels, test_predictions):
     error = test_predictions - test_labels
     plt.hist(error, bins = 50)
     plt.xlabel('Prediction Error [MPG')
     _ = plt.ylabel("Count")
+    plt.show()
     
 #saves the entire model to file in a given location
 #could allow the user to enter the name but may interrupt

@@ -13,3 +13,9 @@ its performance. A model will be generated following this training that is store
 
 Given a model is trained for use, a directory of images that are formatted to be of the shape 576x576x3 can be passed to the
 trained model with which coverage estimates are generated and stored in the results folder. 
+
+To make predictions on a set of custom images that adhere to the required image format (top-down quadrat image) the images must
+first be formatted using the FileFormatter class. The main method must be used to crop and resize the images. Once formatted,
+run main.py with the make_prediction.sh script. From here, the program will allow you to select the directory of images to make
+predictions on. As long as there is a trained model saved and the images are all of 576x576x3 and cropped correctly, predictions
+will be made and saved to a file in the Results folder. 
