@@ -23,6 +23,7 @@ class CNN(object):
     #initialisation of CNN object, starting a tensorflow session
     def __init__(self):
         self.sess = tf.compat.v1.Session()
+        self.lowest_loss = 1
 
     #closes the model instance
     def close(self):

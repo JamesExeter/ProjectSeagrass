@@ -26,8 +26,8 @@ Needs to be run using either a bash script or with all of the variables required
 """
 
 #variables needed to process the dataset for training
-EPOCHS = 50
-BATCH_SIZE = 5
+EPOCHS = 25
+BATCH_SIZE = 8
 VALID_SIZE = 0.1
 #used for train, test, validation split of 70:20:10, split validiation from rest with 90:10, then split 90% into 80:20 using 90*(0.2222)
 TEST_SIZE = 0.2222
@@ -238,7 +238,7 @@ def predict_directory(model_to_load, results):
             #Check first with the CheckValidImages class that each file is an image
             #This can be done by running the class in the command line and passing the path of the directory required
             for image in os.scandir(path):
-                if image.is_file():
+                if image.is_file() and image.name.endswith('.jpg') or image.name.endswith('.png'):
                     name = image.name
                     
                     msg.timemsg("Loading image: {}".format(name))
@@ -257,10 +257,14 @@ def predict_directory(model_to_load, results):
                     global total_prediction_time
                     total_prediction_time += elapsed_time
                     #load the image, normalise the data, make the prediction and then log the prediction
-                    print("Image: {}, Prediction: {:.3f}, Predicted in: {:.3f}s".format(name, float(predicted_coverage), elapsed_time / 1000.0), file=prediction_file)
+                    print("Image: {}, Prediction: {:.3f}, Predicted in: {:.3f}s".format(name, float(predicted_coverage * 100.0), elapsed_time / 100000.0), file=prediction_file)
                     
                     counter += 1
+                else:
+                    msg.timemsg("Not a valid file, please check the directory conents, exiting")
+                    sys.exit(0)
         
+        msg.timemsg("\n")
         msg.timemsg("All predictions made and stored at: {}".format(out_file_name))
         
     return counter
@@ -289,8 +293,8 @@ if __name__ == "__main__":
     if (args.skip_training == "1"):
         number_images = predict_directory(model_path, args.results_dir)
         if number_images > 0:
-            msg.timemsg("Predictions made on set of {} images, time taken: {:.3f}s".format(number_images, float(total_prediction_time / 1000.0)))
-            msg.timemsg("Average prediction time of {:.3f}s per image".format(float((total_prediction_time / 1000.0) / number_images)))
+            msg.timemsg("Predictions made on set of {} images, time taken: {:.3f}s".format(number_images, float(total_prediction_time / 100000.0)))
+            msg.timemsg("Average prediction time of {:.3f}s per image".format(float((total_prediction_time / 100000.0) / number_images)))
     else:
         #train the model and generate the evaluation metrics
         rgb_images = np.array([])
