@@ -8,14 +8,14 @@ import tensorflow_docs.plots
 from keras.models import Sequential
 from keras.layers.core import Dense, Dropout, Activation, Flatten
 from keras.layers.convolutional import Convolution2D
-from keras.layers import MaxPooling2D, BatchNormalization, GlobalAveragePooling2D
-from keras.optimizers import Adadelta
+from keras.layers import MaxPooling2D, BatchNormalization, AveragePooling2D
+from keras.optimizers import Adam
 from keras.models import load_model
 from keras.callbacks import EarlyStopping, ModelCheckpoint
 import matplotlib.pyplot as plt
 
 #initial learning rate
-learn_rate = 1e-04
+learn_rate = 0.001
 
 cnn_instance = None
 
@@ -34,51 +34,44 @@ def create_cnn(width, height, depth):
     nb_filters = 32
     nb_conv = 5
     nb_pool = 3
-
-    model = Sequential()
-    #input layer
-    model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), padding='same', input_shape=(width, height, depth)))
-    model.add(BatchNormalization())
-    model.add(Activation('relu'))
     
-    #conv_1
-    model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), padding='same'))
+    model = Sequential()
+    #input layer and conv_1
+    model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), activation='relu', padding='same', input_shape=(width, height, depth)))
+    model.add(BatchNormalization())
+    model.add(Convolution2D(nb_filters*2, (nb_conv, nb_conv), activation='relu', padding='same'))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
-        
+    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool), strides=2))
+    
     #conv_2
-    model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), padding='same'))
+    model.add(Convolution2D(nb_filters*2, (nb_conv, nb_conv), activation='relu', padding='same'))
+    model.add(BatchNormalization())
+    model.add(Convolution2D(nb_filters*2, (nb_conv, nb_conv), activation='relu', padding='same'))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
-           
-    #conv_3   
-    model.add(Convolution2D(nb_filters*2, (nb_conv, nb_conv), padding='same'))
+    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool), strides=2))
+        
+    #conv_3
+    model.add(Convolution2D(nb_filters*4, (nb_conv, nb_conv), activation='relu', padding='same'))
+    model.add(BatchNormalization())
+    model.add(Convolution2D(nb_filters*4, (nb_conv, nb_conv), activation='relu', padding='same'))
     model.add(BatchNormalization())
     model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
+    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool), strides=2))
     
     #global_average_pooling
-    model.add(GlobalAveragePooling2D())
-
+    model.add(AveragePooling2D())
     model.add(Flatten())
-    
+
     #fully connected layers
-    model.add(Dense(nb_filters*2))
-    model.add(Activation('relu'))
+    model.add(Dense(256, activation='relu'))
     model.add(Dropout(0.5))
-             
-    model.add(Dense(nb_filters))
-    model.add(Activation('relu'))
-    model.add(Dropout(0.25))
-    
-    #regression output with linear activation
-    model.add(Dense(1))
-    model.add(Activation('linear'))
+    #regression output with sigmoid activation
+    model.add(Dense(1, activation='sigmoid'))
 
     #compile the model using mean squared error loss and adamdelta optimiser, using mean absolute error and mean squared error metrics
-    model.compile(loss='mean_squared_error', optimizer=Adadelta(lr=learn_rate), metrics=['mean_absolute_error'])
+    model.compile(loss='mean_squared_error', optimizer=Adam(lr=learn_rate), metrics=['mean_absolute_error'])
     
     return model
 

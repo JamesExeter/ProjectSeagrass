@@ -9,20 +9,23 @@ import classifier.cnn as cnn
 from utils.FileUtil import FileUtil
 from utils.FileLoader import FileLoader
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_absolute_error, mean_squared_error
 import utils.msg as msg
 import time
 from numpy import save
 from numpy import load
 import sys
+import tkinter as tk
+from tkinter import filedialog
 import matplotlib.pyplot as plt
 
 """
-Used to train the classifier or make predictions with if the classifier is trained
+Class used to train the classifier or make predictions with if the classifier is trained
 Needs to be run using either a bash script or with all of the variables required by the args parser in the main method
 """
 
 #variables needed to process the dataset for training
-BATCH_SIZE = 20
+BATCH_SIZE = 16
 VALID_SIZE = 0.1
 #used for train, test, validation split of 70:20:10, split validiation from rest with 90:10, then split 90% into 80:20 using 90*(0.2222)
 TEST_SIZE = 0.2222
@@ -103,9 +106,17 @@ def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
         model = cnn.train_model(model, train_images, train_labels, test_images, test_labels, 5, cp_path)
         
         msg.timemsg("Batch {}: Evaluating model".format(i))
-        loss, mae, mse = cnn.evaluate_model(model, test_images, test_labels)
+        m_s_error, mean_abs_error, = cnn.evaluate_model(model, test_images, test_labels)
         #can probably use train mse and test mse in plot training results method
-        msg.timemsg("Batch {}: test loss: {}, test mae: {}, test mse: {}\n\n".format(i, loss, mae, mse))
+        msg.timemsg("Batch {}: test loss: {}, test mae: {}\n\n".format(i, m_s_error, mean_abs_error))
+        
+        model = cnn.create_cnn(width, height, depth)
+        #msg.timemsg("Loading weights for testing model weight loadingg")
+        model = cnn.load_weights_from_disk(model, cp_path)
+        msg.timemsg("Batch {}: Evaluating model second time".format(i))
+        m_s_error, mean_abs_error, = cnn.evaluate_model(model, test_images, test_labels)
+        #can probably use train mse and test mse in plot training results method
+        msg.timemsg("Batch {}: test loss: {}, test mae: {}\n\n".format(i, m_s_error, mean_abs_error))
         
     msg.timemsg("Training CNN finished")
     msg.timemsg("Saving model to file")
@@ -117,12 +128,15 @@ def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
     cnn.plot_mae(model, plotter)
     
     return model
-    
+
+#given a trained model and validation images, the model makes predictions
+#show_image variables is a boolean that if true, shows the image with the prediction
 def prediction(valid_imgs, sg_model, show_image=SHOW_IMAGES_WITH_PREDICTIONS):
     counter = 1
     n_valid = len(valid_imgs)
     results = []
     
+    #go through each image one at a time and make a prediction, adding the prediction to the output array
     for img in valid_imgs:
         start_time = time.time()
         
@@ -144,19 +158,13 @@ def prediction(valid_imgs, sg_model, show_image=SHOW_IMAGES_WITH_PREDICTIONS):
             plt.title('Predicted: ' + str(new_label))
     
     return results
-            
-# calculate mean squared error of predictions
-def mean_squared_error(actual, predicted):
-    sum_square_error = 0.0
-    for i in range(len(actual)):
-        sum_square_error += (actual[i] - predicted[i])**2.0
-    mean_square_error = 1.0 / len(actual) * sum_square_error
-    return mean_square_error
 
 #converts loaded images to rgb as default is bgr
 def convert_to_rbg(image):
     return cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
+#given a configuration file
+#it loads all of the images and labels in that file in order for numpy files to be made for the images and labels
 def load_data(config_file):
     #split into batches of 50 for the computer to handle more easily
     msg.timemsg("Loading data from file")
@@ -188,6 +196,8 @@ def load_data(config_file):
 
     return images, loaded_labels_arr
 
+#scales the data of a given array to be between 0 and 1, can be used for images and labels,
+#but if memory is an issue, just divided each pixel by 255 in place to save memory
 def scale_data(target_data):
     max_val = np.max(target_data)
     min_val = np.min(target_data)
@@ -200,13 +210,27 @@ def scale_data(target_data):
     return np.array(normalised) 
 
 #method to allow the user to select a directory with images they want classified
-def predict_directory():
+def predict_directory(model_to_load):
+    #initialise the cnn instance so we have access to it's functionality
+    cnn.ini()
+    
     #load the entire model
-    #get directory from user, maybe using file selector
-    #process each image one at a time, checking first with checkvalidimages it is an image 
-    #load the image, normalise the data, make the prediction and then log the prediction
-    pass
-
+    model = cnn.load_model_from_disk(model_to_load)
+    if (model is not None):
+        #get directory from user, maybe using file selector
+        root = tk.Tk()
+        root.withdraw()
+        path = filedialog.askdirectory(title='Select Folder')
+        
+        #process each image one at a time, checking first with checkvalidimages it is an image 
+        
+        #load the image, normalise the data, make the prediction and then log the prediction
+    else:
+        msg.timemsg("No model loaded, check the path is correct or a model has been saved properly")
+    
+#main argument that loads all of the arguments from a bash script or command line
+#either trains a model using the given data 
+#or loads a trained model to make predictions with
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     #the name of the file that stores the images and corresponding coverages
@@ -223,11 +247,14 @@ if __name__ == "__main__":
 
     msg.ini(args.results_dir + args.logging_file)
     
+    checkpoint_path = args.results_dir + args.checkpoint_dir
+    model_path = args.results_dir + args.model_dir
+    #if training not needed, make predictions on formatted images in a given directory
     if (args.skip_training == "1"):
-        predict_directory()
+        predict_directory(model_path)
     else:
-        checkpoint_path = args.results_dir + args.checkpoint_dir
-        model_path = args.results_dir + args.model_dir
+        #train the model and generate the evaluation metrics
+        
 
         rgb_images = np.array([])
         labels_arr = np.array([])
@@ -273,14 +300,16 @@ if __name__ == "__main__":
         #and then broken up into training and testing data to be fed into the model
         #the input shape for the input layer will be 576X576
         
+        #generate validation data, and data for training / testing
         to_batch_images, valid_images, to_batch_labels, valid_labels = train_test_split(rgb_images, labels_arr, test_size=VALID_SIZE, random_state=1)
         
         cnn.ini()
 
+        #generate a model by training it
         seagrass_model = train_in_batch(to_batch_images, to_batch_labels, checkpoint_path, model_path)
         
         msg.timemsg("Running predicitons on model using validation set")
-         #convert the data to be in the range of 0 and 1 for the pixel values
+        #convert the data to be in the range of 0 and 1 for the pixel values
         msg.timemsg("Normalising pixel values for validation set")
         valid_images = valid_images.astype('float32')
         #would use the scale data method here but it uses more memory, and we know the upper
@@ -288,17 +317,22 @@ if __name__ == "__main__":
         #this is more efficient for that task and is in place
         valid_images /= 255.0
         msg.timemsg("Normalised prediction set pixel values")
-        predictions = prediction(valid_images, seagrass_model, SHOW_IMAGES_WITH_PREDICTIONS)
         
+        predictions = prediction(valid_images, seagrass_model, SHOW_IMAGES_WITH_PREDICTIONS)
         msg.timemsg("Predictions made on validation set, time taken: {}".format(total_prediction_time))
         
         #evaluate the predictions
         msg.timemsg("Evaluating the predictions made on the validation set")
         
-        #EDIT HERE TO CALL THE PROPER ERROR MEASUREMENTS
-        
+        #EDIT HERE TO CALL THE PROPER ERROR MEASUREMENTS ON VALIDATION SET IN CNN CLASS    
         mse = mean_squared_error(valid_labels, predictions)
+        mae = mean_absolute_error(valid_labels, predictions)
+        
         msg.timemsg("Mean Squared Error on validation set: {}".format(mse))
+        msg.timemsg("Mean Absolute Error on validation set: {}".format(mae))
+        
+        cnn.plot_predictions_vs_actual(valid_labels, predictions)
+        cnn.plot_prediction_error_distribution(valid_labels, predictions)
         
         cnn.close()
     
