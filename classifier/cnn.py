@@ -42,7 +42,6 @@ def create_cnn(width, height, depth):
     model.add(BatchNormalization())
     model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), activation='relu', padding='same'))
     model.add(BatchNormalization())
-    model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool), strides=3))
     
     #conv_2
@@ -50,7 +49,6 @@ def create_cnn(width, height, depth):
     model.add(BatchNormalization())
     model.add(Convolution2D(nb_filters*2, (nb_conv, nb_conv), activation='relu', padding='same'))
     model.add(BatchNormalization())
-    model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool), strides=3))
         
     #conv_3
@@ -58,16 +56,11 @@ def create_cnn(width, height, depth):
     model.add(BatchNormalization())
     model.add(Convolution2D(nb_filters*4, (nb_conv, nb_conv), activation='relu', padding='same'))
     model.add(BatchNormalization())
-    model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool), strides=3))
     
     #global_average_pooling
     model.add(AveragePooling2D())
     model.add(Flatten())
-
-    #fully connected layers
-    #model.add(Dense(256, activation='relu'))
-    #model.add(Dropout(0.5))
     #regression output with sigmoid activation
     model.add(Dense(1, activation='sigmoid'))
 
@@ -105,7 +98,7 @@ def train_model(model, train_images, train_labels, test_images, test_labels, num
     
     #print("\nHistory dict:", history.history)    
     
-    return model
+    return model, history
 
 #creates a history plotter object to use in other methods 
 def create_history_plotter():
@@ -120,14 +113,14 @@ def evaluate_model(model, test_images, test_labels):
 
 #plot the mae metric of the trained model
 def plot_mae(history, plotter):
-    plotter.plot({'Seagrass model' : history}, metric = 'mae')
+    plotter.plot({'Seagrass model' : history}, metric = 'mean_absolute_error')
     plt.ylim([0,10])
     plt.ylabel('MAE [MPG]')
     plt.show()
 
 #plot the mse metric of the trained model
 def plot_mse(history, plotter):
-    plotter.plot({'Seagrass model' : history}, metric = 'mse')
+    plotter.plot({'Seagrass model' : history}, metric = 'mean_squared_error')
     plt.ylim([0,20])
     plt.ylabel('MSE [MPG^2]') 
     plt.show()   

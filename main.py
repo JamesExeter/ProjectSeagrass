@@ -27,7 +27,7 @@ Needs to be run using either a bash script or with all of the variables required
 
 #variables needed to process the dataset for training
 EPOCHS = 25
-BATCH_SIZE = 8
+BATCH_SIZE = 32
 VALID_SIZE = 0.1
 #used for train, test, validation split of 70:20:10, split validiation from rest with 90:10, then split 90% into 80:20 using 90*(0.2222)
 TEST_SIZE = 0.2222
@@ -100,34 +100,27 @@ def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
         
         if i > 0:
             #if not the first batch, then load the weights from the previous batch and begin training again
-            model = cnn.create_cnn(width, height, depth)
+            #model = cnn.create_cnn(width, height, depth)
             msg.timemsg("Loading weights for model")
             model = cnn.load_weights_from_disk(model, cp_path)
         
         msg.timemsg("Batch {}: Training batch".format(i))
-        model = cnn.train_model(model, train_images, train_labels, test_images, test_labels, EPOCHS, cp_path)
+        model, history = cnn.train_model(model, train_images, train_labels, test_images, test_labels, EPOCHS, cp_path)
         
         msg.timemsg("Batch {}: Evaluating model".format(i))
         m_s_error, mean_abs_error, = cnn.evaluate_model(model, test_images, test_labels)
         #can probably use train mse and test mse in plot training results method
         msg.timemsg("Batch {}: test loss: {:.5f}, test mae: {:.5f}\n\n".format(i, m_s_error, mean_abs_error))
         
-        #model = cnn.create_cnn(width, height, depth)
-        #msg.timemsg("Loading weights for testing model weight loading")
-        #model = cnn.load_weights_from_disk(model, cp_path)
-        #msg.timemsg("Batch {}: Evaluating model second time".format(i))
-        #m_s_error, mean_abs_error, = cnn.evaluate_model(model, test_images, test_labels)
-        #can probably use train mse and test mse in plot training results method
-        #msg.timemsg("Batch {}: test loss: {:.5f}, test mae: {:.5f}\n\n".format(i, m_s_error, mean_abs_error))
-        
     msg.timemsg("Training CNN finished")
     msg.timemsg("Saving model to file")
     cnn.save_model(model, m_path)
+    msg.timemsg("Model saved to file")
     
     #plot mse and mae of final trained model
     plotter = cnn.create_history_plotter()
-    cnn.plot_mse(model, plotter)
-    cnn.plot_mae(model, plotter)
+    cnn.plot_mse(history, plotter)
+    cnn.plot_mae(history, plotter)
     
     return model
 
