@@ -42,6 +42,7 @@ def create_cnn(width, height, depth):
     model.add(BatchNormalization())
     model.add(Convolution2D(nb_filters, (nb_conv, nb_conv), activation='relu', padding='same'))
     model.add(BatchNormalization())
+    model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool), strides=3))
     
     #conv_2
@@ -49,6 +50,7 @@ def create_cnn(width, height, depth):
     model.add(BatchNormalization())
     model.add(Convolution2D(nb_filters*2, (nb_conv, nb_conv), activation='relu', padding='same'))
     model.add(BatchNormalization())
+    model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool), strides=3))
         
     #conv_3
@@ -56,6 +58,7 @@ def create_cnn(width, height, depth):
     model.add(BatchNormalization())
     model.add(Convolution2D(nb_filters*4, (nb_conv, nb_conv), activation='relu', padding='same'))
     model.add(BatchNormalization())
+    model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool), strides=3))
     
     #global_average_pooling
@@ -65,7 +68,8 @@ def create_cnn(width, height, depth):
     model.add(Dense(1, activation='sigmoid'))
 
     #compile the model using mean squared error loss and adamdelta optimiser, using mean absolute error and mean squared error metrics
-    model.compile(loss='mean_squared_error', optimizer=Adam(lr=learn_rate), metrics=['mean_absolute_error'])
+    opt = Adam(learning_rate=learn_rate)
+    model.compile(loss='mean_absolute_error', optimizer=opt, metrics=['mean_squared_error'])
     
     return model
 
@@ -112,21 +116,30 @@ def evaluate_model(model, test_images, test_labels):
     return mse, mae
 
 #plot the mae metric of the trained model
-def plot_mae(history, plotter):
-    plotter.plot({'Seagrass model' : history}, metric = 'mean_absolute_error')
-    plt.ylim([0,10])
-    plt.ylabel('MAE [MPG]')
+def plot_mae(history, results_dir):
+    plt.plot(history.history['loss'], label='MAE (testing data)')
+    plt.plot(history.history['val_loss'], label='MAE (validation data)')
+    plt.title('MAE for Seagrass model')
+    plt.ylabel('MAE value')
+    plt.xlabel('# epoch')
+    plt.legend(loc="upper left")
     plt.show()
+    plt.savefig(results_dir + "/mae.png")
 
 #plot the mse metric of the trained model
-def plot_mse(history, plotter):
-    plotter.plot({'Seagrass model' : history}, metric = 'mean_squared_error')
-    plt.ylim([0,20])
-    plt.ylabel('MSE [MPG^2]') 
-    plt.show()   
+def plot_mse(history, results_dir):
+    plt.plot(history.history['mean_squared_error'], label='MSE (testing data)')
+    plt.plot(history.history['val_mean_squared_error'], label='MSE (validation data)')
+    plt.title('MSE for Chennai Reservoir Levels')
+    plt.ylabel('MSE value')
+    plt.xlabel('No. epoch')
+    plt.legend(loc="upper left")
+    plt.show()
+    plt.savefig(results_dir + "/mse.png")
+    
 
 #plots the predictions versus the actual values 
-def plot_predictions_vs_actual(test_labels, test_predictions):
+def plot_predictions_vs_actual(test_labels, test_predictions, results_dir):
     a = plt.axes(aspect='equal')
     plt.scatter(test_labels, test_predictions)
     plt.xlabel('Ground-truth [MPG]')
@@ -136,13 +149,15 @@ def plot_predictions_vs_actual(test_labels, test_predictions):
     plt.ylim(lims)
     _ = plt.plot(lims, lims)
     plt.show()
+    plt.savefig(results_dir + "/predictions_vs_actual.png")
     
-def plot_prediction_error_distribution(test_labels, test_predictions):
+def plot_prediction_error_distribution(test_labels, test_predictions, results_dir):
     error = test_predictions - test_labels
     plt.hist(error, bins = 50)
-    plt.xlabel('Prediction Error [MPG')
+    plt.xlabel('Prediction Error [MPG]')
     _ = plt.ylabel("Count")
     plt.show()
+    plt.savefig(results_dir + "/predict_error_distribution.png")
     
 #saves the entire model to file in a given location
 #could allow the user to enter the name but may interrupt

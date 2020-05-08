@@ -27,7 +27,7 @@ Needs to be run using either a bash script or with all of the variables required
 
 #variables needed to process the dataset for training
 EPOCHS = 25
-BATCH_SIZE = 32
+BATCH_SIZE = 16
 VALID_SIZE = 0.1
 #used for train, test, validation split of 70:20:10, split validiation from rest with 90:10, then split 90% into 80:20 using 90*(0.2222)
 TEST_SIZE = 0.2222
@@ -51,7 +51,7 @@ def batch(data, batch_size):
 
 #traines the neural network in batches, creating manual batches rather than using
 #pre-built modules to help control memory management
-def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
+def train_in_batch(images, labels, cp_path, m_path, results_dir, batch_size=BATCH_SIZE):
     #batches the labels and images
     images_batched = list(batch(images, batch_size))
     labels_batched = list(batch(labels, batch_size))
@@ -118,9 +118,9 @@ def train_in_batch(images, labels, cp_path, m_path, batch_size=BATCH_SIZE):
     msg.timemsg("Model saved to file")
     
     #plot mse and mae of final trained model
-    plotter = cnn.create_history_plotter()
-    cnn.plot_mse(history, plotter)
-    cnn.plot_mae(history, plotter)
+    #plotter = cnn.create_history_plotter()
+    cnn.plot_mse(history, results_dir)
+    cnn.plot_mae(history, results_dir)
     
     return model
 
@@ -254,7 +254,7 @@ def predict_directory(model_to_load, results):
                     
                     counter += 1
                 else:
-                    msg.timemsg("Not a valid file, please check the directory conents, exiting")
+                    msg.timemsg("Not a valid file, please check the directory contents, exiting")
                     sys.exit(0)
         
         msg.timemsg("\n")
@@ -340,7 +340,7 @@ if __name__ == "__main__":
         cnn.ini()
 
         #generate a model by training it
-        seagrass_model = train_in_batch(to_batch_images, to_batch_labels, checkpoint_path, model_path)
+        seagrass_model = train_in_batch(to_batch_images, to_batch_labels, checkpoint_path, model_path, args.results_dir)
         
         msg.timemsg("Running predicitons on model using validation set")
         #convert the data to be in the range of 0 and 1 for the pixel values
@@ -366,8 +366,8 @@ if __name__ == "__main__":
         msg.timemsg("Mean Squared Error on validation set: {:.5f}".format(mse))
         msg.timemsg("Mean Absolute Error on validation set: {:.5f}\n".format(mae))
         
-        cnn.plot_predictions_vs_actual(valid_labels, predictions)
-        cnn.plot_prediction_error_distribution(valid_labels, predictions)
+        cnn.plot_predictions_vs_actual(valid_labels, predictions, args.results_dif)
+        cnn.plot_prediction_error_distribution(valid_labels, predictions, args.results_dir)
         
         cnn.close()
     

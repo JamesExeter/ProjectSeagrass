@@ -1,5 +1,6 @@
 # ProjectSeagrass
 A CNN regression project that aims to give coverage estimates for seagrass images
+This project was built within a virtual environment on Ubuntu 18 that uses Python 3.6.9, Tensorflow 1.14, Keras 2.3.1, NumPy 1.18.2, Scikit-learn 0.22.2.post1 and OpenCV 4.2.0
 
 This projects covers the formatting process of images for usage in the CNN model
 Seagrass quadrat images are cropped to remove the quadrat from the image and processed to include a formatted naming scheme
@@ -19,3 +20,4 @@ first be formatted using the FileFormatter class. The main method must be used t
 run main.py with the make_prediction.sh script. From here, the program will allow you to select the directory of images to make
 predictions on. As long as there is a trained model saved and the images are all of 576x576x3 and cropped correctly, predictions
 will be made and saved to a file in the Results folder. 
+
