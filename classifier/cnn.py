@@ -85,7 +85,7 @@ def train_model(model, train_images, train_labels, test_images, test_labels, num
     # or can only save the best which is now the case
     cp_callback = ModelCheckpoint(
         filepath=checkpoint_path, 
-        monitor='val_mean_absolute_error', 
+        monitor='val_mean_squared_error', 
         save_weights_only=True, 
         save_best_only=True, 
         mode="max", 
@@ -123,8 +123,8 @@ def plot_mae(history, results_dir):
     plt.ylabel('MAE value')
     plt.xlabel('# epoch')
     plt.legend(loc="upper left")
-    plt.show()
     plt.savefig(results_dir + "/mae.png")
+    plt.show()
 
 #plot the mse metric of the trained model
 def plot_mse(history, results_dir):
@@ -134,9 +134,8 @@ def plot_mse(history, results_dir):
     plt.ylabel('MSE value')
     plt.xlabel('No. epoch')
     plt.legend(loc="upper left")
-    plt.show()
     plt.savefig(results_dir + "/mse.png")
-    
+    plt.show()
 
 #plots the predictions versus the actual values 
 def plot_predictions_vs_actual(test_labels, test_predictions, results_dir):
@@ -148,16 +147,17 @@ def plot_predictions_vs_actual(test_labels, test_predictions, results_dir):
     plt.xlim(lims)
     plt.ylim(lims)
     _ = plt.plot(lims, lims)
-    plt.show()
     plt.savefig(results_dir + "/predictions_vs_actual.png")
+    plt.show()
+    
     
 def plot_prediction_error_distribution(test_labels, test_predictions, results_dir):
     error = test_predictions - test_labels
     plt.hist(error, bins = 50)
     plt.xlabel('Prediction Error [MPG]')
     _ = plt.ylabel("Count")
-    plt.show()
     plt.savefig(results_dir + "/predict_error_distribution.png")
+    plt.show()
     
 #saves the entire model to file in a given location
 #could allow the user to enter the name but may interrupt

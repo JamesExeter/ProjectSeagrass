@@ -1,0 +1,21 @@
+BATCH 0: train loss: 0.1999 train mse: 0.1064 test loss: 0.18059 test mae: 0.03686
+BATCH 1: train loss: 0.1654 train mse: 0.0557 test loss: 0.31281 test mae: 0.17960
+BATCH 2: train loss: 0.1559 train mse: 0.0459 test loss: 0.55413 test mae: 0.42230
+BATCH 3: train loss: 0.1148 train mse: 0.0285 test loss: 0.25700 test mae: 0.17249 
+BATCH 4: train loss: 0.0493 train mse: 0.0057 test loss: 0.42520 test mae: 0.33515 
+BATCH 5: train loss: 0.1251 train mse: 0.0340 test loss: 0.41388 test mae: 0.17622 
+BATCH 6: train loss: 0.0634 train mse: 0.0077 test loss: 0.59669 test mae: 0.35945
+BATCH 7: train loss: 0.0954 train mse: 0.0347 test loss: 0.49371 test mae: 0.33340
+BATCH 8: train loss: 0.0353 train mse: 0.0023 test loss: 0.55232 test mae: 0.34365 
+BATCH 9: train loss: 0.0640 train mse: 0.0105 test loss: 0.68176 test mae: 0.56783
+BATCH 10: train loss: 0.0808 train mse: 0.0151 test loss: 0.39350 test mae: 0.26678 
+BATCH 11: train loss: 0.0627 train mse: 0.0072 test loss: 0.19955 test mae: 0.05641 
+BATCH 12: train loss: 0.0448 train mse: 0.0036 test loss: 0.36827 test mae: 0.19461 
+BATCH 13: train loss: 0.0820 train mse: 0.0278 test loss: 0.39205 test mae: 0.22056
+BATCH 14: train loss: 0.0593 train mse: 0.0167 test loss: 0.53224 test mae: 0.36380 
+BATCH 15: train loss: 0.1156 train mse: 0.0204 test loss: 0.31022 test mae: 0.18519
+BATCH 16: train loss: 0.0346 train mse: 0.0025 test loss: 0.67648 test mae: 0.48256
+
+Predictions made on 10% unseen valdiation set.
+MSE of Validation set: 0.21614
+MAE of Validation set: 0.37765

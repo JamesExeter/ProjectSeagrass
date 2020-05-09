@@ -8,6 +8,7 @@ from sklearn.utils import shuffle
 import classifier.cnn as cnn
 from utils.FileUtil import FileUtil
 from utils.FileLoader import FileLoader
+import utils.FileFormatter as formatter
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 import utils.msg as msg
@@ -26,7 +27,7 @@ Needs to be run using either a bash script or with all of the variables required
 """
 
 #variables needed to process the dataset for training
-EPOCHS = 25
+EPOCHS = 20
 BATCH_SIZE = 16
 VALID_SIZE = 0.1
 #used for train, test, validation split of 70:20:10, split validiation from rest with 90:10, then split 90% into 80:20 using 90*(0.2222)
@@ -206,37 +207,60 @@ def scale_data(target_data):
 
 #method to allow the user to select a directory with images they want classified
 def predict_directory(model_to_load, results):
+    format_images = input("Do the images require formatting? ('y' or 'n'): ")
+    predict_dir = None
+    
+    if format_images == 'y':
+        #get directory from user, using file selector
+        root = tk.Tk()
+        root.withdraw()
+        original_folder = filedialog.askdirectory(title='Select Folder Of Images to Formated')
+        
+        #get directory from user, using file selector
+        root = tk.Tk()
+        root.withdraw()
+        predict_dir = filedialog.askdirectory(title='Select Folder Destination Folder')
+        
+        msg.timemsg("Loading from: {}".format(original_folder))
+        msg.timemsg("Saving to: {}".format(predict_dir))
+        
+        msg.timemsg("Formatting the images")
+        formatter.main(original_folder, predict_dir + "/")
+        msg.timemsg("Images formatted")
+    
+
     counter = 0
     start_time = time.time()
     #initialise the cnn instance so we have access to it's functionality
     cnn.ini()
-    
     #load the entire model
     model = None
     try:
         model = cnn.load_model_from_disk(model_to_load)
+        msg.timemsg("Model loaded for use")
     except ValueError:
         msg.timemsg("No model loaded, check the path is correct or a model has been saved properly")
         
     if (model is not None):
-        #get directory from user, maybe using file selector
-        root = tk.Tk()
-        root.withdraw()
-        path = filedialog.askdirectory(title='Select Folder')
+        if predict_dir is None:
+            #get directory from user, maybe using file selector
+            root = tk.Tk()
+            root.withdraw()
+            predict_dir = filedialog.askdirectory(title='Select Folder of Formatted Images')
         
-        out_file_name = os.path.join(results, "Predictions.txt")
+        out_file_name = os.path.join(predict_dir, "Predictions.txt")
         
+        msg.timemsg("Making predictions on images")
         with open(out_file_name, "w") as prediction_file:
             #process each image one at a time
             #Check first with the CheckValidImages class that each file is an image
             #This can be done by running the class in the command line and passing the path of the directory required
-            for image in os.scandir(path):
-                if image.is_file() and image.name.endswith('.jpg') or image.name.endswith('.png'):
-                    name = image.name
-                    
-                    msg.timemsg("Loading image: {}".format(name))
-                    
-                    image_path = os.path.join(path, image.name)
+            for image in os.scandir(predict_dir):
+                name = image.name    
+                msg.timemsg("Loading file: {}".format(name))
+                
+                if image.is_file() and image.name.endswith('.jpg') or image.name.endswith('.png') or image.name.endswith('.jpeg'):
+                    image_path = os.path.join(predict_dir, image.name)
                     numpy_image = cv2.imread(image_path)
                     numpy_image = cv2.cvtColor(numpy_image, cv2.COLOR_BGR2RGB)
                     numpy_image = numpy_image.astype('float32')
@@ -250,15 +274,20 @@ def predict_directory(model_to_load, results):
                     global total_prediction_time
                     total_prediction_time += elapsed_time
                     #load the image, normalise the data, make the prediction and then log the prediction
-                    print("Image: {}, Prediction: {:.3f}, Predicted in: {:.3f}s".format(name, float(predicted_coverage * 100.0), elapsed_time / 100000.0), file=prediction_file)
+                    print("Image: {}, Prediction: {:.6f}, Predicted in: {:.3f}s".format(name, float(predicted_coverage * 100), elapsed_time / 100000.0), file=prediction_file)
                     
                     counter += 1
                 else:
-                    msg.timemsg("Not a valid file, please check the directory contents, exiting")
-                    sys.exit(0)
+                    if not(image.is_file() and image.name.endswith(".txt")):
+                        msg.timemsg("Not a valid file, please check the directory contents, exiting")
+                        msg.timemsg("Ensure the folder path contains no folders that include a space in the name")
+                        sys.exit(0)
         
         msg.timemsg("\n")
-        msg.timemsg("All predictions made and stored at: {}".format(out_file_name))
+        if counter == 0:
+            msg.timemsg("No images were in the folder, please double check")
+        else:
+            msg.timemsg("All predictions made and stored at: {}".format(out_file_name))
         
     return counter
     
@@ -267,7 +296,6 @@ def predict_directory(model_to_load, results):
 #or loads a trained model to make predictions with
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    #the name of the file that stores the images and corresponding coverages
     parser.add_argument("--root_img_dir", help="the root image directory of the project")
     parser.add_argument("--image_data_file", help="the name of the file containing the image paths and coverages")
     parser.add_argument("--results_dir", help="the name of the directory to store results to")
@@ -366,7 +394,7 @@ if __name__ == "__main__":
         msg.timemsg("Mean Squared Error on validation set: {:.5f}".format(mse))
         msg.timemsg("Mean Absolute Error on validation set: {:.5f}\n".format(mae))
         
-        cnn.plot_predictions_vs_actual(valid_labels, predictions, args.results_dif)
+        cnn.plot_predictions_vs_actual(valid_labels, predictions, args.results_dir)
         cnn.plot_prediction_error_distribution(valid_labels, predictions, args.results_dir)
         
         cnn.close()

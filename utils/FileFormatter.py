@@ -4,20 +4,19 @@ image manipulation for testing seagrass images and features
 
 import os, os.path
 import time
+import re
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
-import re
 import matplotlib
 import random as rand
 import itertools
-from ImageVisualiser import ImageVisualiser
-import ntpath
-from ImageEditor import ImageEditor
-from ImageEditor import find_cropping_coordinates
-from ImageEditor import crop_quadrat
-from FileLoader import FileLoader
-import msg
+from utils.ImageVisualiser import ImageVisualiser
+from utils.ImageEditor import ImageEditor
+from utils.ImageEditor import find_cropping_coordinates
+from utils.ImageEditor import crop_quadrat
+from utils.FileLoader import FileLoader
+import utils.msg as msg
 import argparse
 
 """
@@ -110,15 +109,11 @@ def resize_and_save(saver, images, min_width=576, min_height=576):
     process_for_saving(saver, resized)
 
 #used to rename the images in a dataset using the required format
-def renaming_main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("img_dir", help="the directory of images to be renamed")
-    args = parser.parse_args()
-
+def renaming_main(img_dir):
     start_time = time.time()
     msg.ini("/home/james/Documents/Seagrass-Repository/Results/output_log.txt")
 
-    rename_loader = FileLoader(args.img_dir, args.img_dir)
+    rename_loader = FileLoader(img_dir, img_dir)
     to_rename = rename_loader.load_all_from_folder(False)
     to_rename.sort(key=lambda f: int(re.sub('\D', '', f[1])))
     to_rename = np.array([(img[0]) for img in to_rename])
@@ -203,7 +198,6 @@ def augmentation_main():
     # a change in brightness, contrast or blurring
     # decide which image alteration to perform: sharpen, blur, adjust contrast or none
     # then for that alteration, select the image orientation, vert, hori or none
-    # 
     # repeat this 4 times until each image alteration  
 
     # each number refers to an operation function to be applied to the image
@@ -284,10 +278,7 @@ def resizing_main():
     msg.timemsg("Finished executing")
 
 #experiments all key features of the formatting process works properly
-def main():
-    save_path = "/home/james/Documents/Seagrass-Repository/Images/Formatted_Images/"
-    load_path = "/home/james/Documents/Seagrass-Repository/Images/Original_Data/"
-    
+def main(load_path, save_path):    
     start = time.time()
     msg.ini("/home/james/Documents/Seagrass-Repository/Results/output_log.txt")
 
@@ -297,11 +288,11 @@ def main():
     loader2 = FileLoader(save_path, save_path)
     check_saved = loader2.load_first()
 
-    if(len(to_process) > 0):
-        min_height = None
-        min_width = None
+    if(to_process != []):
+        min_height = 576
+        min_width = 576
         
-        if(check_saved is not None):
+        if(check_saved != []):
             min_width = check_saved.shape[1]
             min_height = check_saved.shape[0]
 
@@ -325,8 +316,13 @@ def main():
 
 #used to run different main methods    
 if __name__ == '__main__':
-    #main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--load_folder", help="the folder pre-formatting images are loaded from")
+    parser.add_argument("--save_folder", help="the folder the formatted images are saved too")
+    args = parser.parse_args()
+    
+    #main(args.load_folder, args.save_folder)
     #testing_feature_extraction_main()
-    augmentation_main()
+    #augmentation_main()
     #renaming_main()
     #resizing_main()
